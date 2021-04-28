@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="<?= base_url('assets/img/favicon.png'); ?>">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Algonema</title>
+    <title>Aglonema</title>
 
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
@@ -29,7 +29,7 @@
         <div class="container">
 
             <div id="logo" class="pull-left">
-                <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top: -7px;"><a href="<?= base_url('') ?>">ALGONEMA</a>
+                <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top: -7px;"><a href="<?= base_url('') ?>">Aglonema</a>
                 </h2>
 
             </div>
@@ -50,8 +50,8 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-            <h1>Welcome Algonema</h1>
-            <h2>Bingung cari tanaman hias? Algonemain aja!</h2>
+            <h1>Welcome Aglonema</h1>
+            <h2>Bingung cari tanaman hias? Aglonemain aja!</h2>
             <a href="#about" class="btn-get-started">Selengkapnya</a>
         </div>
     </section><!-- End Hero Section -->
@@ -64,9 +64,9 @@
                 <div class="row about-container">
 
                     <div class="col-lg-6 content order-lg-1 order-2">
-                        <h2 class="title">About Algonema</h2>
+                        <h2 class="title">About Aglonema</h2>
                         <p>
-                            Algonema adalah salah satu tanaman hias yang bisa bertahan hidup meskipun mendapat sinar matahari yang minim. Hal ini disebut-sebut manjadi alasan Algonema banyak yang diminati dan tengah menjadi tren untuk bisnis. Daya tarik tanaman ini terletak pada keindahan daun-daun yang berwarna dan punya motif yang variatif.
+                            Aglonema adalah salah satu tanaman hias yang bisa bertahan hidup meskipun mendapat sinar matahari yang minim. Hal ini disebut-sebut manjadi alasan Aglonema banyak yang diminati dan tengah menjadi tren untuk bisnis. Daya tarik tanaman ini terletak pada keindahan daun-daun yang berwarna dan punya motif yang variatif.
                         </p>
 
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
