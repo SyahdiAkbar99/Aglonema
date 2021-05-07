@@ -6,17 +6,33 @@ class Auth extends CI_Controller
     //Halaman Login
     public function index()
     {
-        $data['title'] = 'Login';
-        $this->load->view('templates/auth_header', $data);
+        $data['title'] = 'Masuk';
+        $this->load->view('templates/auth/auth_header', $data);
         $this->load->view('auth/login', $data);
-        $this->load->view('templates/auth_footer', $data);
+        $this->load->view('templates/auth/auth_footer', $data);
     }
-    //Halaman Registrasi
+    //Halaman Registrasi Admin
+    public function registration_admin()
+    {
+        $data['title'] = 'Daftar sebagai Admin';
+        $this->load->view('templates/auth/auth_header', $data);
+        $this->load->view('auth/registrasi_admin', $data);
+        $this->load->view('templates/auth/auth_footer', $data);
+    }
+    //Halaman Registrasi Buyer
     public function registration()
     {
-        $data['title'] = 'Registrasi';
-        $this->load->view('templates/auth_header', $data);
+        $data['title'] = 'Daftar';
+        $this->load->view('templates/auth/auth_header', $data);
         $this->load->view('auth/registrasi', $data);
-        $this->load->view('templates/auth_footer', $data);
+        $this->load->view('templates/auth/auth_footer', $data);
+    }
+    //Halaman Registrasi
+    public function registration_seller()
+    {
+        $data['title'] = 'Daftar sebagai Seller';
+        $this->load->view('templates/auth/auth_header', $data);
+        $this->load->view('auth/registrasi_seller', $data);
+        $this->load->view('templates/auth/auth_footer', $data);
     }
 }

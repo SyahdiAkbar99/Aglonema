@@ -5,7 +5,7 @@
             <a href="<?= base_url('index2.html') ?>" class="h1"><b><?= $title; ?></b></a>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Masuk untuk akses akun kamu <b>!</b></p>
 
             <form action="<?= base_url('index3.html') ?>" method="post">
                 <div class="input-group mb-3">
@@ -26,17 +26,16 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-success btn-block">Masuk</button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
             <hr>
             <p class="mb-1 text-center">
-                <a href="forgot-password.html">I forgot my <b>Password</b></a>
+                <a href="forgot-password.html">Aku lupa <b>Password</b></a>
             </p>
             <p class="mb-0 text-center">
-                <a href="<?= base_url('auth/registration') ?>" class="text-center">I need to <b>Register</b></a>
+                <a href="<?= base_url('auth/registration') ?>" class="text-center">Aku ingin <b>Mendaftar</b></a>
             </p>
         </div>
         <!-- /.card-body -->
