@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="favicon" sizes="76x76" href="<?= base_url('assets/img/favicon.png') ?>">
-    <link rel="icon" type="image/png" href="<?= base_url('assets/img/favicon.png') ?>">
+    <link rel="favicon" sizes="76x76" href="<?= base_url('assets/admin/img/favicon.png') ?>">
+    <link rel="icon" type="image/png" href="<?= base_url('assets/admin/img/favicon.png') ?>">
     <title><?= $title; ?></title>
 
     <!-- Google Font: Source Sans Pro -->

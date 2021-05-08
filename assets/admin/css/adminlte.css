@@ -35422,7 +35422,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background: linear-gradient(rgba(0, 0, 35, 0.5), rgba(0, 0, 35, 0.5)), url('../../img/headers.jpg');
+  background: linear-gradient(rgba(0, 0, 35, 0.5), rgba(0, 0, 35, 0.5)), url('../../admin/img/background-login.jpg');
   background-position: center top;
 }
 
