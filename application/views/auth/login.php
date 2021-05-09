@@ -2,14 +2,20 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="<?= base_url('index2.html') ?>" class="h1"><b><?= $title; ?></b></a>
+            <a href="<?= base_url('auth') ?>" class="h1"><b><?= $title; ?></b></a>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Masuk untuk akses akun kamu <b>!</b></p>
-
-            <form action="<?= base_url('index3.html') ?>" method="post">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="login-box-msg">Masuk untuk akses akun kamu <b>!</b></p>
+                </div>
+                <div class="col-md-12">
+                    <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
+                </div>
+            </div>
+            <form action="<?= base_url('auth') ?>" method="post">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -17,7 +23,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

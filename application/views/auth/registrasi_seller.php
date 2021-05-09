@@ -1,29 +1,40 @@
 <div class="register-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="<?= base_url('index2.html') ?>" class="h1"><b><?= $title; ?></b></a>
+            <a href="<?= base_url('auth/registration_seller') ?>" class="h1"><b><?= $title; ?></b></a>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Belum punya akun <b>?</b> Daftar disini <b>!</b></p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="login-box-msg">Belum punya akun <b>?</b> Daftar disini <b>!</b></p>
+                </div>
+                <div class="col-md-12">
+                    <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
+                </div>
+            </div>
 
-            <form action="<?= base_url('index.html') ?>" method="post">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nama Lengkap">
+            <form action="<?= base_url('auth/registration_seller') ?>" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" id="name" value="<?= set_value('name') ?>" placeholder="Nama Lengkap">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                <?= form_error('name', '<small class="text-danger pb-3">', '</small>'); ?>
+
+                <div class="input-group mt-3">
+                    <input type="email" class="form-control" name="email" id="email" value="<?= set_value('email') ?>" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
+                <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+
+                <div class="input-group mt-3">
                     <input type="password" class="form-control" name="password1" id="password1" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -31,7 +42,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
+                <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
+
+                <div class="input-group mt-3">
                     <input type="password" class="form-control" name="password2" id="password2" placeholder="Ulangi password">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -39,31 +52,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="no_rekening" id="no_rekening" placeholder="No Rekening">
+                <?= form_error('password2', '<small class="text-danger">', '</small>'); ?>
+
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" name="no_rekening" value="<?= set_value('no_rekening') ?>" id="no_rekening" placeholder="No Rekening">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="far fa-credit-card"></span>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="nama_bank" id="nama_bank" placeholder="Nama Bank">
+                <?= form_error('no_rekening', '<small class="text-danger">', '</small>'); ?>
+
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" name="nama_bank" value="<?= set_value('nama_bank') ?>" id="nama_bank" placeholder="Nama Bank">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-university"></span>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
+                <?= form_error('nama_bank', '<small class="text-danger">', '</small>'); ?>
+
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?= set_value('alamat') ?>" placeholder="Alamat">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-address-card"></span>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                <div class="row mt-3">
                     <div class="col-4">
                         <button type="submit" class="btn btn-success btn-block">Daftar</button>
                     </div>
