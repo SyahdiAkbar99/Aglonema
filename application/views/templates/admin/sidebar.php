@@ -14,7 +14,7 @@
                 <img src="<?= base_url('assets/admin/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="Profile User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"><?= $user['name']; ?></a>
             </div>
         </div>
 

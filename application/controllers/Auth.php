@@ -10,12 +10,88 @@ class Auth extends CI_Controller
     //Halaman Login
     public function index()
     {
-        $data['title'] = 'Masuk';
-        $this->load->view('templates/auth/auth_header', $data);
-        $this->load->view('auth/login', $data);
-        $this->load->view('templates/auth/auth_footer', $data);
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Masuk';
+            $this->load->view('templates/auth/auth_header', $data);
+            $this->load->view('auth/login', $data);
+            $this->load->view('templates/auth/auth_footer', $data);
+        } else {
+            $this->_login();
+        }
     }
 
+
+    //fungsi login
+    private function _login()
+    {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        // echo '<pre>';
+        // print_r($user);
+        // die;
+        // echo '</pre>';
+
+        //jika usernya ada
+        if ($user) {
+            //jika usernya aktif
+            if ($user['is_active'] == 1) {
+                //cek passwordnya
+                if (password_verify($password, $user['password'])) {
+                    $data = [
+                        'id' => $user['id'],
+                        'email' => $user['email'],
+                        'role_id' => $user['role_id'],
+                    ];
+                    $this->session->set_userdata($data);
+                    if ($user['role_id'] == 1) {
+                        redirect('admin');
+                    } elseif ($user['role_id'] == 2) {
+                        redirect('seller');
+                    } else {
+                        redirect('buyer');
+                    }
+                } else {
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-danger" role="alert">
+                        Password salah !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                    );
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger" role="alert">
+                    Email belum diaktifkan !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+                );
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger" role="alert">
+                Email belum terdaftar !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>'
+            );
+            redirect('auth');
+        }
+    }
 
 
     //Halaman Registrasi Admin
@@ -182,5 +258,23 @@ class Auth extends CI_Controller
                 redirect('auth/registration_seller');
             }
         }
+    }
+
+    //untuk logout
+    public function logout()
+    {
+        $this->session->unset_userdata('id');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert">
+            Berhasil logout!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>'
+        );
+        redirect('auth');
     }
 }

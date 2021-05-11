@@ -14,15 +14,16 @@
                 </div>
             </div>
             <form action="<?= base_url('auth') ?>" method="post">
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                <div class="input-group">
+                    <input type="email" class="form-control" name="email" id="email" value="<?= set_value('email'); ?>" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
+                <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                <div class="input-group mt-3">
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -30,7 +31,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+                <div class="row mt-3">
                     <div class="col-12">
                         <button type="submit" class="btn btn-success btn-block">Masuk</button>
                     </div>

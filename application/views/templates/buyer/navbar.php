@@ -12,7 +12,7 @@
             </a>
 
             <!-- Menu -->
-            <div class="wrap_menu">
+            <div class="wrap_menu mx-auto">
                 <nav class="menu">
                     <ul class="main_menu" style="margin-top: -1%;">
                         <li>
@@ -27,14 +27,23 @@
                         <li>
                             <a href="contact.html">Kontak</a>
                         </li>
-                        <li>
-                            <a href="<?= base_url('auth') ?>">
-                                <button class="btn btn-dark">
-                                    Login
-                                </button>
-                            </a>
-                        </li>
-
+                        <?php if ($user['name'] == NULL) : ?>
+                            <li>
+                                <a href="<?= base_url('auth') ?>">
+                                    <button class="btn btn-secondary">
+                                        Login
+                                    </button>
+                                </a>
+                            </li>
+                        <?php else : ?>
+                            <li>
+                                <a href="<?= base_url('auth/logout') ?>">
+                                    <button class="btn btn-danger">
+                                        Logout
+                                    </button>
+                                </a>
+                            </li>
+                        <?php endif ?>
                     </ul>
                 </nav>
             </div>
@@ -42,9 +51,8 @@
             <!-- Header Icon -->
             <div class="header-icons">
                 <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1" alt="ICON">
+                    <?= $user['name']; ?><img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1 pl-1" alt="ICON">
                 </a>
-
                 <span class="linedivide1"></span>
 
                 <div class="header-wrapicon2">
@@ -145,7 +153,7 @@
             <!-- Header Icon mobile -->
             <div class="header-icons-mobile">
                 <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1" alt="ICON">
+                    <?= $user['name']; ?> <img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1 pl-1" alt="ICON">
                 </a>
 
                 <span class="linedivide2"></span>
@@ -253,7 +261,7 @@
                 <li class="item-menu-mobile">
                     <a href="contact.html">Kontak</a>
                 </li>
-                <?php if ($this->session->userdata('email') != NULL) : ?>
+                <?php if ($user['name'] == NULL) : ?>
                     <li class="item-menu-mobile">
                         <a href="<?= base_url('auth') ?>">
                             Login

@@ -10,6 +10,7 @@ class Seller extends CI_Controller
     public function index()
     {
         $data['title'] = 'Dashboard Seller';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/seller/header', $data);
         $this->load->view('templates/seller/navbar', $data);
         $this->load->view('templates/seller/sidebar', $data);

@@ -10,6 +10,7 @@ class Buyer extends CI_Controller
     public function index()
     {
         $data['title'] = 'Home';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
         $this->load->view('buyer/index', $data);
