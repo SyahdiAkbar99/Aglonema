@@ -26,11 +26,11 @@
 <script src="<?= base_url('assets/admin/js/bootstrap.bundle.min.js') ?>"></script>
 <!-- ChartJS -->
 <script src="<?= base_url('assets/admin/js/Chart.min.js') ?>"></script>
-<!-- Sparkline -->
-<script src="<?= base_url('assets/admin/js/sparkline.js') ?>"></script>
+
 <!-- JQVMap -->
-<script src="<?= base_url('assets/admin/js/jquery.vmap.min.js') ?>"></script>
-<script src="<?= base_url('assets/admin/js/jquery.vmap.usa.js') ?>"></script>
+
+
+
 <!-- jQuery Knob Chart -->
 <script src="<?= base_url('assets/admin/js/jquery.knob.min.js') ?>"></script>
 <!-- daterangepicker -->
@@ -46,8 +46,8 @@
 <script src="<?= base_url('assets/admin/js/adminlte.js') ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('assets/admin/js/demo.js') ?>"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url('assets/admin/js/dashboard.js') ?>"></script>
+
+<script src="<?= base_url('assets/admin/js/script.js'); ?>"></script>
 </body>
 
 </html>

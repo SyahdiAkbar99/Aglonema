@@ -54,6 +54,21 @@
                 <?= form_error('password2', '<small class="text-danger">', '</small>'); ?>
 
                 <div class="input-group mt-2">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="text-dark">+62</span>
+                        </div>
+                    </div>
+                    <input type="tel" class="form-control" name="no_telp" id="no_telp" value="<?= set_value('no_telp') ?>" placeholder="No Telpon">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa fa-phone"></span>
+                        </div>
+                    </div>
+                </div>
+                <?= form_error('no_telp', '<small class="text-danger">', '</small>'); ?>
+
+                <div class="input-group mt-2">
                     <input type="text" class="form-control" name="alamat" id="alamat" value="<?= set_value('alamat') ?>" placeholder="Alamat">
                     <div class="input-group-append">
                         <div class="input-group-text">

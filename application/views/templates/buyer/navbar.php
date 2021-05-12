@@ -8,8 +8,12 @@
         <div class="wrap_header">
             <!-- Logo -->
             <a href="<?= base_url('buyer') ?>" class="logo">
-                <h2 class="text-center"><span style="color: forestgreen;"><i class="fa fa-leaf fa-flip-horizontal fa-pulse"></i></span> AGLONEMA <span style="color: forestgreen;"><i class="fa fa-leaf fa-pulse"></i></span></h2>
+                <h4 class="text-center"><span style="color: forestgreen;"><i class="fa fa-leaf fa-flip-horizontal fa-pulse"></i></span> AGLONEMA <span style="color: forestgreen;"><i class="fa fa-leaf fa-pulse"></i></span></h4>
             </a>
+
+            <!-- QUERY MENU -->
+
+            <!-- END QUERY MENU -->
 
             <!-- Menu -->
             <div class="wrap_menu mx-auto">
@@ -37,9 +41,9 @@
                             </li>
                         <?php else : ?>
                             <li>
-                                <a href="<?= base_url('auth/logout') ?>">
-                                    <button class="btn btn-danger">
-                                        Logout
+                                <a href="#exampleModal" data-toggle="modal">
+                                    <button class="btn btn-block rounded-circle color-filter8" data-toggle="tooltip" data-placement="right" title="Logout">
+                                        <i class="fa fa-sign-out text-danger"></i>
                                     </button>
                                 </a>
                             </li>
@@ -48,10 +52,15 @@
                 </nav>
             </div>
 
+
             <!-- Header Icon -->
             <div class="header-icons">
-                <a href="#" class="header-wrapicon1 dis-block">
-                    <?= $user['name']; ?><img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1 pl-1" alt="ICON">
+                <a href="<?= base_url('buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
+                    <?php if ($user['name'] == NULL) : ?>
+                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/default-avatar.png') ?>" class="header-icon1 pl-1" alt="Profile User">
+                    <?php else : ?>
+                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1" alt="Profile User">
+                    <?php endif; ?>
                 </a>
                 <span class="linedivide1"></span>
 
@@ -140,22 +149,25 @@
     <div class="wrap_header_mobile">
         <!-- Logo moblie -->
         <a href="<?= base_url('buyer') ?>" class="logo-mobile">
-            <h2 class="text-center">
+            <h5 class="text-center">
                 <span style="color: forestgreen;">
                     <i class="fa fa-leaf fa-flip-horizontal fa-pulse"></i>
                 </span>
                 AGLONEMA
-            </h2>
+            </h5>
         </a>
 
         <!-- Button show menu -->
         <div class="btn-show-menu">
             <!-- Header Icon mobile -->
             <div class="header-icons-mobile">
-                <a href="#" class="header-wrapicon1 dis-block">
-                    <?= $user['name']; ?> <img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1 pl-1" alt="ICON">
+                <a href="<?= base_url('buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
+                    <?php if ($user['name'] == NULL) : ?>
+                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/default-avatar.png') ?>" class="header-icon1 pl-1" alt="Profile User">
+                    <?php else : ?>
+                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1" alt="Profile User">
+                    <?php endif; ?>
                 </a>
-
                 <span class="linedivide2"></span>
 
                 <div class="header-wrapicon2">
@@ -245,6 +257,11 @@
         </div>
     </div>
 
+    <!-- QUERY MENU -->
+
+
+    <!-- END QUERY MENU -->
+
     <!-- Menu Mobile -->
     <div class="wrap-side-menu">
         <nav class="side-menu">
@@ -268,13 +285,35 @@
                         </a>
                     </li>
                 <?php else : ?>
-                    <li class="item-menu-mobile">
-                        <a href="<?= base_url('auth/logout') ?>">
-                            Logout
+                    <li class="item-menu-mobile" data-toggle="tooltip" data-placement="right" title="Logout">
+                        <a href="#exampleModal" data-toggle="modal">
+                            <i class="fa fa-sign-out text-danger"></i>
                         </a>
                     </li>
                 <?php endif ?>
             </ul>
         </nav>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="<?= base_url('auth/logout') ?>" method="post">
+                    <div class="modal-header color-filter8">
+                        <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Yakin logout?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn color-filter8">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </header>

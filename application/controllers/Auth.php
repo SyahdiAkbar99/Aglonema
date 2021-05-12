@@ -10,6 +10,16 @@ class Auth extends CI_Controller
     //Halaman Login
     public function index()
     {
+        if ($this->session->userdata('email')) {
+            //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
+            if ($this->session->userdata('role_id') == 1) {
+                redirect('admin');
+            } elseif ($this->session->userdata('role_id') == 2) {
+                redirect('seller');
+            } elseif ($this->session->userdata('role_id') == 3) {
+                redirect('buyer');
+            }
+        }
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() == false) {
@@ -97,12 +107,26 @@ class Auth extends CI_Controller
     //Halaman Registrasi Admin
     public function registration_admin()
     {
+        // ========================================
+        if ($this->session->userdata('email')) {
+            //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
+            if ($this->session->userdata('role_id') == 1) {
+                redirect('admin');
+            } elseif ($this->session->userdata('role_id') == 2) {
+                redirect('seller');
+            } elseif ($this->session->userdata('role_id') == 3) {
+                redirect('buyer');
+            }
+        }
+        // ========================================
+
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => '%s sudah didaftarkan',
         ]);
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Ulangi Password', 'required|trim|min_length[6]|matches[password1]');
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|min_length[10]|max_length[14]|numeric');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Daftar sebagai Admin';
             $this->load->view('templates/auth/auth_header', $data);
@@ -114,6 +138,7 @@ class Auth extends CI_Controller
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.png',
                 'password' => password_hash(htmlspecialchars($this->input->post('password1')), PASSWORD_DEFAULT),
+                'no_telp' => htmlspecialchars('62' . $this->input->post('no_telp')),
                 'alamat' => htmlspecialchars($this->input->post('alamat')),
                 'role_id' => 1,
                 'is_active' => 1,
@@ -151,12 +176,26 @@ class Auth extends CI_Controller
     //Halaman Registrasi Buyer
     public function registration()
     {
+        // ========================================
+        if ($this->session->userdata('email')) {
+            //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
+            if ($this->session->userdata('role_id') == 1) {
+                redirect('admin');
+            } elseif ($this->session->userdata('role_id') == 2) {
+                redirect('seller');
+            } elseif ($this->session->userdata('role_id') == 3) {
+                redirect('buyer');
+            }
+        }
+        // ========================================
+
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => '%s sudah didaftarkan',
         ]);
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Ulangi Password', 'required|trim|min_length[6]|matches[password1]');
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|min_length[10]|max_length[14]|numeric');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Daftar';
@@ -169,6 +208,7 @@ class Auth extends CI_Controller
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.png',
                 'password' => password_hash(htmlspecialchars($this->input->post('password1')), PASSWORD_DEFAULT),
+                'no_telp' => htmlspecialchars('62' . $this->input->post('no_telp')),
                 'alamat' => htmlspecialchars($this->input->post('alamat')),
                 'role_id' => 3,
                 'is_active' => 1,
@@ -206,12 +246,26 @@ class Auth extends CI_Controller
     //Halaman Registrasi
     public function registration_seller()
     {
+        // ========================================
+        if ($this->session->userdata('email')) {
+            //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
+            if ($this->session->userdata('role_id') == 1) {
+                redirect('admin');
+            } elseif ($this->session->userdata('role_id') == 2) {
+                redirect('seller');
+            } elseif ($this->session->userdata('role_id') == 3) {
+                redirect('buyer');
+            }
+        }
+        // ========================================
+
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => '%s sudah didaftarkan',
         ]);
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Ulangi Password', 'required|trim|min_length[6]|matches[password1]');
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|min_length[10]|max_length[14]|numeric');
         $this->form_validation->set_rules('no_rekening', 'No Rekening', 'required|trim|numeric|min_length[6]');
         $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
@@ -226,6 +280,7 @@ class Auth extends CI_Controller
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.png',
                 'password' => password_hash(htmlspecialchars($this->input->post('password1')), PASSWORD_DEFAULT),
+                'no_telp' => htmlspecialchars('62' . $this->input->post('no_telp')),
                 'alamat' => htmlspecialchars($this->input->post('alamat')),
                 'role_id' => 2,
                 'is_active' => 1,

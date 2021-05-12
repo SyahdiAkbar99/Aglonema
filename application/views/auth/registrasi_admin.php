@@ -54,6 +54,21 @@
                 </div>
                 <?= form_error('password2', '<small class="text-danger">', '</small>'); ?>
 
+                <div class="input-group mt-3">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="text-dark">+62</span>
+                        </div>
+                    </div>
+                    <input type="tel" class="form-control" name="no_telp" id="no_telp" value="<?= set_value('no_telp') ?>" placeholder="No Telpon">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fa fa-phone"></span>
+                        </div>
+                    </div>
+                </div>
+                <?= form_error('no_telp', '<small class="text-danger">', '</small>'); ?>
+
                 <div class="row  mt-3">
                     <div class="col-12">
                         <button type="submit" class="btn btn-success btn-block">Daftar</button>
