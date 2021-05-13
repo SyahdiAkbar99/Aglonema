@@ -25,14 +25,14 @@
             <div class="row justify-content-center">
                 <div class="col-md-7">
                     <div class="card">
-                        <div class="card-header bg-info mt-2 ml-2 mr-2 d-flex justify-content-center">
+                        <div class="card-header color-filter8 mt-2 ml-2 mr-2 d-flex justify-content-center">
                             <h5 class="card-title text-center pb-3 pt-4">My Profil</h5>
                         </div>
                         <div class="card-body">
                             <div class="row d-flex justify-content-center">
                                 <h5 class="mb-3">Data <?= $user['name']; ?></h5>
                                 <div class="col-md-12 d-flex justify-content-center gbr">
-                                    <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2" alt="Profile User Image">
+                                    <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail rounded-circle" alt="Profile User Image">
                                 </div>
                             </div>
                             <div class="row text-center mt-4">
@@ -53,7 +53,10 @@
                         <div class="card-footer">
                             <div class="stats">
                                 <a href="<?= base_url('buyer/edit_profile') ?>" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i> Edit
+                                    <i class="fa fa-edit"></i> Edit Profile
+                                </a>
+                                <a href="<?= base_url('buyer/change_password') ?>" class="btn btn-warning">
+                                    <i class="fa fa-key"></i> Change Password
                                 </a>
                             </div>
                         </div>

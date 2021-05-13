@@ -36,7 +36,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7">
                         <div class="card">
-                            <div class="card-header bg-info ml-5 mr-5 d-flex justify-content-center">
+                            <div class="card-header bg-primary ml-5 mr-5 d-flex justify-content-center">
                                 <h5 class="card-title text-center pb-4">My Profil</h5>
                             </div>
                             <div class="card-body">
@@ -63,7 +63,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="now-ui-icons arrows-1_refresh-69"></i> Baru Update
+                                    <i class="fa fa-spinner"></i>
                                 </div>
                             </div>
                         </div>

@@ -49,7 +49,7 @@
                                         WHERE user_sub_menu.menu_id = $menuId
                                         AND user_sub_menu.is_active = 1
                                         GROUP BY user_sub_menu.id
-                                        ORDER BY user_menu.urutan ASC";
+                                        ORDER BY user_sub_menu.urutan ASC";
                     $subMenu = $this->db->query($querySubMenu)->result_array();
                     // echo '<pre>';
                     // print_r($subMenu);

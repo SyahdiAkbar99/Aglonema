@@ -59,7 +59,7 @@
                     <?php if ($user['name'] == NULL) : ?>
                         <small>Unknown User</small><img src="<?= base_url('assets/user/img/default-avatar.png') ?>" class="header-icon1 pl-1" alt="Profile User">
                     <?php else : ?>
-                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1" alt="Profile User">
+                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
                     <?php endif; ?>
                 </a>
                 <span class="linedivide1"></span>
@@ -165,7 +165,7 @@
                     <?php if ($user['name'] == NULL) : ?>
                         <small>Unknown User</small><img src="<?= base_url('assets/user/img/default-avatar.png') ?>" class="header-icon1 pl-1" alt="Profile User">
                     <?php else : ?>
-                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1" alt="Profile User">
+                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
                     <?php endif; ?>
                 </a>
                 <span class="linedivide2"></span>

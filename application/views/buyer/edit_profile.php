@@ -17,7 +17,12 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="text-center">Selamat Datang <?= $user['name']; ?></h5>
+                            <div class="card-title">
+                                <h5 class="text-center">Selamat Datang <?= $user['name']; ?></h5>
+                            </div>
+                            <div class="card-title">
+                                <?= $this->session->flashdata('message') ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -25,7 +30,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-7">
                     <div class="card">
-                        <div class="card-header bg-info ml-5 mr-5 d-flex justify-content-center">
+                        <div class="card-header color-filter8 ml-5 mr-5 d-flex justify-content-center">
                             <h5 class="card-title text-center pb-4">Edit Profile</h5>
                         </div>
                         <div class="card-body">
@@ -53,7 +58,7 @@
                                 <div class="col-md-10">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail" alt="Profile User Image">
+                                            <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail rounded-circle" alt="Profile User Image">
                                         </div>
                                         <div class="col-md-9">
                                             <div class="custom-file">
@@ -64,8 +69,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info ">Simpan</button>
+                            <button type="submit" class="btn color-filter8">Simpan</button>
                             <?= form_close(); ?>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="fa fa-refresh"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
