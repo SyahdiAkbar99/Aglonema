@@ -43,7 +43,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <h5>Data Admin</h5>
                                     <div class="col-md-12 d-flex justify-content-center gbr">
-                                        <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2" alt="Profile User Image">
+                                        <img src="<?= base_url('assets/admin/img/profile/admin/') . $user['image']; ?>" class="img-circle elevation-2" alt="Profile User Image">
                                     </div>
                                 </div>
                                 <div class="row text-center mt-4">

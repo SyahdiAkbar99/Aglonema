@@ -58,12 +58,11 @@
                                 <div class="col-md-10">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail rounded-circle" alt="Profile User Image">
+                                            <img src="<?= base_url('assets/user/img/profile/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail rounded-circle" alt="Profile User Image">
                                         </div>
                                         <div class="col-md-9">
                                             <div class="custom-file">
-                                                <input type="file" class="bg6 w-full p-b-5 p-t-5 p-l-5" id="image" name="image">
-                                                <label class="custom-file-label" for="image"></label>
+                                                <input type="file" name="image" id="image">
                                             </div>
                                         </div>
                                     </div>

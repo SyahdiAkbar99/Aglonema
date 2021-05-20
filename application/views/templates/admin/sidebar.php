@@ -11,7 +11,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2" alt="Profile User Image">
+                <img src="<?= base_url('assets/admin/img/profile/admin/') . $user['image']; ?>" class="img-circle elevation-2" alt="Profile User Image">
             </div>
             <div class="info">
                 <span class="d-block text-white"><?= $user['name']; ?></span>

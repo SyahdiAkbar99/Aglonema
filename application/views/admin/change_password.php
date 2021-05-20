@@ -43,7 +43,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7">
                         <div class="card">
-                            <div class="card-header bg-primary ml-5 mr-5">
+                            <div class="card-header bg-primary ml-5 mr-5 d-flex justify-content-center">
                                 <h5 class="card-title text-center pb-4">Change Password</h5>
                             </div>
                             <div class="card-body">

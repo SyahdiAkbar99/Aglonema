@@ -7,6 +7,8 @@ class Seller extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('seller/DashSeller_model', 'dsm');
+        date_default_timezone_set("Asia/Jakarta");
     }
     public function index()
     {
@@ -19,6 +21,264 @@ class Seller extends CI_Controller
         $this->load->view('templates/seller/footer', $data);
     }
 
+    // fungsi membuat kode pemesanan sesuai tanggal
+    public function kodeDataTanaman()
+    {
+        $tahun = date('Y');
+        $date = date('d/m/');
+        $this->db->like('kode', $date);
+        $this->db->like('kode', $tahun);
+        $this->db->select('RIGHT(data_tanaman.kode,2) as kode', FALSE);
+        $this->db->order_by('kode', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get('data_tanaman');  //cek dulu apakah ada sudah ada kode di tabel.
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $kode = intval($data->kode) + 1;
+        } else {
+            $kode = 1;  //cek jika kode belum terdapat pada table
+        }
+        $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
+        $kodetampil = $date . $tahun . ' -DT- ' . $batas;  //format kode
+        // echo '<pre>';
+        // print_r($kodetampil);
+        // die;
+        // echo '</pre>';
+        return $kodetampil;
+    }
+
+
+
+    //Data Tanaman
+    public function data_tanaman()
+    {
+        $data['title'] = 'Data Tanaman';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['kode'] = $this->kodeDataTanaman();
+
+        //tampilkan data tanaman sesuai user
+        $data['data_tanaman'] = $this->dsm->data_tanaman($data['user']['id']);
+
+
+        $this->form_validation->set_rules('kode', 'Kode', 'required|trim|is_unique[data_tanaman.kode]', [
+            'is_unique' => '%s sudah ada'
+        ]);
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
+        $this->form_validation->set_rules('berat', 'Berat', 'required|trim|numeric');
+        $this->form_validation->set_rules('warna', 'Warna', 'required|trim');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|numeric');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
+
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/seller/header', $data);
+            $this->load->view('templates/seller/navbar', $data);
+            $this->load->view('templates/seller/sidebar', $data);
+            $this->load->view('seller/data_tanaman', $data);
+            $this->load->view('templates/seller/footer', $data);
+        } else {
+            // cek jika ada gambar
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/admin/img/data/seller/tanaman/';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $config['max_size'] = '2048';  //2MB max
+                $config['max_width'] = '1024'; // pixel
+                $config['max_height'] = '1024'; // pixel
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    //get gambar yang baru
+                    $data = [
+                        'kode' => $this->input->post('kode'),
+                        'nama' => $this->input->post('nama'),
+                        'jenis' => $this->input->post('jenis'),
+                        'berat' => $this->input->post('berat'),
+                        'warna' => $this->input->post('warna'),
+                        'jumlah' => $this->input->post('jumlah'),
+                        'harga' => $this->input->post('harga'),
+                        'user_id' => $this->session->userdata('id'),
+                        'image' => $this->upload->data('file_name'),
+                    ];
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Ukuran melebihi batas. Maksimal 1000px x 1000px
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>');
+                    redirect('seller/data_tanaman');
+                }
+            }
+
+            // echo '<pre>';
+            // print_r($data);
+            // die;
+            // echo '</pre>';
+
+            $this->dsm->insert_data_tanaman($data);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                Data Tanaman berhasil ditambahkan !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>'
+            );
+            redirect('seller/data_tanaman');
+        }
+    }
+
+    public function update_data_tanaman()
+    {
+
+        $this->form_validation->set_rules('kode', 'Kode', 'required|trim');
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
+        $this->form_validation->set_rules('berat', 'Berat', 'required|trim|numeric');
+        $this->form_validation->set_rules('warna', 'Warna', 'required|trim');
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|numeric');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Tanaman';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['kode'] = $this->kodeDataTanaman();
+
+            //tampilkan data tanaman sesuai user
+            $data['data_tanaman'] = $this->dsm->data_tanaman($data['user']['id']);
+
+            // print_r($data['data_tanem']);
+            // die;
+            $this->load->view('templates/seller/header', $data);
+            $this->load->view('templates/seller/navbar', $data);
+            $this->load->view('templates/seller/sidebar', $data);
+            $this->load->view('seller/data_tanaman', $data);
+            $this->load->view('templates/seller/footer', $data);
+        } else {
+            $where = $this->input->post('id');
+            $tb['data_tanem'] = $this->db->get_where('data_tanaman', ['id' => $this->input->post('id')])->row_array();
+
+            $data = [
+                'kode' => $this->input->post('kode'),
+                'nama' => $this->input->post('nama'),
+                'jenis' => $this->input->post('jenis'),
+                'berat' => $this->input->post('berat'),
+                'warna' => $this->input->post('warna'),
+                'jumlah' => $this->input->post('jumlah'),
+                'harga' => $this->input->post('harga'),
+                'user_id' => $this->session->userdata('id'),
+            ];
+
+            // cek jika ada gambar
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['upload_path'] = './assets/admin/img/data/seller/tanaman';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $config['max_size'] = '2048';  //2MB max
+                $config['max_width'] = '1024'; // pixel
+                $config['max_height'] = '1024'; // pixel
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    //get gambar yang lama
+                    $old_image = $tb['data_tanem']['image'];
+                    if ($old_image != 'default.png') {
+                        @unlink(FCPATH . 'assets/admin/img/data/seller/tanaman/' . $old_image);
+                    }
+                    //get gambar yang baru
+
+                    $data = [
+                        'image' => $this->upload->data('file_name')
+                    ];
+                    $this->dsm->update_data_tanaman($where, $data);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert">
+                        Data Tanaman berhasil diedit !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                    );
+                    redirect('seller/data_tanaman');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Ukuran melebihi batas. Maksimal 1000x x 1000px
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>');
+                    redirect('seller/data_tanaman');
+                }
+            }
+            // echo '<pre>';
+            // print_r($data);
+            // die;
+            // echo '</pre>';
+
+
+            $this->dsm->update_data_tanaman($where, $data);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                Data Tanaman berhasil diedit !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>'
+            );
+            redirect('seller/data_tanaman');
+        }
+    }
+
+    public function delete_data_tanaman()
+    {
+        $where = $this->input->get('id');
+        $result = $this->db->delete('data_tanaman', ['id' => $where]);
+
+        if ($result) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Deleted Sucessfully
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>');
+            redirect('seller/data_tanaman');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Deleted Failure
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>');
+            redirect('seller/data_tanaman');
+        }
+    }
+
+
+
+    //Riwayat Penjualan
+    public function riwayat_penjualan()
+    {
+        $data['title'] = 'Riwayat Penjualan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        //tampilkan data tanaman sesuai user
+        $data['data_tanaman'] = $this->dsm->data_tanaman($data['user']['id']);
+
+        $this->load->view('templates/seller/header', $data);
+        $this->load->view('templates/seller/navbar', $data);
+        $this->load->view('templates/seller/sidebar', $data);
+        $this->load->view('seller/index', $data);
+        $this->load->view('templates/seller/footer', $data);
+    }
 
 
 
@@ -45,29 +305,25 @@ class Seller extends CI_Controller
     }
     public function edit_profile()
     {
-        $data['title'] = 'Edit Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim');
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Profile';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/seller/header', $data);
             $this->load->view('templates/seller/navbar', $data);
             $this->load->view('templates/seller/sidebar', $data);
             $this->load->view('seller/edit_profile', $data);
             $this->load->view('templates/seller/footer', $data);
         } else {
-            $email = $this->input->post('email');
-            $data = [
-                'name' => $this->input->post('name'),
-                'no_telp' => $this->input->post('no_telp'),
-            ];
+            $where = $this->input->post('email');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
             // cek jika ada gambar
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
-                $config['upload_path'] = './assets/admin/img/';
+                $config['upload_path'] = './assets/admin/img/profile/seller/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
                 $config['max_size'] = '2048';  //2MB max
                 $config['max_width'] = '500'; // pixel
@@ -79,11 +335,27 @@ class Seller extends CI_Controller
                     //get gambar yang lama
                     $old_image = $data['user']['image'];
                     if ($old_image != 'default.png') {
-                        @unlink(FCPATH . 'assets/admin/img/' . $old_image);
+                        @unlink(FCPATH . 'assets/admin/img/profile/seller/' . $old_image);
                     }
-                    //get gambar yang baru
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+
+                    //dengan foto
+                    $data = [
+                        'name' => $this->input->post('name'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        //get gambar yang baru
+                        'image' => $this->upload->data('file_name')
+                    ];
+                    $this->dsm->updateUserSeller($where, $data);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert">
+                        Profile berhasil diedit !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                    );
+                    redirect('seller/edit_profile');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 500px x 500px
@@ -95,9 +367,12 @@ class Seller extends CI_Controller
                 }
             }
 
-            $this->db->set($data);
-            $this->db->where('email', $email);
-            $this->db->update('user');
+            //tanpa foto
+            $data = [
+                'name' => $this->input->post('name'),
+                'no_telp' => $this->input->post('no_telp'),
+            ];
+            $this->dsm->updateUserSeller($where, $data);
 
             $this->session->set_flashdata(
                 'message',

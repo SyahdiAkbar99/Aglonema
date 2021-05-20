@@ -25,7 +25,7 @@
                         <li>
                             <a href="<?= base_url('buyer/penanaman') ?>">Penanaman</a>
                         </li>
-                        <li class="sale-noti">
+                        <li>
                             <a href="<?= base_url('buyer/perawatan') ?>">Perawatan</a>
                         </li>
                         <li>
@@ -57,9 +57,9 @@
             <div class="header-icons">
                 <a href="<?= base_url('buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
                     <?php if ($user['name'] == NULL) : ?>
-                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/default-avatar.png') ?>" class="header-icon1 pl-1" alt="Profile User">
+                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/profile/default.png') ?>" class="header-icon1 pl-1" alt="Profile User">
                     <?php else : ?>
-                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
+                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/profile/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
                     <?php endif; ?>
                 </a>
                 <span class="linedivide1"></span>
@@ -163,9 +163,9 @@
             <div class="header-icons-mobile">
                 <a href="<?= base_url('buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
                     <?php if ($user['name'] == NULL) : ?>
-                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/default-avatar.png') ?>" class="header-icon1 pl-1" alt="Profile User">
+                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/profile/default.png') ?>" class="header-icon1 pl-1" alt="Profile User">
                     <?php else : ?>
-                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
+                        <?= $user['name']; ?><img src="<?= base_url('assets/user/img/profile/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
                     <?php endif; ?>
                 </a>
                 <span class="linedivide2"></span>
@@ -267,7 +267,7 @@
         <nav class="side-menu">
             <ul class="main-menu">
                 <li class="item-menu-mobile">
-                    <a href="<?= base_url('buyer') ?>">Home</a>
+                    <a href="<?= base_url('buyer') ?>" class="text-center">Home</a>
                 </li>
                 <li class="item-menu-mobile">
                     <a href="<?= base_url('buyer/penanaman') ?>">Penanaman</a>

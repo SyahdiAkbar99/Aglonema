@@ -33,6 +33,11 @@ class Auth extends CI_Controller
     }
 
 
+
+
+
+
+
     //fungsi login
     private function _login()
     {
@@ -104,6 +109,11 @@ class Auth extends CI_Controller
     }
 
 
+
+
+
+
+
     //Halaman Registrasi Admin
     public function registration_admin()
     {
@@ -173,6 +183,10 @@ class Auth extends CI_Controller
 
 
 
+
+
+
+
     //Halaman Registrasi Buyer
     public function registration()
     {
@@ -203,23 +217,39 @@ class Auth extends CI_Controller
             $this->load->view('auth/registrasi', $data);
             $this->load->view('templates/auth/auth_footer', $data);
         } else {
+            $email = $this->input->post('email', true);
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
+                'email' => htmlspecialchars($email),
                 'image' => 'default.png',
                 'password' => password_hash(htmlspecialchars($this->input->post('password1')), PASSWORD_DEFAULT),
                 'no_telp' => htmlspecialchars('62' . $this->input->post('no_telp')),
                 'alamat' => htmlspecialchars($this->input->post('alamat')),
                 'role_id' => 3,
-                'is_active' => 1,
+                'is_active' => 0,
+                'date_created' => time(),
+            ];
+            // siapkan tokenisasi
+            $token = base64_encode(random_bytes(32));
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
                 'date_created' => time(),
             ];
             $true = $this->db->insert('user', $data);
+            $this->db->insert('user_token', $user_token);
+
+
+
+            $this->_sendEmail($token, 'verify');
+
+
+
             if ($true == true) {
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-success" role="alert">
-                        Akun anda sudah terdaftar!
+                        Akun anda sudah terdaftar! Silahkan cek email (dibagian spam) untuk aktivasi akun
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -240,6 +270,8 @@ class Auth extends CI_Controller
             }
         }
     }
+
+
 
 
 
@@ -315,10 +347,239 @@ class Auth extends CI_Controller
         }
     }
 
+
+
+
+
+
+    private function _sendEmail($token, $type)
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'aglonema.company@gmail.com',
+            'smtp_pass' => '12345678abcde',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+        $this->load->library('email', $config);
+
+        $this->email->initialize($config);
+        $this->email->from('aglonema.company@gmail.com', 'Aglonema Company');
+        $this->email->to($this->input->post('email'));
+
+        if ($type == 'verify') {
+            $this->email->subject('Verifikasi Akun');
+            $this->email->message('Klik link berikut untuk verifikasi akun anda : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktifkan akun anda sekarang sebelum 24 jam</a>');
+        } elseif ($type == 'forgot') {
+            $this->email->subject('Reset Password');
+            $this->email->message('Klik link berikut untuk reset password : <a href="' . base_url() . 'auth/reset_password?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset sekarang password anda sebelum 24 jam</a>');
+        }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+
+
+
+
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+
+            if ($user_token) {
+                if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
+                    $this->db->set('is_active', 1);
+                    $this->db->where('email', $email);
+                    $this->db->update('user');
+
+                    $this->db->delete('user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' Akun anda telah aktif<br>Mohon login!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>        
+                    </div>');
+                    redirect('auth');
+                } else {
+
+                    $this->db->delete('user', ['email' => $email]);
+                    $this->db->delete('user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token aktivasi anda telah kadaluarsa!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>        
+                    </div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token aktivasi anda tidak valid!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal, Email salah!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>        
+            </div>');
+            redirect('auth');
+        }
+    }
+
+
+
+
+
+
+    public function forgot_password()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', [
+            'required' => '%s tidak boleh kosong',
+            'valid_email' => '%s Tidak valid karena tidak sesuai format email !',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Forgot Password';
+            $this->load->view('templates/auth/auth_header', $data);
+            $this->load->view('auth/forgot_password');
+            $this->load->view('templates/auth/auth_footer', $data);
+        } else {
+            $email = $this->input->post('email');
+            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+
+            if ($user) {
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time(),
+                ];
+
+                $this->db->insert('user_token', $user_token);
+                $this->_sendEmail($token, 'forgot');
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tolong check email anda untuk me-reset password!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>');
+                redirect('auth/forgot_password');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email belum terdaftar atau belum teraktivasi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>');
+                redirect('auth/forgot_password');
+            }
+        }
+    }
+
+
+
+
+
+    public function reset_password()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+            if ($user_token) {
+                $this->db->delete('user_token', ['email' => $email]);
+                $this->session->set_userdata('reset_email', $email);
+                $this->change_password();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal, Token anda salah!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal, Email anda salah!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>');
+            redirect('auth');
+        }
+    }
+
+
+
+
+
+    public function change_password()
+    {
+        if (!$this->session->userdata('reset_email')) {
+            redirect('auth');
+        }
+
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]', [
+            'required' => '%s tidak boleh kosong',
+            'matches' => '%s tidak sama dengan Konfirm Password !',
+            'min_length' => '%s singkat minimal 6 karakter !',
+        ]);
+        $this->form_validation->set_rules('password2', 'Konfirm Password', 'trim|required|min_length[6]|matches[password1]', [
+            'required' => '%s tidak boleh kosong',
+            'matches' => '%s tidak sama dengan Password !',
+            'min_length' => '%s singkat minimal 6 karakter !',
+        ]);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Change Password';
+            $this->load->view('templates/auth/auth_header', $data);
+            $this->load->view('auth/change_password');
+            $this->load->view('templates/auth/auth_footer', $data);
+        } else {
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('reset_email');
+
+            $this->db->set('password', $password);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->session->unset_userdata('reset_email');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password telah berhasil diganti, Mohon login!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>');
+            redirect('auth');
+        }
+    }
+
+
+
+
+
     //untuk logout
     public function logout()
     {
-        $this->session->unset_userdata('id');
+        // $this->session->unset_userdata('id');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata(

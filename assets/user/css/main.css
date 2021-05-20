@@ -1057,6 +1057,7 @@ li.sale-noti > a {
 
 .item-menu-mobile {
   background-color: #37dd40;
+  text-align: center;
 }
 
 .side-menu .main-menu > li > a {
@@ -1925,6 +1926,11 @@ li.sale-noti > a {
 .color-filter6 {background-color: #393939;}
 .color-filter7 {background-color: #cccccc;}
 .color-filter8 {background-color: #37dd40;}
+.color-filter9 {
+  background-image: linear-gradient(#a5ff2f, #ffe926);
+  text-align: center;
+  margin: 0 20px 0 20px;
+}
 
 .checkbox-color-filter {
   display: none;

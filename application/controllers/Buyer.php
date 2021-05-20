@@ -7,6 +7,8 @@ class Buyer extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('buyer/IndexBuyer_model', 'ibm');
+        date_default_timezone_set("Asia/Jakarta");
     }
     public function index()
     {
@@ -15,6 +17,15 @@ class Buyer extends CI_Controller
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
         $this->load->view('buyer/index', $data);
+        $this->load->view('templates/buyer/footer', $data);
+    }
+    public function penanaman()
+    {
+        $data['title'] = 'Penanaman';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('templates/buyer/header', $data);
+        $this->load->view('templates/buyer/navbar', $data);
+        $this->load->view('buyer/penanaman', $data);
         $this->load->view('templates/buyer/footer', $data);
     }
 
@@ -55,28 +66,23 @@ class Buyer extends CI_Controller
     }
     public function edit_profile()
     {
-        $data['title'] = 'Edit Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim');
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Profile';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/buyer/header', $data);
             $this->load->view('templates/buyer/navbar', $data);
             $this->load->view('buyer/edit_profile', $data);
             $this->load->view('templates/buyer/footer', $data);
         } else {
-            $email = $this->input->post('email');
-            $data = [
-                'name' => $this->input->post('name'),
-                'no_telp' => $this->input->post('no_telp'),
-            ];
-
+            $where = $this->input->post('email');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             // cek jika ada gambar
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
-                $config['upload_path'] = './assets/user/img/';
+                $config['upload_path'] = './assets/user/img/profile/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
                 $config['max_size'] = '2048';  //2MB max
                 $config['max_width'] = '500'; // pixel
@@ -88,11 +94,27 @@ class Buyer extends CI_Controller
                     //get gambar yang lama
                     $old_image = $data['user']['image'];
                     if ($old_image != 'default.png') {
-                        @unlink(FCPATH . 'assets/user/img/' . $old_image);
+                        @unlink(FCPATH . 'assets/user/img/profile/' . $old_image);
                     }
-                    //get gambar yang baru
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+
+                    //dengan foto
+                    $data = [
+                        'name' => $this->input->post('name'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        //get gambar yang baru
+                        'image' => $this->upload->data('file_name')
+                    ];
+                    $this->ibm->updateUserBuyer($where, $data);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert">
+                        Profile berhasil diedit !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                    );
+                    redirect('buyer/edit_profile');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 500px x 500px
@@ -104,9 +126,12 @@ class Buyer extends CI_Controller
                 }
             }
 
-            $this->db->set($data);
-            $this->db->where('email', $email);
-            $this->db->update('user');
+            //tanpa foto
+            $data = [
+                'name' => $this->input->post('name'),
+                'no_telp' => $this->input->post('no_telp'),
+            ];
+            $this->ibm->updateUserBuyer($where, $data);
 
             $this->session->set_flashdata(
                 'message',
@@ -122,7 +147,7 @@ class Buyer extends CI_Controller
     }
     public function change_password()
     {
-        $data['title'] = "Ubah Password";
+        $data['title'] = "Change Password";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim|min_length[6]', [

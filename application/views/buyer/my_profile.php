@@ -32,7 +32,7 @@
                             <div class="row d-flex justify-content-center">
                                 <h5 class="mb-3">Data <?= $user['name']; ?></h5>
                                 <div class="col-md-12 d-flex justify-content-center gbr">
-                                    <img src="<?= base_url('assets/admin/img/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail rounded-circle" alt="Profile User Image">
+                                    <img src="<?= base_url('assets/user/img/profile/') . $user['image']; ?>" class="img-circle elevation-2 img-thumbnail rounded-circle" alt="Profile User Image">
                                 </div>
                             </div>
                             <div class="row text-center mt-4">

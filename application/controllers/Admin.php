@@ -7,6 +7,8 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('admin/DashAdmin_model', 'dam');
+        date_default_timezone_set("Asia/Jakarta");
     }
     public function index()
     {
@@ -17,6 +19,60 @@ class Admin extends CI_Controller
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/admin/footer', $data);
+    }
+    public function data_user()
+    {
+        $data['title'] = 'Data Users';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['data_users'] = $this->dam->getAllUser();
+
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/navbar', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('admin/data_user', $data);
+        $this->load->view('templates/admin/footer', $data);
+    }
+    public function inactive_data_user()
+    {
+        $where =  $this->input->get('id');
+        $data = [
+            'is_active' => 0,
+        ];
+        $this->dam->statusUser($where, $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Inactive Data User Berhasil
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+        redirect('admin/data_user');
+    }
+    public function active_data_user()
+    {
+        $where =  $this->input->get('id');
+        $data = [
+            'is_active' => 1,
+        ];
+        $this->dam->statusUser($where, $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Aktivasi Data User Berhasil
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+        redirect('admin/data_user');
+    }
+    public function delete_data_user()
+    {
+        $where =  $this->input->get('id');
+        $this->dam->deleteUser($where);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Hapus Data User Berhasil
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+        redirect('admin/data_user');
     }
 
 
@@ -47,29 +103,24 @@ class Admin extends CI_Controller
     }
     public function edit_profile()
     {
-        $data['title'] = 'Edit Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim');
         if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit Profile';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/navbar', $data);
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/edit_profile', $data);
             $this->load->view('templates/admin/footer', $data);
         } else {
-            $email = $this->input->post('email');
-            $data = [
-                'name' => $this->input->post('name'),
-                'no_telp' => $this->input->post('no_telp'),
-            ];
+            $where = $this->input->post('email');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
             // cek jika ada gambar
             $upload_image = $_FILES['image']['name'];
-
             if ($upload_image) {
-                $config['upload_path'] = './assets/admin/img/';
+                $config['upload_path'] = './assets/admin/img/profile/admin/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
                 $config['max_size'] = '2048';  //2MB max
                 $config['max_width'] = '500'; // pixel
@@ -81,15 +132,31 @@ class Admin extends CI_Controller
                     //get gambar yang lama
                     $old_image = $data['user']['image'];
                     if ($old_image != 'default.png') {
-                        @unlink(FCPATH . 'assets/admin/img/' . $old_image);
+                        @unlink(FCPATH . 'assets/admin/img/profile/admin/' . $old_image);
                     }
-                    //get gambar yang baru
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+
+                    //dengan foto
+                    $data = [
+                        'name' => $this->input->post('name'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        //get gambar yang baru
+                        'image' => $this->upload->data('file_name')
+                    ];
+                    $this->dam->updateUserAdmin($where, $data);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert">
+                        Profile berhasil diedit !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                    );
+                    redirect('admin/edit_profile');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 500px x 500px
-                    <button type="button" class="close" data-dismiss="alert"   aria-label="Close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
@@ -97,18 +164,21 @@ class Admin extends CI_Controller
                 }
             }
 
-            $this->db->set($data);
-            $this->db->where('email', $email);
-            $this->db->update('user');
+            //tanpa foto
+            $data = [
+                'name' => $this->input->post('name'),
+                'no_telp' => $this->input->post('no_telp'),
+            ];
+            $this->dam->updateUserAdmin($where, $data);
 
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success" role="alert">
-                Profile anda sudah terupdate !
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>'
+                    Profile anda sudah terupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
             );
             redirect('admin/edit_profile');
         }

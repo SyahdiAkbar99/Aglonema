@@ -8,7 +8,7 @@
         <div class="wrap_header">
             <!-- Logo -->
             <a href="<?= base_url('landingpage') ?>" class="logo">
-                <h2 class="text-center"><span style="color: forestgreen;"><i class="fa fa-leaf fa-flip-horizontal fa-pulse"></i></span> AGLONEMA <span style="color: forestgreen;"><i class="fa fa-leaf fa-pulse"></i></span></h2>
+                <h4 class="text-center"><span style="color: forestgreen;"><i class="fa fa-leaf fa-flip-horizontal fa-pulse"></i></span> AGLONEMA <span style="color: forestgreen;"><i class="fa fa-leaf fa-pulse"></i></span></h4>
             </a>
 
             <!-- Menu -->
@@ -21,7 +21,7 @@
                         <li>
                             <a href="<?= base_url('landingpage/penanaman') ?>">Penanaman</a>
                         </li>
-                        <li class="sale-noti">
+                        <li>
                             <a href="<?= base_url('landingpage/perawatan') ?>">Perawatan</a>
                         </li>
                         <li>
@@ -132,12 +132,12 @@
     <div class="wrap_header_mobile">
         <!-- Logo moblie -->
         <a href="<?= base_url('landingpage') ?>" class="logo-mobile">
-            <h2 class="text-center">
+            <h5 class="text-center">
                 <span style="color: forestgreen;">
                     <i class="fa fa-leaf fa-flip-horizontal fa-pulse"></i>
                 </span>
                 AGLONEMA
-            </h2>
+            </h5>
         </a>
 
         <!-- Button show menu -->
