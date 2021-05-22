@@ -75,8 +75,8 @@
                                             </td>
                                             <td>
                                                 <div class="row justify-content-center">
-                                                    <div class="col-lg-6">
-                                                        <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $datnam['image']; ?>" class="img-thumbnail" alt="Picture Plant">
+                                                    <div class="col-lg-9">
+                                                        <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $datnam['image']; ?>" class="img-thumbnail" alt="plant-pict">
                                                     </div>
                                                 </div>
                                             </td>
@@ -280,7 +280,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button type="submit" class="btn bg-pink btn-outline-light">Simpan</button>
+                                <button type="submit" class="btn bg-pink btn-outline-light">Update</button>
                                 <button type="button" class="btn bg-pink btn-outline-light" data-dismiss="modal">Tutup</button>
                             </div>
                         </form>

@@ -2,11 +2,14 @@
 
 class DashSeller_model extends CI_Model
 {
+    //Only User Seller
     public function updateUserSeller($where, $data)
     {
         $this->db->where('email', $where);
         $this->db->update('user', $data);
     }
+
+    //Data Tanaman
     public function data_tanaman($user_id)
     {
         $query = "SELECT * FROM data_tanaman WHERE data_tanaman.user_id = $user_id";
@@ -16,7 +19,6 @@ class DashSeller_model extends CI_Model
     {
         $this->db->insert('data_tanaman', $data);
     }
-
     public function update_data_tanaman($where, $datas)
     {
         $this->db->where('id', $where);

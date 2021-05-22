@@ -77,14 +77,14 @@
                                                 <td>
                                                     <?php if ($datusr['role_id'] == 2) : ?>
                                                         <div class="row justify-content-center">
-                                                            <div class="col-lg-6">
-                                                                <img src="<?= base_url('assets/admin/img/profile/seller/') . $datusr['image']; ?>" class="img-thumbnail" alt="Picture Plant">
+                                                            <div class="col-lg-12">
+                                                                <img src="<?= base_url('assets/admin/img/profile/seller/') . $datusr['image']; ?>" class="img-thumbnail" alt="user-pict">
                                                             </div>
                                                         </div>
                                                     <?php else : ?>
                                                         <div class="row justify-content-center">
-                                                            <div class="col-lg-6">
-                                                                <img src="<?= base_url('assets/user/img/profile/') . $datusr['image']; ?>" class="img-thumbnail" alt="Picture Plant">
+                                                            <div class="col-lg-12">
+                                                                <img src="<?= base_url('assets/user/img/profile/') . $datusr['image']; ?>" class="img-thumbnail" alt="user-pict">
                                                             </div>
                                                         </div>
                                                     <?php endif; ?>
@@ -118,19 +118,19 @@
                                                 <td>
                                                     <div class="row justify-content-center">
                                                         <?php if ($datusr['is_active'] == 1) : ?>
-                                                            <div class="col-lg-6">
+                                                            <div class="col-xxl-6 pr-1">
                                                                 <a href="#inactive<?= $datusr['id'] ?>" class="badge badge-warning" role="badge" data-id="<?= $datusr['id']; ?>" data-toggle="modal">
                                                                     <i class="fa fa-user-alt-slash"></i> Inactive
                                                                 </a>
                                                             </div>
                                                         <?php else : ?>
-                                                            <div class="col-lg-6">
+                                                            <div class="col-xxl-6 pr-1">
                                                                 <a href="#active<?= $datusr['id'] ?>" class="badge badge-primary" role="badge" data-id="<?= $datusr['id']; ?>" data-toggle="modal">
                                                                     <i class="fa fa-user-alt"></i> Active
                                                                 </a>
                                                             </div>
                                                         <?php endif; ?>
-                                                        <div class="col-lg-6">
+                                                        <div class="col-xxl-6">
                                                             <a href="#delete<?= $datusr['id'] ?>" class="badge badge-danger" data-toggle="modal">
                                                                 <i class="fa fa-trash"></i> Delete
                                                             </a>
@@ -148,9 +148,9 @@
                             </table>
                         </div>
                         <div class="card-footer">
-                            <button class="btn bg-pink" data-toggle="modal" data-target="#tambah">
+                            <!-- <button class="btn bg-pink" data-toggle="modal" data-target="#tambah">
                                 <i class="fa fa-plus-circle"></i> Tambah
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
 
 
 
-            <!-- Modal Inactive -->
+            <!-- Modal Active -->
             <?php foreach ($data_users as $datusr) : ?>
                 <div class="modal fade" id="active<?= $datusr['id']; ?>">
                     <div class=" modal-dialog">

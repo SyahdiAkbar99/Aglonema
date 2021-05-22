@@ -67,11 +67,11 @@
     //Button Export Data Tanaman Menu
     $(document).ready(function() {
         $('#data-users').DataTable({
-            dom: 'lBfrtip',
+            dom: 'lfrtip',
             autoWidth: true,
             lengthMenu: [
-                [3, 5, 10, 25, 50, -1],
-                [3, 5, 10, 25, 50, "All"]
+                [5, 10, 25, 50, -1],
+                [5, 10, 25, 50, "All"]
             ],
             buttons: [{
                     className: 'btn-danger btn-round btn-sm mr-2',

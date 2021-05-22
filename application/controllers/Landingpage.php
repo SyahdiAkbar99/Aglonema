@@ -15,10 +15,13 @@ class Landingpage extends CI_Controller
                 redirect('buyer');
             }
         }
+        $this->load->model('buyer/IndexBuyer_model', 'ibm');
+        date_default_timezone_set("Asia/Jakarta");
     }
     public function index()
     {
         $data['title'] = 'Home';
+        $data['data_banner'] = $this->ibm->data_banner();
         $this->load->view('templates/landingpage/header', $data);
         $this->load->view('templates/landingpage/navbar', $data);
         $this->load->view('landingpage/index', $data);
@@ -28,6 +31,8 @@ class Landingpage extends CI_Controller
     {
         $data['title'] = 'Penanaman';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['data_banner'] = $this->ibm->data_banner();
+        $data['data_tanam'] = $this->ibm->data_penanaman();
         $this->load->view('templates/landingpage/header', $data);
         $this->load->view('templates/landingpage/navbar', $data);
         $this->load->view('landingpage/penanaman', $data);
