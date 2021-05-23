@@ -25,7 +25,7 @@
                             <a href="<?= base_url('landingpage/perawatan') ?>">Perawatan</a>
                         </li>
                         <li>
-                            <a href="contact.html">Kontak</a>
+                            <a href="#contact">Kontak</a>
                         </li>
                         <li>
                             <a href="<?= base_url('auth') ?>">
@@ -41,7 +41,7 @@
 
             <!-- Header Icon -->
             <div class="header-icons">
-                <a href="#" class="header-wrapicon1 dis-block">
+                <a href="<?= base_url('buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
                     <img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1" alt="ICON">
                 </a>
 
@@ -144,7 +144,7 @@
         <div class="btn-show-menu">
             <!-- Header Icon mobile -->
             <div class="header-icons-mobile">
-                <a href="#" class="header-wrapicon1 dis-block">
+                <a href="<?= base_url('buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
                     <img src="<?= base_url('assets/user/img/icons/icon-header-01.png') ?>" class="header-icon1" alt="ICON">
                 </a>
 
@@ -251,7 +251,7 @@
                     <a href="<?= base_url('landingpage/perawatan') ?>">Perawatan</a>
                 </li>
                 <li class="item-menu-mobile">
-                    <a href="contact.html">Kontak</a>
+                    <a href="#contact">Kontak</a>
                 </li>
                 <li class="item-menu-mobile">
                     <a href="<?= base_url('auth') ?>">

@@ -22,6 +22,7 @@ class Landingpage extends CI_Controller
     {
         $data['title'] = 'Home';
         $data['data_banner'] = $this->ibm->data_banner();
+        $data['data_product'] = $this->ibm->data_tanaman();
         $this->load->view('templates/landingpage/header', $data);
         $this->load->view('templates/landingpage/navbar', $data);
         $this->load->view('landingpage/index', $data);
@@ -33,9 +34,22 @@ class Landingpage extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
         $data['data_tanam'] = $this->ibm->data_penanaman();
+        $data['data_product'] = $this->ibm->data_tanaman();
         $this->load->view('templates/landingpage/header', $data);
         $this->load->view('templates/landingpage/navbar', $data);
         $this->load->view('landingpage/penanaman', $data);
+        $this->load->view('templates/landingpage/footer', $data);
+    }
+    public function perawatan()
+    {
+        $data['title'] = 'Perawatan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['data_banner'] = $this->ibm->data_banner();
+        $data['data_rawat'] = $this->ibm->data_perawatan();
+        $data['data_product'] = $this->ibm->data_tanaman();
+        $this->load->view('templates/landingpage/header', $data);
+        $this->load->view('templates/landingpage/navbar', $data);
+        $this->load->view('landingpage/perawatan', $data);
         $this->load->view('templates/landingpage/footer', $data);
     }
 }

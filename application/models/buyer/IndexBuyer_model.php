@@ -28,4 +28,11 @@ class IndexBuyer_model extends CI_Model
         $query = "SELECT * FROM data_perawatan ORDER BY data_perawatan.urutan ASC";
         return $this->db->query($query)->result_array();
     }
+
+    //Data Tanaman
+    public function data_tanaman()
+    {
+        $query = "SELECT * FROM data_tanaman ORDER BY data_tanaman.id ASC";
+        return $this->db->query($query)->result_array();
+    }
 }

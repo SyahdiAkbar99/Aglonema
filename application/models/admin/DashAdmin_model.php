@@ -64,7 +64,7 @@ class DashAdmin_model extends CI_Model
         $this->db->delete('data_penanaman');
     }
 
-    //Data Penanaman
+    //Data Perawatan
     public function data_perawatan()
     {
         $query = "SELECT * FROM data_perawatan ORDER BY data_perawatan.urutan ASC";

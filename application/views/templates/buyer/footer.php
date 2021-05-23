@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
+<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45" id="contact">
     <div class="flex-c-t p-b-50">
         <div class="w-size4 p-t-30 p-l-15 p-r-15 respon6">
             <h4 class="s-text12" style="display: inline-block;">
@@ -71,6 +71,15 @@
     $(".selection-1").select2({
         minimumResultsForSearch: 20,
         dropdownParent: $('#dropDownSelect1')
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     });
 </script>
 <!--===============================================================================================-->

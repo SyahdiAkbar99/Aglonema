@@ -15,6 +15,7 @@ class Buyer extends CI_Controller
         $data['title'] = 'Home';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
+        $data['data_product'] = $this->ibm->data_tanaman();
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
         $this->load->view('buyer/index', $data);
@@ -26,6 +27,7 @@ class Buyer extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
         $data['data_tanam'] = $this->ibm->data_penanaman();
+        $data['data_product'] = $this->ibm->data_tanaman();
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
         $this->load->view('buyer/penanaman', $data);
@@ -37,6 +39,7 @@ class Buyer extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
         $data['data_rawat'] = $this->ibm->data_perawatan();
+        $data['data_product'] = $this->ibm->data_tanaman();
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
         $this->load->view('buyer/perawatan', $data);

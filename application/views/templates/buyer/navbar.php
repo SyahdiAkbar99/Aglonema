@@ -29,7 +29,7 @@
                             <a href="<?= base_url('buyer/perawatan') ?>">Perawatan</a>
                         </li>
                         <li>
-                            <a href="contact.html">Kontak</a>
+                            <a href="#contact">Kontak</a>
                         </li>
                         <?php if ($user['name'] == NULL) : ?>
                             <li>
@@ -276,7 +276,7 @@
                     <a href="<?= base_url('buyer/perawatan') ?>">Perawatan</a>
                 </li>
                 <li class="item-menu-mobile">
-                    <a href="contact.html">Kontak</a>
+                    <a href="#contact">Kontak</a>
                 </li>
                 <?php if ($user['name'] == NULL) : ?>
                     <li class="item-menu-mobile">
