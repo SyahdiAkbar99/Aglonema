@@ -2,7 +2,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="<?= base_url('auth/forgot_password') ?>" class="h1"><b><?= $title; ?></b></a>
+            <a href="<?= base_url('Auth/change_password') ?>" class="h1"><b><?= $title; ?></b></a>
         </div>
         <div class="card-body">
             <div class="row">
@@ -13,7 +13,7 @@
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
                 </div>
             </div>
-            <form action="<?= base_url('auth/change_password') ?>" method="post">
+            <form action="<?= base_url('Auth/change_password') ?>" method="post">
                 <div class="input-group">
                     <input type="password" class="form-control" name="password1" id="password1" placeholder="Password">
                     <div class="input-group-append">

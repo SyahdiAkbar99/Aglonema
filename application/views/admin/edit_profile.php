@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Admin') ?>">Home</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -47,7 +47,7 @@
                                 <h5 class="card-title text-center pb-4">Edit Profile</h5>
                             </div>
                             <div class="card-body">
-                                <?= form_open_multipart('admin/edit_profile') ?>
+                                <?= form_open_multipart('Admin/edit_profile') ?>
                                 <div class="form-row">
                                     <div class="form-group col-md-12 col-lg-6">
                                         <label for="email">Email</label>

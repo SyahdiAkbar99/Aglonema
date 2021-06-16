@@ -16,7 +16,7 @@
 
                         <div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
                             <!-- Button -->
-                            <a href="<?= base_url('') ?>" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+                            <a href="<?= base_url('#') ?>" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
                                 Beli Sekarang
                             </a>
                         </div>
@@ -31,33 +31,55 @@
 <!-- Banner -->
 <section class="banner bgwhite p-t-40 p-b-40">
     <div class="container">
+        <?= $this->session->flashdata('message') ?>
         <!-- Product -->
         <div class="row">
-            <?php foreach ($data_product as $datprd) : ?>
+            <?php foreach ($data_produk as $datprk) : ?>
                 <?php $no = 1; ?>
                 <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                            <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $datprd['image']; ?>" alt="IMG-PRODUCT">
+                            <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $datprk['image']; ?>" alt="IMG-PRODUCT">
 
                             <div class="block2-overlay trans-0-4">
-                                <div class="block2-btn-addcart w-size1 trans-0-4">
-                                    <!-- Button -->
-                                    <a href="<?= base_url('buyer'); ?>" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                                        Add to Cart
-                                    </a>
-                                </div>
+                                <?php if ($datprk['jumlah'] > 0) : ?>
+                                    <form action="<?= base_url('Buyer/add_cart/' . $datprk['id']); ?>" method="post">
+
+                                        <div class="blockqty-btn-qty w-size1 trans-0-4">
+                                            <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2" style="display: inline-block;">
+                                                <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+                                            </button>
+
+                                            <input class="size8 m-text18 t-center num-product" type="number" name="jumlah" value="1">
+
+                                            <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2" style="display: inline-block;">
+                                                <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="block2-btn-addcart w-size1 trans-0-4">
+                                            <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </form>
+                                <?php else : ?>
+                                    <div class="block2-btn-unavailable w-size1 trans-0-4">
+                                        <a href="#" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                                            Unavailable
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="block2-txt p-t-20">
                             <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-                                <?= $datprd['nama']; ?>
+                                <?= $datprk['nama']; ?>
                             </a>
 
                             <span class="block2-price m-text6 p-r-5">
-                                <?= "Rp " . number_format($datprd['harga'], 2, ',', '.'); ?>
+                                <?= "Rp " . number_format($datprk['harga'], 2, ',', '.'); ?>
                             </span>
                         </div>
                     </div>
@@ -65,6 +87,7 @@
                 <?php $no++; ?>
             <?php endforeach; ?>
         </div>
+        <?= $this->pagination->create_links(); ?>
     </div>
 </section>
 
@@ -89,12 +112,33 @@
                                 <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $datprd['image']; ?>" alt="IMG-PRODUCT">
 
                                 <div class="block2-overlay trans-0-4">
-                                    <div class="block2-btn-addcart w-size1 trans-0-4">
-                                        <!-- Button -->
-                                        <a href="<?= base_url('buyer'); ?>" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                                            Add to Cart
-                                        </a>
-                                    </div>
+                                    <?php if ($datprd['jumlah'] > 0) : ?>
+                                        <form action="<?= base_url('Buyer/add_cart/' . $datprd['id']); ?>" method="post">
+
+                                            <div class="blockqty-btn-qty w-size1 trans-0-4">
+                                                <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2" style="display: inline-block;">
+                                                    <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+
+                                                <input class="size8 m-text18 t-center num-product" type="number" name="jumlah" value="1">
+
+                                                <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2" style="display: inline-block;">
+                                                    <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="block2-btn-addcart w-size1 trans-0-4">
+                                                <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                                                    Add to Cart
+                                                </button>
+                                            </div>
+                                        </form>
+                                    <?php else : ?>
+                                        <div class="block2-btn-unavailable w-size1 trans-0-4">
+                                            <a href="#" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                                                Unavailable
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 

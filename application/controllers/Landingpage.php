@@ -8,11 +8,11 @@ class Landingpage extends CI_Controller
         parent::__construct();
         if ($this->session->userdata('email')) {
             if ($this->session->userdata('role_id') == 1) {
-                redirect('admin');
+                redirect('Admin');
             } elseif ($this->session->userdata('role_id') == 2) {
-                redirect('seller');
+                redirect('Seller');
             } elseif ($this->session->userdata('role_id') == 3) {
-                redirect('buyer');
+                redirect('Buyer');
             }
         }
         $this->load->model('buyer/IndexBuyer_model', 'ibm');

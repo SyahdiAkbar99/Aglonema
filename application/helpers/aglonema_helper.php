@@ -4,7 +4,7 @@ function is_logged_in()
 {
     $ci = get_instance();
     if (!$ci->session->userdata('email')) {
-        redirect('auth');
+        redirect('Auth');
     } else {
         $role_id = $ci->session->userdata('role_id');
         $menu = $ci->uri->segment(1);
@@ -19,11 +19,11 @@ function is_logged_in()
 
         if ($userAccess->num_rows() < 1) {
             if ($ci->session->userdata('role_id') == 1) {
-                redirect('admin');
+                redirect('Admin');
             } elseif ($ci->session->userdata('role_id') == 2) {
-                redirect('seller');
+                redirect('Seller');
             } elseif ($ci->session->userdata('role_id') == 3) {
-                redirect('buyer');
+                redirect('Buyer');
             }
         }
     }

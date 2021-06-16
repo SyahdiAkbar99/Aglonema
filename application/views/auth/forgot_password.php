@@ -2,7 +2,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="<?= base_url('auth/forgot_password') ?>" class="h1"><b><?= $title; ?></b></a>
+            <a href="<?= base_url('Auth/forgot_password') ?>" class="h1"><b><?= $title; ?></b></a>
         </div>
         <div class="card-body">
             <div class="row">
@@ -13,7 +13,7 @@
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
                 </div>
             </div>
-            <form action="<?= base_url('auth/forgot_password') ?>" method="post">
+            <form action="<?= base_url('Auth/forgot_password') ?>" method="post">
                 <div class="input-group">
                     <input type="email" class="form-control" name="email" id="email" value="<?= set_value('email'); ?>" placeholder="Email">
                     <div class="input-group-append">
@@ -31,7 +31,7 @@
             </form>
             <hr>
             <p class="mb-0 text-center">
-                <a href="<?= base_url('auth') ?>" class="text-center">Aku ingin <b>Login</b></a>
+                <a href="<?= base_url('Auth') ?>" class="text-center">Aku ingin <b>Login</b></a>
             </p>
         </div>
         <!-- /.card-body -->

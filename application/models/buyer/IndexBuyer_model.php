@@ -35,4 +35,33 @@ class IndexBuyer_model extends CI_Model
         $query = "SELECT * FROM data_tanaman ORDER BY data_tanaman.id ASC";
         return $this->db->query($query)->result_array();
     }
+
+    //Data Cart
+    public function data_cart($id)
+    {
+        $query = $this->db->where('id', $id)->limit(1)->get('data_tanaman');
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return array();
+        }
+    }
+
+    //Data All Produk
+    public function getAllProduk()
+    {
+        return $this->db->get('data_tanaman')->result_array();
+    }
+
+    //Data Produk
+    public function getProduk($limit, $start)
+    {
+        return $this->db->get('data_tanaman', $limit, $start)->result_array();
+    }
+
+    //count All Produk
+    public function countAllProduk()
+    {
+        return $this->db->get('data_tanaman')->num_rows();
+    }
 }

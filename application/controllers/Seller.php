@@ -111,7 +111,7 @@ class Seller extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('seller/data_tanaman');
+                    redirect('Seller/data_tanaman');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 1000px x 1000px
@@ -119,7 +119,7 @@ class Seller extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('seller/data_tanaman');
+                    redirect('Seller/data_tanaman');
                 }
             }
 
@@ -145,7 +145,7 @@ class Seller extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('seller/data_tanaman');
+            redirect('Seller/data_tanaman');
         }
     }
 
@@ -231,7 +231,7 @@ class Seller extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('seller/data_tanaman');
+                    redirect('Seller/data_tanaman');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 1000x x 1000px
@@ -239,7 +239,7 @@ class Seller extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('seller/data_tanaman');
+                    redirect('Seller/data_tanaman');
                 }
             }
             // echo '<pre>';
@@ -259,7 +259,7 @@ class Seller extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('seller/data_tanaman');
+            redirect('Seller/data_tanaman');
         }
     }
 
@@ -281,14 +281,14 @@ class Seller extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>');
-            redirect('seller/data_tanaman');
+            redirect('Seller/data_tanaman');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Deleted Failure
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>');
-            redirect('seller/data_tanaman');
+            redirect('Seller/data_tanaman');
         }
     }
 
@@ -385,7 +385,7 @@ class Seller extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('seller/edit_profile');
+                    redirect('Seller/edit_profile');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 500px x 500px
@@ -393,7 +393,7 @@ class Seller extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('seller/edit_profile');
+                    redirect('Seller/edit_profile');
                 }
             }
 
@@ -413,7 +413,7 @@ class Seller extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('seller/edit_profile');
+            redirect('Seller/edit_profile');
         }
     }
     public function change_password()
@@ -455,7 +455,7 @@ class Seller extends CI_Controller
                             </button>
                     </div>'
                 );
-                redirect('seller/change_password');
+                redirect('Seller/change_password');
             } else {
                 if ($current_password == $new_password) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> New Password tidak boleh sama dengan Current Password ! 
@@ -463,7 +463,7 @@ class Seller extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('seller/change_password');
+                    redirect('Seller/change_password');
                 } else {
                     //password bener
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
@@ -475,7 +475,7 @@ class Seller extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('seller/change_password');
+                    redirect('Seller/change_password');
                 }
             }
         }

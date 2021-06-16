@@ -13,7 +13,7 @@
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
                 </div>
             </div>
-            <form action="<?= base_url('auth') ?>" method="post">
+            <form action="<?= base_url('Auth') ?>" method="post">
                 <div class="input-group">
                     <input type="email" class="form-control" name="email" id="email" value="<?= set_value('email'); ?>" placeholder="Email">
                     <div class="input-group-append">
@@ -40,10 +40,10 @@
             </form>
             <hr>
             <p class="mb-1 text-center">
-                <a href="<?= base_url('auth/forgot_password') ?>">Aku lupa <b>Password</b></a>
+                <a href="<?= base_url('Auth/forgot_password') ?>">Aku lupa <b>Password</b></a>
             </p>
             <p class="mb-0 text-center">
-                <a href="<?= base_url('auth/registration') ?>" class="text-center">Aku ingin <b>Mendaftar</b></a>
+                <a href="<?= base_url('Auth/registration') ?>" class="text-center">Aku ingin <b>Mendaftar</b></a>
             </p>
         </div>
         <!-- /.card-body -->

@@ -53,7 +53,7 @@ class Admin extends CI_Controller
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>');
-        redirect('admin/data_user');
+        redirect('Admin/data_user');
     }
     public function active_data_user()
     {
@@ -68,7 +68,7 @@ class Admin extends CI_Controller
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>');
-        redirect('admin/data_user');
+        redirect('Admin/data_user');
     }
     public function delete_data_user() //DELETE USER STILL COMPLEX ALGORITHM
     {
@@ -95,7 +95,7 @@ class Admin extends CI_Controller
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>');
-        redirect('admin/data_user');
+        redirect('Admin/data_user');
     }
 
 
@@ -146,7 +146,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/data_banner');
+                    redirect('Admin/data_banner');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 2 MB
@@ -154,7 +154,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/data_banner');
+                    redirect('Admin/data_banner');
                 }
             }
 
@@ -175,7 +175,7 @@ class Admin extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('admin/data_banner');
+            redirect('Admin/data_banner');
         }
     }
     public function update_data_banner()
@@ -238,7 +238,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/data_banner');
+                    redirect('Admin/data_banner');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 2MB
@@ -246,7 +246,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/data_banner');
+                    redirect('Admin/data_banner');
                 }
             }
             // echo '<pre>';
@@ -266,7 +266,7 @@ class Admin extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('admin/data_banner');
+            redirect('Admin/data_banner');
         }
     }
     public function delete_data_banner()
@@ -290,7 +290,7 @@ class Admin extends CI_Controller
                 </button>
         </div>'
         );
-        redirect('admin/data_banner');
+        redirect('Admin/data_banner');
     }
 
 
@@ -343,7 +343,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/data_penanaman');
+                    redirect('Admin/data_penanaman');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 2 MB dan Dimensi 700 x 700 pixels
@@ -351,7 +351,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/data_penanaman');
+                    redirect('Admin/data_penanaman');
                 }
             }
 
@@ -373,7 +373,7 @@ class Admin extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('admin/data_penanaman');
+            redirect('Admin/data_penanaman');
         }
     }
     public function update_data_penanaman()
@@ -439,7 +439,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/data_penanaman');
+                    redirect('Admin/data_penanaman');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 2MB dan dimensi 700 x 700 pixels
@@ -447,7 +447,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/data_penanaman');
+                    redirect('Admin/data_penanaman');
                 }
             }
             // echo '<pre>';
@@ -467,7 +467,7 @@ class Admin extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('admin/data_penanaman');
+            redirect('Admin/data_penanaman');
         }
     }
     public function delete_data_penanaman()
@@ -491,7 +491,7 @@ class Admin extends CI_Controller
                 </button>
         </div>'
         );
-        redirect('admin/data_penanaman');
+        redirect('Admin/data_penanaman');
     }
 
     //Data Perawatan
@@ -542,7 +542,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/data_perawatan');
+                    redirect('Admin/data_perawatan');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 2 MB dan Dimensi 700 x 700 pixels
@@ -550,7 +550,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/data_perawatan');
+                    redirect('Admin/data_perawatan');
                 }
             }
 
@@ -572,7 +572,7 @@ class Admin extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('admin/data_perawatan');
+            redirect('Admin/data_perawatan');
         }
     }
     public function update_data_perawatan()
@@ -638,7 +638,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/data_perawatan');
+                    redirect('Admin/data_perawatan');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 2MB dan dimensi 700 x 700 pixels
@@ -646,7 +646,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/data_perawatan');
+                    redirect('Admin/data_perawatan');
                 }
             }
             // echo '<pre>';
@@ -666,7 +666,7 @@ class Admin extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('admin/data_perawatan');
+            redirect('Admin/data_perawatan');
         }
     }
     public function delete_data_perawatan()
@@ -690,7 +690,7 @@ class Admin extends CI_Controller
                 </button>
         </div>'
         );
-        redirect('admin/data_perawatan');
+        redirect('Admin/data_perawatan');
     }
 
 
@@ -765,7 +765,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('admin/edit_profile');
+                    redirect('Admin/edit_profile');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 500px x 500px
@@ -773,7 +773,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/edit_profile');
+                    redirect('Admin/edit_profile');
                 }
             }
 
@@ -793,7 +793,7 @@ class Admin extends CI_Controller
                         </button>
                 </div>'
             );
-            redirect('admin/edit_profile');
+            redirect('Admin/edit_profile');
         }
     }
     public function change_password()
@@ -835,7 +835,7 @@ class Admin extends CI_Controller
                             </button>
                     </div>'
                 );
-                redirect('admin/change_password');
+                redirect('Admin/change_password');
             } else {
                 if ($current_password == $new_password) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> New Password tidak boleh sama dengan Current Password ! 
@@ -843,7 +843,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/change_password');
+                    redirect('Admin/change_password');
                 } else {
                     //password bener
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
@@ -855,7 +855,7 @@ class Admin extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('admin/change_password');
+                    redirect('Admin/change_password');
                 }
             }
         }

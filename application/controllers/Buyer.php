@@ -10,17 +10,59 @@ class Buyer extends CI_Controller
         $this->load->model('buyer/IndexBuyer_model', 'ibm');
         date_default_timezone_set("Asia/Jakarta");
     }
+
     public function index()
     {
         $data['title'] = 'Home';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
         $data['data_product'] = $this->ibm->data_tanaman();
+
+        //config
+        $config['base_url'] = 'http://localhost/aglonema/Buyer/index';
+        $config['total_rows'] = $this->ibm->countAllProduk();
+        $config['per_page'] = 6;
+
+        //styling
+        $config['full_tag_open'] = '<nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close'] = '</ul></nav>';
+
+        $config['first_link'] = 'First';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        //initilize
+        $this->pagination->initialize($config);
+
+        $data['start'] = $this->uri->segment(3);
+        $data['data_produk'] = $this->ibm->getProduk($config['per_page'], $data['start']);
+
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
         $this->load->view('buyer/index', $data);
         $this->load->view('templates/buyer/footer', $data);
     }
+
     public function penanaman()
     {
         $data['title'] = 'Penanaman';
@@ -33,6 +75,7 @@ class Buyer extends CI_Controller
         $this->load->view('buyer/penanaman', $data);
         $this->load->view('templates/buyer/footer', $data);
     }
+
     public function perawatan()
     {
         $data['title'] = 'Perawatan';
@@ -47,6 +90,95 @@ class Buyer extends CI_Controller
     }
 
 
+    public function add_cart($id)
+    {
+        $cart = $this->ibm->data_cart($id);
+
+        $data = [
+            'id' => $cart->id,
+            'qty' => $this->input->post('jumlah'),
+            'price' => $cart->harga,
+            'name' => $cart->nama,
+            'image' => $cart->image,
+            'seller_id' => $cart->user_id,
+        ];
+
+        // echo '<pre>';
+        // print_r($data);
+        // die;
+        // echo '</pre>';
+
+        if ($cart->jumlah < $data['qty']) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger" role="alert">
+                    Pemesanan anda melebihi stok tersedia !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+            );
+            redirect('Buyer');
+        } else {
+            $query = $this->cart->insert($data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert">
+                        Produk berhasil dikeranjang !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                );
+                redirect('Buyer');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert">
+                        Produk gagal dikeranjang !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                );
+                redirect('Buyer');
+            }
+        }
+    }
+
+    public function detail_cart()
+    {
+        $data['title'] = "Detail Keranjang";
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['data_banner'] = $this->ibm->data_banner();
+
+        $this->load->view('templates/buyer/header', $data);
+        $this->load->view('templates/buyer/navbar', $data);
+        $this->load->view('buyer/keranjang', $data);
+        $this->load->view('templates/buyer/footer', $data);
+    }
+
+    public function delete_cart()
+    {
+        $rowid = $this->input->post('rowid');
+        $query = $this->cart->remove($rowid);
+        if ($query) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Produk keranjang dihapus
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            redirect('Buyer');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Produk keranjang gagal dihapus
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            redirect('Buyer');
+        }
+    }
 
 
 

@@ -13,11 +13,11 @@ class Auth extends CI_Controller
         if ($this->session->userdata('email')) {
             //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
             if ($this->session->userdata('role_id') == 1) {
-                redirect('admin');
+                redirect('Admin');
             } elseif ($this->session->userdata('role_id') == 2) {
-                redirect('seller');
+                redirect('Seller');
             } elseif ($this->session->userdata('role_id') == 3) {
-                redirect('buyer');
+                redirect('Buyer');
             }
         }
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -64,11 +64,11 @@ class Auth extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
                     if ($user['role_id'] == 1) {
-                        redirect('admin');
+                        redirect('Admin');
                     } elseif ($user['role_id'] == 2) {
-                        redirect('seller');
+                        redirect('Seller');
                     } else {
-                        redirect('buyer');
+                        redirect('Buyer');
                     }
                 } else {
                     $this->session->set_flashdata(
@@ -80,7 +80,7 @@ class Auth extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('auth');
+                    redirect('Auth');
                 }
             } else {
                 $this->session->set_flashdata(
@@ -92,7 +92,7 @@ class Auth extends CI_Controller
                         </button>
                 </div>'
                 );
-                redirect('auth');
+                redirect('Auth');
             }
         } else {
             $this->session->set_flashdata(
@@ -104,7 +104,7 @@ class Auth extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -121,11 +121,11 @@ class Auth extends CI_Controller
         if ($this->session->userdata('email')) {
             //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
             if ($this->session->userdata('role_id') == 1) {
-                redirect('admin');
+                redirect('Admin');
             } elseif ($this->session->userdata('role_id') == 2) {
-                redirect('seller');
+                redirect('Seller');
             } elseif ($this->session->userdata('role_id') == 3) {
-                redirect('buyer');
+                redirect('Buyer');
             }
         }
         // ========================================
@@ -165,7 +165,7 @@ class Auth extends CI_Controller
                         </button>
                 </div>'
                 );
-                redirect('auth');
+                redirect('Auth');
             } else {
                 $this->session->set_flashdata(
                     'message',
@@ -176,7 +176,7 @@ class Auth extends CI_Controller
                         </button>
                 </div>'
                 );
-                redirect('auth/registration_admin');
+                redirect('Auth/registration_admin');
             }
         }
     }
@@ -194,11 +194,11 @@ class Auth extends CI_Controller
         if ($this->session->userdata('email')) {
             //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
             if ($this->session->userdata('role_id') == 1) {
-                redirect('admin');
+                redirect('Admin');
             } elseif ($this->session->userdata('role_id') == 2) {
-                redirect('seller');
+                redirect('Seller');
             } elseif ($this->session->userdata('role_id') == 3) {
-                redirect('buyer');
+                redirect('Buyer');
             }
         }
         // ========================================
@@ -255,7 +255,7 @@ class Auth extends CI_Controller
                             </button>
                     </div>'
                 );
-                redirect('auth');
+                redirect('Auth');
             } else {
                 $this->session->set_flashdata(
                     'message',
@@ -266,7 +266,7 @@ class Auth extends CI_Controller
                             </button>
                     </div>'
                 );
-                redirect('auth/registration');
+                redirect('Auth/registration');
             }
         }
     }
@@ -282,11 +282,11 @@ class Auth extends CI_Controller
         if ($this->session->userdata('email')) {
             //astagfirullah ternyata bisa digunain pas pakek form 403 Access Forbidden kodingan kek gini :(
             if ($this->session->userdata('role_id') == 1) {
-                redirect('admin');
+                redirect('Admin');
             } elseif ($this->session->userdata('role_id') == 2) {
-                redirect('seller');
+                redirect('Seller');
             } elseif ($this->session->userdata('role_id') == 3) {
-                redirect('buyer');
+                redirect('Buyer');
             }
         }
         // ========================================
@@ -331,7 +331,7 @@ class Auth extends CI_Controller
                         </button>
                 </div>'
                 );
-                redirect('auth');
+                redirect('Auth');
             } else {
                 $this->session->set_flashdata(
                     'message',
@@ -342,7 +342,7 @@ class Auth extends CI_Controller
                         </button>
                 </div>'
                 );
-                redirect('auth/registration_seller');
+                redirect('Auth/registration_seller');
             }
         }
     }
@@ -413,7 +413,7 @@ class Auth extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>        
                     </div>');
-                    redirect('auth');
+                    redirect('Auth');
                 } else {
 
                     $this->db->delete('user', ['email' => $email]);
@@ -424,7 +424,7 @@ class Auth extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>        
                     </div>');
-                    redirect('auth');
+                    redirect('Auth');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token aktivasi anda tidak valid!
@@ -432,7 +432,7 @@ class Auth extends CI_Controller
                     <span aria-hidden="true">&times;</span>
                     </button>        
                 </div>');
-                redirect('auth');
+                redirect('Auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal, Email salah!
@@ -440,7 +440,7 @@ class Auth extends CI_Controller
                     <span aria-hidden="true">&times;</span>
                 </button>        
             </div>');
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -481,14 +481,14 @@ class Auth extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                     </button>        
                 </div>');
-                redirect('auth/forgot_password');
+                redirect('Auth/forgot_password');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email belum terdaftar atau belum teraktivasi
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>        
                 </div>');
-                redirect('auth/forgot_password');
+                redirect('Auth/forgot_password');
             }
         }
     }
@@ -516,7 +516,7 @@ class Auth extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                     </button>        
                 </div>');
-                redirect('auth');
+                redirect('Auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal, Email anda salah!
@@ -524,7 +524,7 @@ class Auth extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                     </button>        
                 </div>');
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -535,7 +535,7 @@ class Auth extends CI_Controller
     public function change_password()
     {
         if (!$this->session->userdata('reset_email')) {
-            redirect('auth');
+            redirect('Auth');
         }
 
         $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]', [
@@ -568,7 +568,7 @@ class Auth extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                     </button>        
                 </div>');
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -591,6 +591,6 @@ class Auth extends CI_Controller
                 </button>
         </div>'
         );
-        redirect('auth');
+        redirect('Auth');
     }
 }

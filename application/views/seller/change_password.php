@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Home</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -47,7 +47,7 @@
                                 <h5 class="card-title text-center pb-4">Change Password</h5>
                             </div>
                             <div class="card-body">
-                                <form action="<?= base_url('seller/change_password'); ?>" method="POST">
+                                <form action="<?= base_url('Seller/change_password'); ?>" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-lg-12">
                                             <label for="current">Current Password</label>

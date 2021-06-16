@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Admin') ?>">Home</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -170,7 +170,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('admin/inactive_data_user'); ?>" method="get">
+                            <form action="<?= base_url('Admin/inactive_data_user'); ?>" method="get">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="id" value="<?= $datusr['id']; ?>">
                                     <p class="text-center">Apakah anda yakin data ini dinon-aktifkan?</p>
@@ -201,7 +201,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('admin/active_data_user'); ?>" method="get">
+                            <form action="<?= base_url('Admin/active_data_user'); ?>" method="get">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="id" value="<?= $datusr['id']; ?>">
                                     <p class="text-center">Apakah anda yakin data ini diaktifkan?</p>
@@ -232,7 +232,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('admin/delete_data_user'); ?>" method="get">
+                            <form action="<?= base_url('Admin/delete_data_user'); ?>" method="get">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="id" value="<?= $datusr['id']; ?>">
                                     <p class="text-center">Apakah anda yakin data ini dihapus?</p>

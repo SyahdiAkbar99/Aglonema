@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Admin') ?>">Home</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -126,7 +126,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="<?= base_url('admin/data_banner'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('Admin/data_banner'); ?>" method="post" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="Nama">Nama</label>
@@ -175,7 +175,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('admin/update_data_banner'); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('Admin/update_data_banner'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="Nama">Nama</label>
@@ -237,7 +237,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('admin/delete_data_banner'); ?>" method="post">
+                            <form action="<?= base_url('Admin/delete_data_banner'); ?>" method="post">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="id" value="<?= $datbnr['id']; ?>">
                                     <p class="text-center">Apakah anda yakin data ini dihapus?</p>

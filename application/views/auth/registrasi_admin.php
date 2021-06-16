@@ -1,7 +1,7 @@
 <div class="register-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="<?= base_url('auth/registration_admin') ?>" class="h1"><b><?= $title; ?></b></a>
+            <a href="<?= base_url('Auth/registration_admin') ?>" class="h1"><b><?= $title; ?></b></a>
         </div>
         <div class="card-body">
             <div class="row">
@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <form action="<?= base_url('auth/registration_admin') ?>" method="post">
+            <form action="<?= base_url('Auth/registration_admin') ?>" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" name="name" id="name" value="<?= set_value('name') ?>" placeholder="Nama Lengkap">
                     <div class="input-group-append">
@@ -77,7 +77,7 @@
             </form>
             <hr>
             <div class="text-center">
-                <a href="<?= base_url('auth') ?>" class="text-center">Aku sudah punya <b>Akun</b></a>
+                <a href="<?= base_url('Auth') ?>" class="text-center">Aku sudah punya <b>Akun</b></a>
             </div>
         </div>
         <!-- /.form-box -->
