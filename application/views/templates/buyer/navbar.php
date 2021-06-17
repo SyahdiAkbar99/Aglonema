@@ -28,6 +28,9 @@
                         <li>
                             <a href="<?= base_url('Buyer/perawatan') ?>">Perawatan</a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('Buyer/checkout') ?>">Checkout</a>
+                        </li>
                         <!-- <li>
                             <a href="#contact">Kontak</a>
                         </li> -->
@@ -75,7 +78,7 @@
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
-                        <?php if ($this->session->userdata('username')) : ?>
+                        <?php if ($this->session->userdata('email')) : ?>
                             <?php if ($this->cart->contents() == TRUE) : ?>
                                 <?php foreach ($this->cart->contents() as $items) : ?>
                                     <ul class="header-cart-wrapitem">
@@ -200,75 +203,89 @@
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
-                        <ul class="header-cart-wrapitem">
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="<?= base_url('assets/user/img/item-cart-01.jpg') ?>" alt="IMG">
+                        <?php if ($this->session->userdata('email')) : ?>
+                            <?php if ($this->cart->contents() == TRUE) : ?>
+                                <?php foreach ($this->cart->contents() as $items) : ?>
+                                    <ul class="header-cart-wrapitem">
+                                        <li class="header-cart-item">
+                                            <div class="header-cart-item-img">
+                                                <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG">
+                                            </div>
+
+                                            <div class="header-cart-item-txt">
+                                                <a href="#" class="header-cart-item-name">
+                                                    <?= $items['name']; ?>
+                                                </a>
+
+                                                <span class="header-cart-item-info">
+                                                    <?= $items['qty'] ?> x Rp. <?= number_format($items['price'], 2, ',', '.'); ?>
+                                                </span>
+
+                                                <span class="header-cart-item-info">
+                                                    <form action="<?= base_url('Buyer/delete_cart'); ?>" method="post" style="display: inline-block;">
+                                                        <input type="hidden" name="rowid" value="<?= $items['rowid'] ?>">
+                                                        <input type="hidden" name="id" value="<?= $items['id'] ?>">
+                                                        <input type="hidden" name="name" value="<?= $items['name'] ?>">
+                                                        <input type="hidden" name="qty" value="<?= $items['qty'] ?>">
+                                                        <button type="submit" class="badge badge-danger">Hapus</button>
+                                                    </form>
+                                                </span>
+                                            </div>
+
+                                            <div class="header-cart-item-text">
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="header-cart-total">
+                                        Total: Rp. <?php
+                                                    $result = $items['qty'] * $items['price'];
+                                                    echo number_format($result, 2, ',', '.');
+                                                    ?>
+                                    </div>
+                                <?php endforeach; ?>
+                                <div class="header-cart-total">
+                                    Total Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
                                 </div>
 
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        White Shirt With Pleat Detail Back
-                                    </a>
+                                <div class="header-cart-buttons">
+                                    <div class="header-cart-wrapbtn">
+                                        <!-- Button -->
+                                        <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                            View Cart
+                                        </a>
+                                    </div>
 
-                                    <span class="header-cart-item-info">
-                                        1 x $19.00
-                                    </span>
+                                    <!-- <div class="header-cart-wrapbtn"> -->
+                                    <!-- Button -->
+                                    <!-- <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                            Check Out
+                                        </a>
+                                    </div> -->
                                 </div>
-                            </li>
+                            <?php else : ?>
+                                <ul class="header-cart-wrapitem">
+                                    <li class="header-cart-item">
+                                        <div class="header-cart-ite-text">
+                                            Tidak ada produk
+                                        </div>
+                                    </li>
+                                </ul>
 
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="<?= base_url('assets/user/img/item-cart-02.jpg') ?>" alt="IMG">
-                                </div>
-
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        Converse All Star Hi Black Canvas
-                                    </a>
-
-                                    <span class="header-cart-item-info">
-                                        1 x $39.00
-                                    </span>
-                                </div>
-                            </li>
-
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="<?= base_url('assets/user/img/item-cart-03.jpg') ?>" alt="IMG">
+                                <div class="header-cart-total">
+                                    Total: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
                                 </div>
 
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        Nixon Porter Leather Watch In Tan
-                                    </a>
-
-                                    <span class="header-cart-item-info">
-                                        1 x $17.00
-                                    </span>
+                                <div class="header-cart-buttons">
+                                    <div class="header-cart-wrapbtn">
+                                        <!-- Button -->
+                                        <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                            View Cart
+                                        </a>
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
-
-                        <div class="header-cart-total">
-                            Total: $75.00
-                        </div>
-
-                        <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    View Cart
-                                </a>
-                            </div>
-                            <!-- 
-                            <div class="header-cart-wrapbtn"> -->
-                            <!-- Button -->
-                            <!-- <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    Check Out
-                                </a>
-                            </div> -->
-                        </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -298,6 +315,9 @@
                 </li>
                 <li class="item-menu-mobile">
                     <a href="<?= base_url('Buyer/perawatan') ?>">Perawatan</a>
+                </li>
+                <li class="item-menu-mobile">
+                    <a href="<?= base_url('Buyer/checkout') ?>">Checkout</a>
                 </li>
                 <!-- <li class="item-menu-mobile">
                     <a href="#contact">Kontak</a>

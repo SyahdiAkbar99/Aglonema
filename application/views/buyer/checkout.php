@@ -60,15 +60,6 @@
                                     <input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="<?= $items['qty'] ?>" disabled>
                                     <button class="flex-c-m size7 bg8">
                                     </button>
-                                    <!-- <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-                                        <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-                                    </button>
-
-                                    <input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-                                    <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-                                        <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-                                    </button> -->
                                 </div>
                             </td>
                             <td class="column-5">
@@ -82,62 +73,25 @@
                 </table>
             </div>
         </div>
+        <div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
+            <div class="flex-w flex-m w-full-sm">
+                <!-- <div class="size11 bo4 m-r-10">
+                    <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="coupon-code" placeholder="Coupon Code">
+                </div> -->
 
-        <!-- Total -->
-        <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
-            <h5 class="m-text20 p-b-15">
-                Data
-            </h5>
-
-            <!--  -->
-            <div class="flex-w flex-sb-m p-b-12">
-                <span class="m-text21 w-size20 w-full-sm">
-
-                </span>
-            </div>
-            <!--  -->
-            <form action="<?= base_url('Buyer/checkout/') ?>" method="post">
-                <div class="flex-w flex-sb bo10 p-t-15 p-b-20">
-                    <div class="w-size20 w-full-sm">
-
-                        <div class="size13 bo4 m-b-12">
-                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="kode" id="kode" value="kode">
-                        </div>
-                        <div class="size13 bo4 m-b-12">
-                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_email" i="email" value="<?= $user['email']; ?>">
-                        </div>
-                        <div class="size13 bo4 m-b-12">
-                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_name" id="name" value="<?= $user['name']; ?>">
-                        </div>
-
-                        <?php foreach ($this->cart->contents() as $items) : ?>
-                            <input class="form-control" type="hidden" name="buyer_id" id="buyer_id" value="<?= $items['buyer_id']; ?>">
-                            <input class="form-control" type="hidden" name="seller_id[]" id="seller_id[]" value="<?= $items['seller_id']; ?>">
-
-                            <input class="form-control" type="text" name="name[]" id="name" value="<?= $items['name']; ?>">
-                            <input class="form-control" type="text" name="price[]" id="price" value="<?= $items['price']; ?>">
-                            <input class="form-control" type="text" name="qty[]" id="qty" value="<?= $items['qty']; ?>">
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-
-                <div class="flex-w flex-sb-m p-t-26 p-b-30">
-                    <span class="m-text22 w-size19 w-full-sm">
-                        Total:
-                    </span>
-
-                    <span class="m-text21 w-size20 w-full-sm">
-                        Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
-                    </span>
-                </div>
-
-                <div class="size15 trans-0-4">
-                    <!-- Button -->
-                    <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                        Proceed to Checkout
+                <!-- <div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10"> -->
+                <!-- Button -->
+                <!-- <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                        Apply coupon
                     </button>
-                </div>
-            </form>
+                </div> -->
+            </div>
+
+            <div class="size10 trans-0-4 m-t-10 m-b-10">
+                <a href="<?= base_url('Buyer/check_out') ?>" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                    Bayar
+                </a>
+            </div>
         </div>
     </div>
 </section>

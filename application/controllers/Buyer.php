@@ -94,6 +94,8 @@ class Buyer extends CI_Controller
     {
         $cart = $this->ibm->data_cart($id);
 
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
         $data = [
             'id' => $cart->id,
             'qty' => $this->input->post('jumlah'),
@@ -101,12 +103,21 @@ class Buyer extends CI_Controller
             'name' => $cart->nama,
             'image' => $cart->image,
             'seller_id' => $cart->user_id,
+            'buyer_id' => $data['user']['id'],
+            'buyer_email' => $data['user']['email'],
+            'buyer_name' => $data['user']['name'],
         ];
 
         // echo '<pre>';
         // print_r($data);
         // die;
         // echo '</pre>';
+
+        $insertmin = array(
+            'data_tanaman_id' => $cart->id,
+            'name' => $cart->nama,
+            'jumlah' => $this->input->post('jumlah'),
+        );
 
         if ($cart->jumlah < $data['qty']) {
             $this->session->set_flashdata(
@@ -122,6 +133,23 @@ class Buyer extends CI_Controller
         } else {
             $query = $this->cart->insert($data);
             if ($query) {
+                $query1 = $this->db->insert('barang_keluar', $insertmin);
+                if ($query1) {
+                    $query2 = $this->db->get_where('barang_keluar', ['data_tanaman_id' => $insertmin['data_tanaman_id']])->row_array();
+                    $this->db->where('id', $query2['id']);
+                    $this->db->delete('barang_keluar', $insertmin);
+                } else {
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert">
+                            Produk gagal tertambah !
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>'
+                    );
+                    redirect('Buyer');
+                }
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-success" role="alert">
@@ -162,22 +190,42 @@ class Buyer extends CI_Controller
     public function delete_cart()
     {
         $rowid = $this->input->post('rowid');
-        $query = $this->cart->remove($rowid);
+        $this->cart->remove($rowid);
+
+        $data = [
+            'data_tanaman_id' => $this->input->post('id'),
+            'name' => $this->input->post('name'),
+            'jumlah' => $this->input->post('qty'),
+        ];
+        $query = $this->db->insert('barang_masuk', $data);
         if ($query) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Produk keranjang dihapus
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            redirect('Buyer');
+            redirect('Buyer/detail_cart');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Produk keranjang gagal dihapus
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>');
-            redirect('Buyer');
+            redirect('Buyer/detail_cart');
         }
+    }
+
+    public function checkout()
+    {
+        $data['title'] = 'Checkout';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['data_banner'] = $this->ibm->data_banner();
+
+
+        $this->load->view('templates/buyer/header', $data);
+        $this->load->view('templates/buyer/navbar', $data);
+        $this->load->view('buyer/checkout', $data);
+        $this->load->view('templates/buyer/footer', $data);
     }
 
 

@@ -74,13 +74,16 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a href="#" class="block2-name dis-block s-text3 p-b-5">
                                 <?= $datprk['nama']; ?>
                             </a>
 
                             <span class="block2-price m-text6 p-r-5">
                                 <?= "Rp " . number_format($datprk['harga'], 2, ',', '.'); ?>
                             </span>
+                            <h5 class="block2-price m-text6 p-r-5">
+                                <p>Stok : <?= $datprk['jumlah'] ?></p>
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -143,13 +146,16 @@
                             </div>
 
                             <div class="block2-txt p-t-20">
-                                <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                                <a href="#" class="block2-name dis-block s-text3 p-b-5">
                                     <?= $datprd['nama']; ?>
                                 </a>
 
                                 <span class="block2-price m-text6 p-r-5">
                                     <?= "Rp " . number_format($datprd['harga'], 2, ',', '.'); ?>
                                 </span>
+                                <h5 class="block2-price m-text6 p-r-5">
+                                    <p>Stok : <?= $datprd['jumlah'] ?></p>
+                                </h5>
                             </div>
                         </div>
                     </div>
