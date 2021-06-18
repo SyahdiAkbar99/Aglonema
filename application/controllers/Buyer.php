@@ -89,6 +89,33 @@ class Buyer extends CI_Controller
         $this->load->view('templates/buyer/footer', $data);
     }
 
+    // fungsi membuat kode pemesanan sesuai tanggal
+    public function kodeDataTanaman()
+    {
+        $tahun = date('Y');
+        $date = date('d/m/');
+        $this->db->like('kode', $date);
+        $this->db->like('kode', $tahun);
+        $this->db->select('RIGHT(transaksi.kode,2) as kode', FALSE);
+        $this->db->order_by('kode', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get('transaksi');  //cek dulu apakah ada sudah ada kode di tabel.
+        if ($query->num_rows() <> 0) {
+            //cek kode jika telah tersedia    
+            $data = $query->row();
+            $kode = intval($data->kode) + 1;
+        } else {
+            $kode = 1;  //cek jika kode belum terdapat pada table
+        }
+        $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
+        $kodetampil = $date . $tahun . ' -PSN- ' . $batas;  //format kode
+        // echo '<pre>';
+        // print_r($kodetampil);
+        // die;
+        // echo '</pre>';
+        return $kodetampil;
+    }
+
 
     public function add_cart($id)
     {
@@ -180,6 +207,7 @@ class Buyer extends CI_Controller
         $data['title'] = "Detail Keranjang";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
+        $data['kode'] = $this->kodeDataTanaman();
 
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
@@ -220,12 +248,78 @@ class Buyer extends CI_Controller
         $data['title'] = 'Checkout';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
+        $data['data_checkout'] = $this->ibm->data_checkout();
 
+        $data['kode'] = $this->kodeDataTanaman();
 
-        $this->load->view('templates/buyer/header', $data);
-        $this->load->view('templates/buyer/navbar', $data);
-        $this->load->view('buyer/checkout', $data);
-        $this->load->view('templates/buyer/footer', $data);
+        $this->form_validation->set_rules('kode', 'Kode', 'required|trim');
+        $this->form_validation->set_rules('buyer_email', 'Email', 'required|trim');
+        $this->form_validation->set_rules('buyer_name', 'Nama', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/buyer/header', $data);
+            $this->load->view('templates/buyer/navbar', $data);
+            $this->load->view('buyer/checkout', $data);
+            $this->load->view('templates/buyer/footer', $data);
+        } else {
+            $seller_id = $this->input->post('seller_id[]');
+            for ($i = 0; $i < count($seller_id); $i++) {
+                $data = [
+                    'kode' => $this->input->post('kode'),
+                    'buyer_id' => $this->input->post('buyer_id'),
+                    'buyer_email' => $this->input->post('buyer_email'),
+                    'buyer_name' => $this->input->post('buyer_name'),
+                    'seller_id' => $this->input->post('seller_id'),
+                    'total' => preg_replace('/,.*|[^0-9]/', '', $this->input->post('total')),
+                    'seller_id' => $seller_id[$i],
+                ];
+                // echo '<pre>';
+                // print_r($data);
+                // die;
+                // echo '</pre>';
+                $query = $this->db->insert('transaksi', $data);
+                $transaksi_id[$i] = $this->db->insert_id();
+            }
+            if ($query) {
+                $id = $this->input->post('id');
+                $name = $this->input->post('name');
+                $price = $this->input->post('price');
+                $qty = $this->input->post('qty');
+                for ($i = 0; $i < count($id); $i++) {
+                    $data = [
+                        'product_id' => $id[$i],
+                        'nama' => $name[$i],
+                        'harga' => $price[$i],
+                        'jumlah' => $qty[$i],
+                        'transaksi_id' => $transaksi_id[$i],
+                    ];
+                    $query1 = $this->db->insert('detail_transaksi', $data);
+                    $this->cart->destroy();
+                }
+                if ($query1) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Produk berhasil checkout
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                    redirect('Buyer/checkout');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Produk gagal checkout
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                    redirect('Buyer/checkout');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Produk gagal dicheckout
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                redirect('Buyer/checkout');
+            }
+        }
     }
 
 

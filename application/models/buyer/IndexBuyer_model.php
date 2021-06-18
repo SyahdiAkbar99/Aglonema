@@ -47,6 +47,13 @@ class IndexBuyer_model extends CI_Model
         }
     }
 
+    //Data Checkout
+    public function data_checkout()
+    {
+        $query = "SELECT * FROM transaksi GROUP BY transaksi.kode ORDER BY transaksi.id DESC";
+        return $this->db->query($query)->result_array();
+    }
+
     //Data All Produk
     public function getAllProduk()
     {

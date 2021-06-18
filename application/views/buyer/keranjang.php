@@ -43,24 +43,24 @@
                         <th class="column-4 p-l-70">Quantity</th>
                         <th class="column-5">Total</th>
                     </tr>
-
-                    <?php foreach ($this->cart->contents() as $items) : ?>
-                        <tr class="table-row">
-                            <td class="column-1">
-                                <div class="cart-img-product b-rad-4 o-f-hidden">
-                                    <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG-PRODUCT">
-                                </div>
-                            </td>
-                            <td class="column-2"> <?= $items['name']; ?> </td>
-                            <td class="column-3">Rp. <?= number_format($items['price'], 2, ',', '.'); ?></td>
-                            <td class="column-4">
-                                <div class="flex-w bo5 of-hidden w-size17">
-                                    <button class="flex-c-m size7 bg8">
-                                    </button>
-                                    <input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="<?= $items['qty'] ?>" disabled>
-                                    <button class="flex-c-m size7 bg8">
-                                    </button>
-                                    <!-- <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+                    <?php if ($this->cart->contents() == TRUE) : ?>
+                        <?php foreach ($this->cart->contents() as $items) : ?>
+                            <tr class="table-row">
+                                <td class="column-1">
+                                    <div class="cart-img-product b-rad-4 o-f-hidden">
+                                        <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG-PRODUCT">
+                                    </div>
+                                </td>
+                                <td class="column-2"> <?= $items['name']; ?> </td>
+                                <td class="column-3">Rp. <?= number_format($items['price'], 2, ',', '.'); ?></td>
+                                <td class="column-4">
+                                    <div class="flex-w bo5 of-hidden w-size17">
+                                        <button class="flex-c-m size7 bg8">
+                                        </button>
+                                        <input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="<?= $items['qty'] ?>" disabled>
+                                        <button class="flex-c-m size7 bg8">
+                                        </button>
+                                        <!-- <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
                                         <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
                                     </button>
 
@@ -69,16 +69,19 @@
                                     <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
                                         <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
                                     </button> -->
-                                </div>
-                            </td>
-                            <td class="column-5">
-                                Rp. <?php
-                                    $result = $items['qty'] * $items['price'];
-                                    echo number_format($result, 2, ',', '.');
-                                    ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                                    </div>
+                                </td>
+                                <td class="column-5">
+                                    Rp. <?php
+                                        $result = $items['qty'] * $items['price'];
+                                        echo number_format($result, 2, ',', '.');
+                                        ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        Tidak list pesanan anda
+                    <?php endif; ?>
                 </table>
             </div>
         </div>
@@ -100,24 +103,34 @@
                 <div class="flex-w flex-sb bo10 p-t-15 p-b-20">
                     <div class="w-size20 w-full-sm">
 
-                        <div class="size13 bo4 m-b-12">
-                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="kode" id="kode" value="kode">
+
+                        <input class="" type="hidden" name="buyer_id" id="buyer_id" value="<?= $user['id']; ?>">
+
+                        <div class="size13 bo4 m-b-30">
+                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="kode" id="kode" value="<?= $kode; ?>">
+                            <?= form_error('kode', '<small class="text-danger">', '</small>'); ?>
                         </div>
-                        <div class="size13 bo4 m-b-12">
-                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_email" i="email" value="<?= $user['email']; ?>">
+                        <div class="size13 bo4 m-b-30">
+                            <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_email" id="email" value="<?= $user['email']; ?>">
+                            <?= form_error('buyer_email', '<small class="text-danger">', '</small>'); ?>
                         </div>
                         <div class="size13 bo4 m-b-12">
                             <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_name" id="name" value="<?= $user['name']; ?>">
+                            <?= form_error('buyer_name', '<small class="text-danger">', '</small>'); ?>
                         </div>
 
-                        <?php foreach ($this->cart->contents() as $items) : ?>
-                            <input class="form-control" type="hidden" name="buyer_id" id="buyer_id" value="<?= $items['buyer_id']; ?>">
-                            <input class="form-control" type="hidden" name="seller_id[]" id="seller_id[]" value="<?= $items['seller_id']; ?>">
+                        <?php if ($this->cart->contents() == TRUE) : ?>
+                            <?php foreach ($this->cart->contents() as $items) : ?>
+                                <input class="form-control" type="hidden" name="seller_id[]" id="seller_id" value="<?= $items['seller_id']; ?>">
 
-                            <input class="form-control" type="text" name="name[]" id="name" value="<?= $items['name']; ?>">
-                            <input class="form-control" type="text" name="price[]" id="price" value="<?= $items['price']; ?>">
-                            <input class="form-control" type="text" name="qty[]" id="qty" value="<?= $items['qty']; ?>">
-                        <?php endforeach; ?>
+                                <input class="form-control" type="hidden" name="id[]" id="id" value="<?= $items['id']; ?>">
+                                <input class="form-control" type="hidden" name="name[]" id="name" value="<?= $items['name']; ?>">
+                                <input class="form-control" type="hidden" name="price[]" id="price" value="<?= $items['price']; ?>">
+                                <input class="form-control" type="hidden" name="qty[]" id="qty" value="<?= $items['qty']; ?>">
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            Tidak list pesanan anda
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -127,15 +140,21 @@
                     </span>
 
                     <span class="m-text21 w-size20 w-full-sm">
-                        Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
+                        <input class="form-control" type="text" name="total" id="total" value="Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>" readonly>
                     </span>
                 </div>
 
                 <div class="size15 trans-0-4">
                     <!-- Button -->
-                    <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                        Proceed to Checkout
-                    </button>
+                    <?php if ($this->cart->contents() == TRUE) : ?>
+                        <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                            Proceed to Checkout
+                        </button>
+                    <?php else : ?>
+                        <div class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                            Tidak ada list
+                        </div>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
