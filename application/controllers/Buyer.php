@@ -347,7 +347,7 @@ class Buyer extends CI_Controller
             $this->load->view('buyer/bayar', $data);
             $this->load->view('templates/buyer/footer', $data);
         } else {
-            $where = $this->input->post('detail_id');
+            $where = $this->input->post('id');
             $total = $this->input->post('totals');
             $tb['detail_transaksi'] = $this->db->get_where('detail_transaksi', ['detail_id' => $this->input->post('detail_id')])->row_array();
 
