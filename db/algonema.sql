@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2021 pada 08.41
+-- Waktu pembuatan: 20 Jun 2021 pada 13.12
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.15
 
@@ -166,14 +166,14 @@ CREATE TABLE `data_tanaman` (
 --
 
 INSERT INTO `data_tanaman` (`id`, `kode`, `nama`, `image`, `jenis`, `berat`, `warna`, `jumlah`, `harga`, `tanggal_post`, `user_id`) VALUES
-(1, '19/05/2021 -DT- 001', 'Adelia', 'adelia.jpg', 'Aglonema A', 2, 'Merah Kehijauan', 3, 142000, '2021-06-19 05:51:11', 3),
-(13, '23/05/2021 -DT- 001', 'Angela', 'angela.jpg', 'Aglonema A', 3, 'Merah Kehitaman', 3, 145000, '2021-06-19 06:35:06', 3),
-(14, '23/05/2021 -DT- 002', 'Ariana', 'Ariana.jpg', 'Aglonema A', 4, 'Merah Kebiruan', 1, 154000, '2021-06-18 07:06:14', 3),
-(15, '23/05/2021 -DT- 003', 'Bidadari', 'Bidadari.jpg', 'Aglonema  - B', 5, 'Merah Kekuningan', 2, 213000, '2021-06-19 06:37:26', 3),
-(16, '23/05/2021 -DT- 004', 'Cinta', 'cinta.jpg', 'Aglonema - C', 6, 'Merah Merona', 4, 300000, '2021-06-19 00:11:13', 3),
-(17, '16/06/2021 -DT- 001', 'Diana', 'Diana.jpg', 'Aglonema D', 12, 'Merah Kehitaman', 4, 154000, '2021-06-19 00:21:07', 3),
-(18, '16/06/2021 -DT- 002', 'Dolores', 'Dolores.jpg', 'Aglonema D', 15, 'Merah Merona', 13, 142000, '2021-06-19 03:14:17', 3),
-(19, '18/06/2021 -DT- 001', 'Mutiara', 'Mutiara.jpg', 'Aglonema M', 7, 'Merah Kehijauan', 12, 145600, '2021-06-19 06:37:31', 11);
+(1, '19/05/2021 -DT- 001', 'Adelia', 'adelia.jpg', 'Aglonema A', 2, 'Merah Kehijauan', 20, 142000, '2021-06-20 11:04:46', 3),
+(13, '23/05/2021 -DT- 001', 'Angela', 'angela.jpg', 'Aglonema A', 3, 'Merah Kehitaman', 20, 145000, '2021-06-20 11:04:50', 3),
+(14, '23/05/2021 -DT- 002', 'Ariana', 'Ariana.jpg', 'Aglonema A', 4, 'Merah Kebiruan', 18, 154000, '2021-06-20 11:05:22', 3),
+(15, '23/05/2021 -DT- 003', 'Bidadari', 'Bidadari.jpg', 'Aglonema  - B', 5, 'Merah Kekuningan', 17, 213000, '2021-06-20 11:07:34', 3),
+(16, '23/05/2021 -DT- 004', 'Cinta', 'cinta.jpg', 'Aglonema - C', 6, 'Merah Merona', 20, 300000, '2021-06-20 11:04:58', 3),
+(17, '16/06/2021 -DT- 001', 'Diana', 'Diana.jpg', 'Aglonema D', 12, 'Merah Kehitaman', 20, 154000, '2021-06-20 11:05:00', 3),
+(18, '16/06/2021 -DT- 002', 'Dolores', 'Dolores.jpg', 'Aglonema D', 15, 'Merah Merona', 20, 142000, '2021-06-20 11:05:03', 3),
+(19, '18/06/2021 -DT- 001', 'Mutiara', 'Mutiara.jpg', 'Aglonema M', 7, 'Merah Kehijauan', 15, 145600, '2021-06-20 11:07:39', 11);
 
 -- --------------------------------------------------------
 
@@ -200,10 +200,10 @@ CREATE TABLE `detail_transaksi` (
 --
 
 INSERT INTO `detail_transaksi` (`detail_id`, `product_id`, `name`, `jumlah`, `harga`, `total`, `status`, `image`, `tanggal`, `seller_id`, `transaksi_id`) VALUES
-(1, 19, 'Mutiara', 1, 145600, 145600, 1, 'letter_C1.png', '2021-06-19 13:36:00', 11, 1),
-(2, 13, 'Angela', 1, 145000, 145000, 1, 'letter_K.png', '2021-06-19 13:38:27', 3, 1),
-(3, 15, 'Bidadari', 2, 213000, 426000, 1, 'letter_K1.png', '2021-06-19 13:39:11', 3, 2),
-(4, 19, 'Mutiara', 2, 145600, 291200, 1, 'letter_L.png', '2021-06-19 13:37:53', 11, 2);
+(1, 14, 'Ariana', 2, 154000, 308000, 1, 'letter_A.png', '2021-06-20 18:06:53', 3, 1),
+(2, 19, 'Mutiara', 2, 145600, 291200, 1, 'letter_F.png', '2021-06-20 18:06:36', 11, 1),
+(3, 15, 'Bidadari', 3, 213000, 639000, 1, 'letter_C.png', '2021-06-20 18:08:16', 3, 2),
+(4, 19, 'Mutiara', 3, 145600, 436800, 1, 'letter_B.png', '2021-06-20 18:08:01', 11, 2);
 
 -- --------------------------------------------------------
 
@@ -234,8 +234,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `kode`, `buyer_id`, `buyer_email`, `buyer_name`, `buyer_bank`, `buyer_rekening`, `buyer_telp`, `seller_id`, `seller_name`, `seller_bank`, `seller_rekening`, `transaksi_total`, `transaksi_tanggal`, `status`) VALUES
-(1, '19/06/2021 -PSN- 001', 2, 'buyer@gmail.com', 'Buyer', 'BRI', '000999189990101', '628900011122', 11, 'Ubisol', 'Bank BRI', '0007166675651213', 290600, '2021-06-19 13:36:00', 1),
-(2, '19/06/2021 -PSN- 002', 2, 'buyer@gmail.com', 'Buyer', 'BRI', '000999189990101', '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 717200, '2021-06-19 13:38:27', 1);
+(1, '20/06/2021 -PSN- 001', 2, 'buyer@gmail.com', 'Buyer', 'BRI', '000999189990101', '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 599200, '2021-06-20 18:06:53', 1),
+(2, '20/06/2021 -PSN- 002', 12, 'jina@gmail.com', 'Jina', 'BRI', '000999189990101', '62628777580099', 3, 'Seller', 'BRI', '0007000200050003', 1075800, '2021-06-20 18:08:16', 1);
 
 -- --------------------------------------------------------
 
@@ -266,7 +266,8 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `no_telp`, `alam
 (1, 'Admin', 'admin@gmail.com', 'avatar.png', '$2y$10$AXjPk8Onb.G08Rqqeoa7sOktJKQGteHQ5PL4QcqJOAMIJIzuvE2xS', '628555411222', '', 1, 1, 1620834085, '', ''),
 (2, 'Buyer', 'buyer@gmail.com', 'user5-128x128.jpg', '$2y$10$OvPvijWzTcLrwuC./VNEcOhVSpkoOmjjt8OZoyfB0oXG6ROlHXZDq', '628900011122', 'JL Buyer 21', 3, 1, 1620834190, '', ''),
 (3, 'Seller', 'seller@gmail.com', 'user7-128x128.jpg', '$2y$10$OvPvijWzTcLrwuC./VNEcOhVSpkoOmjjt8OZoyfB0oXG6ROlHXZDq', '628575515589', 'JL Seller 21', 2, 1, 1620834190, '0007000200050003', 'BRI'),
-(11, 'Ubisol', 'ubicroftnest@gmail.com', 'user8-128x128.jpg', '$2y$10$i/QVm5fd4cLWWnb9SXij0ebtiJjK14ba.OdWjQTkMobpoFUz7EbdS', '628888888888', 'JL Kemuning', 2, 1, 1620999851, '0007166675651213', 'Bank BRI');
+(11, 'Ubisol', 'ubicroftnest@gmail.com', 'user8-128x128.jpg', '$2y$10$i/QVm5fd4cLWWnb9SXij0ebtiJjK14ba.OdWjQTkMobpoFUz7EbdS', '628888888888', 'JL Kemuning', 2, 1, 1620999851, '0007166675651213', 'Bank BRI'),
+(12, 'Jina', 'jina@gmail.com', 'default.png', '$2y$10$n5daRPkM15a4LzSH8qCn2OCq0vl80GhrhIDr33UPORomfBshvTYzm', '62628777580099', 'Jl Kutai No 9A Tamanbaru Banyuwangi', 3, 1, 1624166809, '', '');
 
 -- --------------------------------------------------------
 
@@ -382,6 +383,13 @@ CREATE TABLE `user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `user_token`
+--
+
+INSERT INTO `user_token` (`id_token`, `email`, `token`, `date_created`) VALUES
+(13, 'jina@gmail.com', 'EYBrqKEEgLblT2Zltw60SiYLrJdVy4oc3RvQDpk2xzY=', 1624166809);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -478,13 +486,13 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_banner`
@@ -526,7 +534,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -556,7 +564,7 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
