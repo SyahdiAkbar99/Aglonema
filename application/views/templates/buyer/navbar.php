@@ -69,59 +69,75 @@
 
                 <div class="header-wrapicon2">
                     <img src="<?= base_url('assets/user/img/icons/icon-header-02.png') ?>" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">
-                        <?php
-                        $keranjang = $this->cart->total_items();
-                        ?>
-                        <?= $keranjang; ?>
-                    </span>
+
+                    <?php foreach ($this->cart->contents() as $items) : ?>
+                        <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+                            <?php
+                            $keranjang = $this->cart->total_items();
+                            ?>
+                            <span class="header-icons-noti">
+                                <?= $keranjang; ?>
+                            </span>
+                        <?php else : ?>
+                            <span class="header-icons-noti">
+                                0
+                            </span>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <?php if ($this->session->userdata('email')) : ?>
                             <?php if ($this->cart->contents() == TRUE) : ?>
                                 <?php foreach ($this->cart->contents() as $items) : ?>
-                                    <ul class="header-cart-wrapitem">
-                                        <li class="header-cart-item">
-                                            <div class="header-cart-item-img">
-                                                <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG">
-                                            </div>
+                                    <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+                                        <ul class="header-cart-wrapitem">
+                                            <li class="header-cart-item">
+                                                <div class="header-cart-item-img">
+                                                    <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG">
+                                                </div>
 
-                                            <div class="header-cart-item-txt">
-                                                <a href="#" class="header-cart-item-name">
-                                                    <?= $items['name']; ?>
-                                                </a>
+                                                <div class="header-cart-item-txt">
+                                                    <a href="#" class="header-cart-item-name">
+                                                        <?= $items['name'] . '' . $items['buyer_id']; ?>
+                                                    </a>
 
-                                                <span class="header-cart-item-info">
-                                                    <?= $items['qty'] ?> x Rp. <?= number_format($items['price'], 2, ',', '.'); ?>
-                                                </span>
+                                                    <span class="header-cart-item-info">
+                                                        <?= $items['qty'] ?> x Rp. <?= number_format($items['price'], 2, ',', '.'); ?>
+                                                    </span>
 
-                                                <span class="header-cart-item-info">
-                                                    <form action="<?= base_url('Buyer/delete_cart'); ?>" method="post" style="display: inline-block;">
-                                                        <input type="hidden" name="rowid" value="<?= $items['rowid'] ?>">
-                                                        <input type="hidden" name="id" value="<?= $items['id'] ?>">
-                                                        <input type="hidden" name="name" value="<?= $items['name'] ?>">
-                                                        <input type="hidden" name="qty" value="<?= $items['qty'] ?>">
-                                                        <button type="submit" class="badge badge-danger">Hapus</button>
-                                                    </form>
-                                                </span>
-                                            </div>
+                                                    <span class="header-cart-item-info">
+                                                        <form action="<?= base_url('Buyer/delete_cart'); ?>" method="post" style="display: inline-block;">
+                                                            <input type="hidden" name="rowid" value="<?= $items['rowid'] ?>">
+                                                            <input type="hidden" name="id" value="<?= $items['id'] ?>">
+                                                            <input type="hidden" name="name" value="<?= $items['name'] ?>">
+                                                            <input type="hidden" name="qty" value="<?= $items['qty'] ?>">
+                                                            <button type="submit" class="badge badge-danger">Hapus</button>
+                                                        </form>
+                                                    </span>
+                                                </div>
 
-                                            <div class="header-cart-item-text">
+                                                <div class="header-cart-item-text">
 
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="header-cart-total">
-                                        Total: Rp. <?php
-                                                    $result = $items['qty'] * $items['price'];
-                                                    echo number_format($result, 2, ',', '.');
-                                                    ?>
-                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="header-cart-total">
+                                            Total: Rp. <?php
+                                                        $result = $items['qty'] * $items['price'];
+                                                        echo number_format($result, 2, ',', '.');
+                                                        ?>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
-                                <div class="header-cart-total">
-                                    Total Cart: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
-                                </div>
+                                <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+                                    <div class="header-cart-total">
+                                        Total Cart: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
+                                    </div>
+                                <?php else : ?>
+                                    Total Cart: Rp. 0
+                                <?php endif; ?>
 
                                 <div class="header-cart-buttons">
                                     <div class="header-cart-wrapbtn">
@@ -194,59 +210,73 @@
 
                 <div class="header-wrapicon2">
                     <img src="<?= base_url('assets/user/img/icons/icon-header-02.png') ?>" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">
-                        <?php
-                        $keranjang = $this->cart->total_items();
-                        ?>
-                        <?= $keranjang; ?>
-                    </span>
+                    <?php foreach ($this->cart->contents() as $items) : ?>
+                        <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+                            <?php
+                            $keranjang = $this->cart->total_items();
+                            ?>
+                            <span class="header-icons-noti">
+                                <?= $keranjang; ?>
+                            </span>
+                        <?php else : ?>
+                            <span class="header-icons-noti">
+                                0
+                            </span>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <?php if ($this->session->userdata('email')) : ?>
                             <?php if ($this->cart->contents() == TRUE) : ?>
                                 <?php foreach ($this->cart->contents() as $items) : ?>
-                                    <ul class="header-cart-wrapitem">
-                                        <li class="header-cart-item">
-                                            <div class="header-cart-item-img">
-                                                <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG">
-                                            </div>
+                                    <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+                                        <ul class="header-cart-wrapitem">
+                                            <li class="header-cart-item">
+                                                <div class="header-cart-item-img">
+                                                    <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $items['image']; ?>" alt="IMG">
+                                                </div>
 
-                                            <div class="header-cart-item-txt">
-                                                <a href="#" class="header-cart-item-name">
-                                                    <?= $items['name']; ?>
-                                                </a>
+                                                <div class="header-cart-item-txt">
+                                                    <a href="#" class="header-cart-item-name">
+                                                        <?= $items['name'] . '' . $items['buyer_id']; ?>
+                                                    </a>
 
-                                                <span class="header-cart-item-info">
-                                                    <?= $items['qty'] ?> x Rp. <?= number_format($items['price'], 2, ',', '.'); ?>
-                                                </span>
+                                                    <span class="header-cart-item-info">
+                                                        <?= $items['qty'] ?> x Rp. <?= number_format($items['price'], 2, ',', '.'); ?>
+                                                    </span>
 
-                                                <span class="header-cart-item-info">
-                                                    <form action="<?= base_url('Buyer/delete_cart'); ?>" method="post" style="display: inline-block;">
-                                                        <input type="hidden" name="rowid" value="<?= $items['rowid'] ?>">
-                                                        <input type="hidden" name="id" value="<?= $items['id'] ?>">
-                                                        <input type="hidden" name="name" value="<?= $items['name'] ?>">
-                                                        <input type="hidden" name="qty" value="<?= $items['qty'] ?>">
-                                                        <button type="submit" class="badge badge-danger">Hapus</button>
-                                                    </form>
-                                                </span>
-                                            </div>
+                                                    <span class="header-cart-item-info">
+                                                        <form action="<?= base_url('Buyer/delete_cart'); ?>" method="post" style="display: inline-block;">
+                                                            <input type="hidden" name="rowid" value="<?= $items['rowid'] ?>">
+                                                            <input type="hidden" name="id" value="<?= $items['id'] ?>">
+                                                            <input type="hidden" name="name" value="<?= $items['name'] ?>">
+                                                            <input type="hidden" name="qty" value="<?= $items['qty'] ?>">
+                                                            <button type="submit" class="badge badge-danger">Hapus</button>
+                                                        </form>
+                                                    </span>
+                                                </div>
 
-                                            <div class="header-cart-item-text">
+                                                <div class="header-cart-item-text">
 
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="header-cart-total">
-                                        Total: Rp. <?php
-                                                    $result = $items['qty'] * $items['price'];
-                                                    echo number_format($result, 2, ',', '.');
-                                                    ?>
-                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="header-cart-total">
+                                            Total: Rp. <?php
+                                                        $result = $items['qty'] * $items['price'];
+                                                        echo number_format($result, 2, ',', '.');
+                                                        ?>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
-                                <div class="header-cart-total">
-                                    Total Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
-                                </div>
+                                <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+                                    <div class="header-cart-total">
+                                        Total Cart: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
+                                    </div>
+                                <?php else : ?>
+                                    Total Cart: Rp. 0
+                                <?php endif; ?>
 
                                 <div class="header-cart-buttons">
                                     <div class="header-cart-wrapbtn">

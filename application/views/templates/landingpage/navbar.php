@@ -25,8 +25,11 @@
                             <a href="<?= base_url('landingpage/perawatan') ?>">Perawatan</a>
                         </li>
                         <li>
-                            <a href="#contact">Kontak</a>
+                            <a href="<?= base_url('Buyer/checkout') ?>">Checkout</a>
                         </li>
+                        <!-- <li>
+                            <a href="#contact">Kontak</a>
+                        </li> -->
                         <li>
                             <a href="<?= base_url('auth') ?>">
                                 <button class="btn btn-dark">
@@ -321,8 +324,11 @@
                     <a href="<?= base_url('landingpage/perawatan') ?>">Perawatan</a>
                 </li>
                 <li class="item-menu-mobile">
-                    <a href="#contact">Kontak</a>
+                    <a href="<?= base_url('Buyer/checkout') ?>">Checkout</a>
                 </li>
+                <!-- <li class="item-menu-mobile">
+                    <a href="#contact">Kontak</a>
+                </li> -->
                 <li class="item-menu-mobile">
                     <a href="<?= base_url('auth') ?>">
                         Login

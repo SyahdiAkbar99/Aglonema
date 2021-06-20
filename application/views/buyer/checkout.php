@@ -41,39 +41,58 @@
                         <th class="column-2">Email</th>
                         <th class="column-3">Nama</th>
                         <th class="column-4">Total</th>
-                        <th class="column-5">Tanggal</th>
+                        <th class="column-2">Tanggal</th>
                         <th class="column-6">Batal</th>
-                        <th class="column-7">Detail</th>
+                        <th class="column-2">Detail</th>
+                        <th class="column-4">Status</th>
                     </tr>
 
                     <?php foreach ($data_checkout as $row) : ?>
-                        <tr class="table-row">
-                            <td class="column-1">
-                                <?= $row['kode']; ?>
-                            </td>
-                            <td class="column-2"> <?= $row['buyer_email']; ?> </td>
-                            <td class="column-3"><?= $row['buyer_name']; ?></td>
-                            <td class="column-4">
-                                <?= 'Rp ' . number_format($row['transaksi_total'], 2, ',', '.'); ?>
-                            </td>
-                            <td class="column-5">
-                                <?= date('D, M Y', strtotime($row['transaksi_tanggal'])); ?>
-                            </td>
-                            <td class="column-6">
-                                <form action="<?= base_url('Buyer/batal_transaksi/') ?>" method="post">
-                                    <input type="hidden" name="id" id="id" value="<?= $row['transaksi_id']; ?>">
-                                    <button type="submit" class="badge badge-danger m-r-30">
-                                        <i class="fa fa-trash"></i> Batal
-                                    </button>
-                                </form>
-                            </td>
-                            <td class="column-7">
-                                <a href="<?= base_url('Buyer/detail_transaksi/') . $row['transaksi_id']; ?>" class="badge badge-success m-r-30">
-                                    <i class="fa fa-info-circle"></i> Detail
-                                </a>
-                            </td>
-                        </tr>
+                        <?php if ($row['buyer_id'] == $this->session->userdata('id')) : ?>
+                            <tr class="table-row">
+                                <td class="column-1">
+                                    <?= $row['kode']; ?>
+                                </td>
+                                <td class="column-2"> <?= $row['buyer_email']; ?> </td>
+                                <td class="column-3"><?= $row['buyer_name']; ?></td>
+                                <td class="column-4">
+                                    <?= 'Rp ' . number_format($row['transaksi_total'], 2, ',', '.'); ?>
+                                </td>
+                                <td class="column-2">
+                                    <?php if ($row['transaksi_tanggal'] != NULL) : ?>
+                                        <?= date('D, M Y', strtotime($row['transaksi_tanggal'])); ?>
+                                    <?php else : ?>
+                                        <span class="m-text22 w-size19 w-full-sm">
+                                            Lakukan Pembayaran
+                                        </span>
+                                    <?php endif; ?>
+                                </td>
+                                <td class="column-6">
+                                    <form action="<?= base_url('Buyer/batal_transaksi/') ?>" method="post">
+                                        <input type="hidden" name="id" id="id" value="<?= $row['transaksi_id']; ?>">
+                                        <button type="submit" class="badge badge-danger m-r-30">
+                                            <i class="fa fa-trash"></i> Batal
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="column-2">
+                                    <a href="<?= base_url('Buyer/detail_transaksi/') . $row['transaksi_id']; ?>" class="badge badge-success m-r-30">
+                                        <i class="fa fa-info-circle"></i> Detail
+                                    </a>
+                                </td>
+                                <td class="column-4">
+                                    <?php if ($row['status'] == 1) : ?>
+                                        <span class="m-text22 w-size19 w-full-sm">
+                                            Product anda sedang di proses dan segera dikirim
+                                        </span>
+                                    <?php else : ?>
+                                        Pending Product
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
                     <?php endforeach; ?>
+
                 </table>
             </div>
         </div>

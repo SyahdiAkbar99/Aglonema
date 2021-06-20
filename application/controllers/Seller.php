@@ -301,12 +301,12 @@ class Seller extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         //tampilkan data tanaman sesuai user
-        $data['data_tanaman'] = $this->dsm->data_tanaman($data['user']['id']);
+        $data['riwayat_penjualan'] = $this->dsm->riwayat_penjualan($data['user']['id']);
 
         $this->load->view('templates/seller/header', $data);
         $this->load->view('templates/seller/navbar', $data);
         $this->load->view('templates/seller/sidebar', $data);
-        $this->load->view('seller/index', $data);
+        $this->load->view('seller/riwayat_penjualan', $data);
         $this->load->view('templates/seller/footer', $data);
     }
 

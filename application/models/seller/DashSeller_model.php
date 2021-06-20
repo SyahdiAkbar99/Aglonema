@@ -24,4 +24,12 @@ class DashSeller_model extends CI_Model
         $this->db->where('id', $where);
         $this->db->update('data_tanaman', $datas);
     }
+
+    //Data Riwayat Penjualan
+    public function riwayat_penjualan($id)
+    {
+        $query = "SELECT * FROM detail_transaksi
+                    JOIN transaksi ON detail_transaksi.transaksi_id = transaksi.id WHERE detail_transaksi.seller_id = $id";
+        return $this->db->query($query)->result_array();
+    }
 }
