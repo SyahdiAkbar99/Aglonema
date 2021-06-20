@@ -142,28 +142,18 @@
                     <span class="m-text22 w-size19 w-full-sm">
                         Total:
                     </span>
-                    <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
-                        <span class="m-text21 w-size20 w-full-sm">
-                            <input class="form-control" type="text" name="total" id="total" value="Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>" readonly>
-                        </span>
-                    <?php else : ?>
-                        <span class="m-text21 w-size20 w-full-sm">
-                            0
-                        </span>
-                    <?php endif; ?>
+
+                    <span class="m-text21 w-size20 w-full-sm">
+                        <input class="form-control" type="text" name="total" id="total" value="Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>" readonly>
+                    </span>
+
                 </div>
 
                 <div class="size15 trans-0-4">
                     <!-- Button -->
-                    <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
-                        <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                            Proceed to Checkout
-                        </button>
-                    <?php else : ?>
-                        <div class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                            Tidak ada list
-                        </div>
-                    <?php endif; ?>
+                    <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
+                        Proceed to Checkout
+                    </button>
                 </div>
             </form>
         </div>

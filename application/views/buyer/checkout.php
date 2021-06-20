@@ -62,18 +62,24 @@
                                     <?php if ($row['transaksi_tanggal'] != NULL) : ?>
                                         <?= date('D, M Y', strtotime($row['transaksi_tanggal'])); ?>
                                     <?php else : ?>
-                                        <span class="m-text22 w-size19 w-full-sm">
+                                        <span class="m-text22 w-size10 w-full-sm">
                                             Lakukan Pembayaran
                                         </span>
                                     <?php endif; ?>
                                 </td>
                                 <td class="column-6">
-                                    <form action="<?= base_url('Buyer/batal_transaksi/') ?>" method="post">
-                                        <input type="hidden" name="id" id="id" value="<?= $row['transaksi_id']; ?>">
-                                        <button type="submit" class="badge badge-danger m-r-30">
-                                            <i class="fa fa-trash"></i> Batal
-                                        </button>
-                                    </form>
+                                    <?php if ($row['status'] == 1) : ?>
+                                        <span class="m-text21 w-size10 w-full-sm">
+                                            Pembayaran diproses
+                                        </span>
+                                    <?php else : ?>
+                                        <form action="<?= base_url('Buyer/batal_transaksi/') ?>" method="post">
+                                            <input type="hidden" name="id" id="id" value="<?= $row['transaksi_id']; ?>">
+                                            <button type="submit" class="badge badge-danger m-r-30">
+                                                <i class="fa fa-trash"></i> Batal
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
                                 </td>
                                 <td class="column-2">
                                     <a href="<?= base_url('Buyer/detail_transaksi/') . $row['transaksi_id']; ?>" class="badge badge-success m-r-30">

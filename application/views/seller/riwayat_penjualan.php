@@ -50,6 +50,7 @@
                                     <tr class="text-center">
                                         <th>No</th>
                                         <th>Nama Bunga</th>
+                                        <th>Pembeli</th>
                                         <th>Jumlah Terjual</th>
                                         <th>Gambar</th>
                                         <th>Harga</th>
@@ -68,6 +69,9 @@
                                             <td><?= $no ?></td>
                                             <td>
                                                 <?= $rpn['name']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $rpn['buyer_name']; ?>
                                             </td>
                                             <td>
                                                 <?= $rpn['jumlah']; ?>
