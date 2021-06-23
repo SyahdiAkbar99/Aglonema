@@ -80,10 +80,10 @@
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="seller_name" id="seller_name" value="<?= $seller['name'] ?>" placeholder="Name">
                             </div>
                             <div class="size13 bo4 m-b-30">
-                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="seller_bank" id="seller_bank" value="<?= $seller['nama_bank'] ?>" placeholder="Name">
+                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="seller_bank" id="seller_bank" value="<?= $seller['nama_bank'] ?>" placeholder="Bank">
                             </div>
                             <div class="size13 bo4 m-b-30">
-                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="seller_rekening" id="seller_rekening" value="<?= $seller['no_rekening'] ?>" placeholder="Name">
+                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="seller_rekening" id="seller_rekening" value="<?= $seller['no_rekening'] ?>" placeholder="Rekening">
                             </div>
 
                             <div class="size13 bo4 m-b-30">

@@ -124,6 +124,7 @@
                         <?php if ($this->cart->contents() == TRUE) : ?>
                             <?php foreach ($this->cart->contents() as $items) : ?>
                                 <?php if ($items['buyer_id'] == $this->session->userdata('id')) : ?>
+
                                     <input class="form-control" type="hidden" name="seller_id[]" id="seller_id" value="<?= $items['seller_id']; ?>">
 
                                     <input class="form-control" type="hidden" name="id[]" id="id" value="<?= $items['id']; ?>">

@@ -653,7 +653,7 @@ class Buyer extends CI_Controller
                             </button>
                     </div>'
                     );
-                    redirect('buyer/edit_profile');
+                    redirect('Buyer/edit_profile');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     Ukuran melebihi batas. Maksimal 500px x 500px
@@ -661,7 +661,7 @@ class Buyer extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('buyer/edit_profile');
+                    redirect('Buyer/edit_profile');
                 }
             }
 
@@ -681,7 +681,7 @@ class Buyer extends CI_Controller
                     </button>
             </div>'
             );
-            redirect('buyer/edit_profile');
+            redirect('Buyer/edit_profile');
         }
     }
     public function change_password()
@@ -722,7 +722,7 @@ class Buyer extends CI_Controller
                             </button>
                     </div>'
                 );
-                redirect('buyer/change_password');
+                redirect('Buyer/change_password');
             } else {
                 if ($current_password == $new_password) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> New Password tidak boleh sama dengan Current Password ! 
@@ -730,7 +730,7 @@ class Buyer extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('buyer/change_password');
+                    redirect('Buyer/change_password');
                 } else {
                     //password bener
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
@@ -742,7 +742,7 @@ class Buyer extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('buyer/change_password');
+                    redirect('Buyer/change_password');
                 }
             }
         }
