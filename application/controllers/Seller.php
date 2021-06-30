@@ -14,6 +14,10 @@ class Seller extends CI_Controller
     {
         $data['title'] = 'Dashboard Seller';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['transaksi'] = $this->dsm->count_transaksi();
+        $data['tanaman'] = $this->dsm->count_tanaman($data['user']['id']);
+        // var_dump($data['tanaman']);
+        // die;
         $this->load->view('templates/seller/header', $data);
         $this->load->view('templates/seller/navbar', $data);
         $this->load->view('templates/seller/sidebar', $data);

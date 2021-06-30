@@ -9,6 +9,38 @@ class DashSeller_model extends CI_Model
         $this->db->update('user', $data);
     }
 
+    public function count_transaksi()
+    {
+        $query = "SELECT COUNT(transaksi.status) AS sumTrans, DATE_FORMAT(transaksi.transaksi_tanggal, '%M %Y') AS bulan
+        FROM transaksi
+          WHERE
+            transaksi.status = 1
+              
+              GROUP BY MONTH(transaksi.transaksi_tanggal)
+              HAVING COUNT(transaksi.status)
+              ORDER BY transaksi.transaksi_tanggal DESC";
+
+        $getCountTransaksi = $this->db->query($query)->result_array();
+
+        return $getCountTransaksi;
+    }
+
+    public function count_tanaman($id)
+    {
+        $query = "SELECT COUNT(data_tanaman.kode) AS kode, DATE_FORMAT(data_tanaman.tanggal_post, '%M %Y') AS bulan
+        FROM data_tanaman
+          WHERE
+            data_tanaman.user_id = $id
+              
+              GROUP BY MONTH(data_tanaman.tanggal_post)
+              HAVING COUNT(data_tanaman.user_id)
+              ORDER BY data_tanaman.tanggal_post DESC";
+
+        $getCountTanaman = $this->db->query($query)->result_array();
+
+        return $getCountTanaman;
+    }
+
     //Data Tanaman
     public function data_tanaman($user_id)
     {

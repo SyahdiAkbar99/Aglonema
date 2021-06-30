@@ -28,8 +28,9 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>(n)x</h3>
-
+                            <?php foreach ($transaksi as $row) : ?>
+                                <h3>(<?= $row['sumTrans'] ?>)x</h3>
+                            <?php endforeach; ?>
                             <p>Transaksi / Penjualan</p>
                         </div>
                         <div class="icon">
@@ -43,7 +44,9 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>(n)</h3>
+                            <?php foreach ($tanaman as $data) : ?>
+                                <h3>(<?= $data['kode']; ?>)</h3>
+                            <?php endforeach; ?>
 
                             <p>Tanaman</p>
                         </div>

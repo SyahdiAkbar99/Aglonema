@@ -18,6 +18,9 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Dashboard Admin';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['countTrans'] = $this->dam->count_transaksi();
+        $data['countPenjual'] = $this->dam->count_penjual();
+        $data['countPembeli'] = $this->dam->count_pembeli();
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/navbar', $data);
         $this->load->view('templates/admin/sidebar', $data);

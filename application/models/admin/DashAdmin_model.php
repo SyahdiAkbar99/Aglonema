@@ -19,6 +19,54 @@ class DashAdmin_model extends CI_Model
         $this->db->delete('user');
     }
 
+    public function count_transaksi()
+    {
+        $query = "SELECT COUNT(transaksi.status) AS sumTrans, DATE_FORMAT(transaksi.transaksi_tanggal, '%M %Y') AS bulan
+        FROM transaksi
+          WHERE
+            transaksi.status = 1
+              
+              GROUP BY MONTH(transaksi.transaksi_tanggal)
+              HAVING COUNT(transaksi.status)
+              ORDER BY transaksi.transaksi_tanggal DESC";
+
+        $getCountTransaksi = $this->db->query($query)->result_array();
+
+        return $getCountTransaksi;
+    }
+
+    public function count_penjual()
+    {
+        $query = "SELECT COUNT(user.role_id) AS penjual, DATE_FORMAT(user.date_created, '%M %Y') AS bulan
+        FROM user
+          WHERE
+            user.role_id = 2
+              
+              GROUP BY MONTH(user.date_created)
+              HAVING COUNT(user.role_id)
+              ORDER BY user.date_created DESC";
+
+        $getCountPenjual = $this->db->query($query)->result_array();
+
+        return $getCountPenjual;
+    }
+
+    public function count_pembeli()
+    {
+        $query = "SELECT COUNT(user.role_id) AS pembeli, DATE_FORMAT(user.date_created, '%M %Y') AS bulan
+        FROM user
+          WHERE
+            user.role_id = 3
+              
+              GROUP BY MONTH(user.date_created)
+              HAVING COUNT(user.role_id)
+              ORDER BY user.date_created DESC";
+
+        $getCountPembeli = $this->db->query($query)->result_array();
+
+        return $getCountPembeli;
+    }
+
 
 
 
