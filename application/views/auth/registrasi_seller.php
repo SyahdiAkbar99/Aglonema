@@ -55,7 +55,7 @@
                 <?= form_error('password2', '<small class="text-danger">', '</small>'); ?>
 
                 <div class="input-group mt-3">
-                    <input type="text" class="form-control" name="no_rekening" value="<?= set_value('no_rekening') ?>" id="no_rekening" placeholder="No Rekening">
+                    <input type="text" class="form-control" name="no_rekening" value="<?= set_value('no_rekening') ?>" id="no_rekening" placeholder="No Virtual Account / Briva">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="far fa-credit-card"></span>

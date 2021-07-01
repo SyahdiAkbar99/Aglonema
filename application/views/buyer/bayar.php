@@ -99,7 +99,7 @@
                                 <?= form_error('buyer_bank', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="size13 bo4 m-b-30">
-                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_rekening" id="buyer_rekening" value="<?= $user['no_rekening'] ?>" placeholder="Rekening">
+                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_rekening" id="buyer_rekening" value="<?= $user['no_rekening'] ?>" placeholder="No Briva">
                                 <?= form_error('buyer_rekening', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="size13 bo4 m-b-50">
