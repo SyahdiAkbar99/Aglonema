@@ -61,11 +61,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="fa fa-spinner"></i>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

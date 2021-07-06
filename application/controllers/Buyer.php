@@ -337,8 +337,12 @@ class Buyer extends CI_Controller
 
         $this->form_validation->set_rules('buyer_name', 'Name', 'required|trim');
         $this->form_validation->set_rules('buyer_email', 'Email', 'required|trim');
-        $this->form_validation->set_rules('buyer_bank', 'Bank', 'required|trim');
-        $this->form_validation->set_rules('buyer_rekening', 'Rekening', 'required|trim');
+        $this->form_validation->set_rules('buyer_bank', 'Bank', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('buyer_rekening', 'Rekening', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
         $this->form_validation->set_rules('buyer_telp', 'Telepon', 'required|trim');
 
         if ($this->form_validation->run() == false) {

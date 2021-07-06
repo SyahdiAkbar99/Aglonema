@@ -54,12 +54,21 @@
                             <td class="column-4">
                                 <?php if ($row['status'] == 1 && $row['image'] != NULL) : ?>
                                     <div class="badge badge-primary m-r-30">
-                                        <i class="fa fa-circle"></i> Confirmed
+                                        <i class="fa fa-circle"></i> Menunggu Dikonfirmasi Penjual
+                                    </div>
+                                <?php elseif ($row['status'] == 2) : ?>
+                                    <div class="badge badge-success m-r-30">
+                                        <i class="fa fa-circle"></i> Telah Dikonfirmasi
                                     </div>
                                 <?php else : ?>
                                     <form action="<?= base_url('Buyer/bayar/') ?>" method="post">
                                         <input type="hidden" name="seller_id" id="seller_id" value="<?= $row['seller_id']; ?>">
                                         <input type="hidden" name="id" id="id" value="<?= $row['detail_id']; ?>">
+                                        <input type="hidden" name="buyer_name" id="buyer_name" value="<?= $user['name']; ?>">
+                                        <input type="hidden" name="buyer_email" id="buyer_email" value="<?= $user['email']; ?>">
+                                        <input type="hidden" name="buyer_bank" id="buyer_bank">
+                                        <input type="hidden" name="buyer_rekening" id="buyer_rekening">
+                                        <input type="hidden" name="buyer_telp" id="buyer_telp" value="<?= $user['no_telp']; ?>">
                                         <button type="submit" class="badge badge-primary m-r-30">
                                             <i class="fa fa-upload"></i> Bayar
                                         </button>

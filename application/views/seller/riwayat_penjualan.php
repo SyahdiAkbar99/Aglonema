@@ -90,7 +90,13 @@
                                                 <?= $rpn['total']; ?>
                                             </td>
                                             <td>
-                                                <?= $rpn['status']; ?>
+                                                <?php if ($rpn['status'] == 1) : ?>
+                                                    Produk Dicek
+                                                <?php elseif ($rpn['status'] == 2) : ?>
+                                                    Produk Disetujui
+                                                <?php else : ?>
+                                                    Produk Pending
+                                                <?php endif; ?>
                                             </td>
                                             <td>
                                                 <div class="row justify-content-center">
@@ -103,17 +109,10 @@
                                                 <?= date('d M Y', strtotime($rpn['tanggal'])); ?>
                                             </td>
                                             <td>
-                                                <div class="row justify-content-center">
-                                                    <!-- <div class="col-lg-6">
-                                                        <a href="#edit-data-tanaman" class="badge badge-warning" role="badge" data-id="<?= $rpn['id']; ?>" data-kode="<?= $rpn['kode']; ?>" data-nama="<?= $rpn['nama']; ?>" data-image="<?= $rpn['image']; ?>" data-jenis="<?= $rpn['jenis'] ?>" data-berat="<?= $rpn['berat']; ?>" data-warna="<?= $rpn['warna']; ?>" data-jumlah="<?= $rpn['jumlah']; ?>" data-harga="<?= $rpn['harga']; ?>" data-toggle="modal">
-                                                            <i class="fa fa-edit"></i>Edit
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <a href="#delete<?= $rpn['id'] ?>" class="badge badge-danger" data-toggle="modal">
-                                                            <i class="fa fa-edit"></i>Delete
-                                                        </a>
-                                                    </div> -->
+                                                <div class="col-lg-6">
+                                                    <a href="#konfirm<?= $rpn['id'] ?>" class="badge badge-warning" data-toggle="modal">
+                                                        <i class="fa fa-edit"></i>Konfirmasi
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -201,23 +200,23 @@
 
             <!-- Modal Delete -->
             <?php foreach ($riwayat_penjualan as $rpn) : ?>
-                <div class="modal fade" id="delete<?= $rpn['id']; ?>">
+                <div class="modal fade" id="konfirm<?= $rpn['id']; ?>">
                     <div class=" modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header bg-pink">
-                                <h4 class="modal-title">Delete <?= $title ?></h4>
+                            <div class="modal-header bg-warning">
+                                <h4 class="modal-title">Konfirmasi <?= $title ?></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="<?= base_url('Seller/delete_data_tanaman'); ?>" method="get">
+                            <form action="<?= base_url('Seller/riwayat_penjualan'); ?>" method="post">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" id="id" value="<?= $rpn['id']; ?>">
-                                    <p class="text-center">Apakah anda yakin data ini dihapus?</p>
+                                    <p class="text-center">Apakah anda yakin mengonfirmasi pesanan ini?</p>
                                 </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="submit" class="btn bg-pink btn-outline-light">Ya</button>
-                                    <button type="button" class="btn btn-secondary btn-outline-light" data-dismiss="modal">Cancel</button>
+                                <div class="modal-footer justify-content-end">
+                                    <button type="submit" class="btn btn-info btn-outline-light">Ya</button>
+                                    <button type="button" class="btn btn-danger btn-outline-light" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>

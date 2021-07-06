@@ -43,6 +43,7 @@
                         <th class="column-4">Total</th>
                         <th class="column-2">Tanggal</th>
                         <th class="column-6">Batal</th>
+                        <td class="column-1"></td>
                         <th class="column-2">Detail</th>
                         <th class="column-4">Status</th>
                     </tr>
@@ -67,11 +68,14 @@
                                         </span>
                                     <?php endif; ?>
                                 </td>
+
                                 <td class="column-6">
                                     <?php if ($row['status'] == 1) : ?>
-                                        <span class="m-text21 w-size10 w-full-sm">
+                                        <span class="m-text19 w-size10 w-full-sm">
                                             Pembayaran diproses
                                         </span>
+                                    <?php elseif ($row['status'] == 2) : ?>
+                                        Produk anda berhasil dikonfirmasi, segera dikirim
                                     <?php else : ?>
                                         <form action="<?= base_url('Buyer/batal_transaksi/') ?>" method="post">
                                             <input type="hidden" name="id" id="id" value="<?= $row['transaksi_id']; ?>">
@@ -81,6 +85,7 @@
                                         </form>
                                     <?php endif; ?>
                                 </td>
+                                <td class="column-1"></td>
                                 <td class="column-2">
                                     <a href="<?= base_url('Buyer/detail_transaksi/') . $row['transaksi_id']; ?>" class="badge badge-success m-r-30">
                                         <i class="fa fa-info-circle"></i> Detail
@@ -89,8 +94,10 @@
                                 <td class="column-4">
                                     <?php if ($row['status'] == 1) : ?>
                                         <span class="m-text22 w-size19 w-full-sm">
-                                            Product anda sedang di proses dan segera dikirim
+                                            Produk anda sedang di proses dan sedang dikonfirmasi oleh penjual
                                         </span>
+                                    <?php elseif ($row['status'] == 2) : ?>
+                                        Produk anda berhasil dikonfirmasi, segera dikirim
                                     <?php else : ?>
                                         Pending Product
                                     <?php endif; ?>

@@ -31,7 +31,9 @@
                             <?php foreach ($transaksi as $row) : ?>
                                 <h3>(<?= $row['sumTrans'] ?>)x</h3>
                             <?php endforeach; ?>
-                            <p>Transaksi / Penjualan</p>
+                            <?php foreach ($transaksi as $row) : ?>
+                                <p>Transaksi / Penjualan (<?= $row['bulan']; ?>)</p>
+                            <?php endforeach; ?>
                         </div>
                         <div class="icon">
                             <i class="ion ion-cash"></i>
@@ -47,8 +49,9 @@
                             <?php foreach ($tanaman as $data) : ?>
                                 <h3>(<?= $data['kode']; ?>)</h3>
                             <?php endforeach; ?>
-
-                            <p>Tanaman</p>
+                            <?php foreach ($tanaman as $data) : ?>
+                                <p>Tanaman (<?= $data['bulan']; ?>)</p>
+                            <?php endforeach; ?>
                         </div>
                         <div class="icon">
                             <i class="ion ion-ios-flower"></i>

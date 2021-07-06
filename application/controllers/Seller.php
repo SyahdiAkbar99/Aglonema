@@ -14,7 +14,7 @@ class Seller extends CI_Controller
     {
         $data['title'] = 'Dashboard Seller';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['transaksi'] = $this->dsm->count_transaksi();
+        $data['transaksi'] = $this->dsm->count_transaksi($data['user']['id']);
         $data['tanaman'] = $this->dsm->count_tanaman($data['user']['id']);
         // var_dump($data['tanaman']);
         // die;
@@ -304,14 +304,49 @@ class Seller extends CI_Controller
         $data['title'] = 'Riwayat Penjualan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        //tampilkan data tanaman sesuai user
-        $data['riwayat_penjualan'] = $this->dsm->riwayat_penjualan($data['user']['id']);
-
-        $this->load->view('templates/seller/header', $data);
-        $this->load->view('templates/seller/navbar', $data);
-        $this->load->view('templates/seller/sidebar', $data);
-        $this->load->view('seller/riwayat_penjualan', $data);
-        $this->load->view('templates/seller/footer', $data);
+        $this->form_validation->set_rules('id', 'Id', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            //tampilkan data tanaman sesuai user
+            $data['riwayat_penjualan'] = $this->dsm->riwayat_penjualan($data['user']['id']);
+            $this->load->view('templates/seller/header', $data);
+            $this->load->view('templates/seller/navbar', $data);
+            $this->load->view('templates/seller/sidebar', $data);
+            $this->load->view('seller/riwayat_penjualan', $data);
+            $this->load->view('templates/seller/footer', $data);
+        } else {
+            $id = $this->input->post('id');
+            $data = [
+                'status' => 2,
+            ];
+            $this->db->where('transaksi_id', $id);
+            $query = $this->db->update('detail_transaksi', $data);
+            if ($query) {
+                $this->db->where('id', $id);
+                $query1 = $this->db->update('transaksi', $data);
+                if ($query1) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Produk berhasil dikonfirmasi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>');
+                    redirect('Seller/riwayat_penjualan');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Produk gagal dikonfirmasi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>');
+                    redirect('Seller/riwayat_penjualan');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Produk gagal dikonfirmasi detail
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+                redirect('Seller/riwayat_penjualan');
+            }
+        }
     }
 
 
