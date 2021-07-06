@@ -41,6 +41,7 @@
                         <th class="column-2">Quantity</th>
                         <th class="column-3">Harga</th>
                         <th class="column-4">Aksi</th>
+                        <th class="column-5">Hubungi Penjual</th>
                     </tr>
 
                     <?php foreach ($data_detail as $row) : ?>
@@ -64,6 +65,9 @@
                                         </button>
                                     </form>
                                 <?php endif; ?>
+                            </td>
+                            <td class="column-5">
+                                <a href="https://api.whatsapp.com/send?phone=<?= $row['no_telp']; ?>&text=Hai%20Bapak/Ibu%20Penjual,%20saya%20ingin%20ingin%20mengonfirmasi%20produk%20<?= $row['name']; ?>%20yang%20sudah%20saya%20pesan" target="_blank"><span class="btn btn-sm btn-success"> <i class="fa fa-whatsapp"></i> Hubungi Penjual !</span></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

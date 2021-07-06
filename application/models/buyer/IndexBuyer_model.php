@@ -65,7 +65,9 @@ class IndexBuyer_model extends CI_Model
     //Detail Transaksi
     public function detail_trans($id)
     {
-        $query = "SELECT * FROM detail_transaksi WHERE detail_transaksi.transaksi_id = '$id' ORDER BY detail_transaksi.detail_id DESC";
+        $query = "SELECT detail_transaksi.name,detail_transaksi.jumlah, detail_transaksi.harga, detail_transaksi.total, detail_transaksi.status, detail_transaksi.seller_id, detail_transaksi.transaksi_id, detail_transaksi.detail_id, detail_transaksi.product_id, detail_transaksi.image, user.no_telp FROM detail_transaksi
+                    JOIN user ON detail_transaksi.seller_id = user.id
+                    WHERE detail_transaksi.transaksi_id = '$id' ORDER BY detail_transaksi.detail_id DESC";
         return $this->db->query($query)->result_array();
     }
 

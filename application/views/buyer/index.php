@@ -84,6 +84,7 @@
                             <h5 class="block2-price m-text6 p-r-5">
                                 <p>Stok : <?= $datprk['jumlah'] ?></p>
                             </h5>
+
                         </div>
                     </div>
                 </div>
