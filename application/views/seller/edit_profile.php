@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -44,7 +44,7 @@
                     <div class="col-md-7">
                         <div class="card">
                             <div class="card-header bg-pink ml-5 mr-5 d-flex justify-content-center">
-                                <h5 class="card-title text-center pb-4">Edit Profile</h5>
+                                <h5 class="card-title text-center pb-4">Edit Profil</h5>
                             </div>
                             <div class="card-body">
                                 <?= form_open_multipart('Seller/edit_profile') ?>
@@ -54,14 +54,14 @@
                                         <input type="email" class="form-control" name="email" id="email" value="<?= $user['email']; ?>" readonly>
                                     </div>
                                     <div class="form-group col-md-12 col-lg-6">
-                                        <label for="name">Fullname</label>
+                                        <label for="name">Nama Panjang</label>
                                         <input type="text" class="form-control" name="name" id="name" value="<?= $user['name']; ?>">
                                         <?= form_error('name', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12 col-lg-6">
-                                        <label for="telp">No Telpon</label>
+                                        <label for="telp">No Telepon</label>
                                         <input type="tel" class="form-control" name="no_telp" id="no_telp" value="<?= $user['no_telp']; ?>">
                                         <?= form_error('no_telp', '<small class="text-danger">', '</small>'); ?>
                                     </div>

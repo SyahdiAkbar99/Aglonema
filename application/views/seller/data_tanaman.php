@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -107,7 +107,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <a href="#delete<?= $datnam['id'] ?>" class="badge badge-danger" data-toggle="modal">
-                                                            <i class="fa fa-edit"></i>Delete
+                                                            <i class="fa fa-edit"></i>Hapus
                                                         </a>
                                                     </div>
                                                 </div>
@@ -135,7 +135,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-pink">
-                            <h4 class="modal-title">Delete <?= $title ?></h4>
+                            <h4 class="modal-title">Hapus <?= $title ?></h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -201,7 +201,7 @@
                     <div class=" modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header bg-pink">
-                                <h4 class="modal-title">Delete <?= $title ?></h4>
+                                <h4 class="modal-title">Hapus <?= $title ?></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -213,7 +213,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="submit" class="btn bg-pink btn-outline-light">Ya</button>
-                                    <button type="button" class="btn btn-secondary btn-outline-light" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-secondary btn-outline-light" data-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>
@@ -280,7 +280,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button type="submit" class="btn bg-pink btn-outline-light">Update</button>
+                                <button type="submit" class="btn bg-pink btn-outline-light">Perbaharui</button>
                                 <button type="button" class="btn bg-pink btn-outline-light" data-dismiss="modal">Tutup</button>
                             </div>
                         </form>

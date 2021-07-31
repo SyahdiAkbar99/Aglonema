@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Admin') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Admin') ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -97,7 +97,7 @@
                                                             </div>
                                                             <div class="col-xxl-6 pr-1">
                                                                 <a href="#delete<?= $dattnm['id'] ?>" class="badge badge-danger" role="badge" data-toggle="modal">
-                                                                    <i class="fa fa-trash"></i> Delete
+                                                                    <i class="fa fa-trash"></i> Hapus
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -228,7 +228,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                    <button type="submit" class="btn bg-primary btn-outline-light">Update</button>
+                                    <button type="submit" class="btn bg-primary btn-outline-light">Perbaharui</button>
                                     <button type="button" class="btn bg-primary btn-outline-light" data-dismiss="modal">Tutup</button>
                                 </div>
                             </form>
@@ -248,7 +248,7 @@
                     <div class=" modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header bg-primary">
-                                <h4 class="modal-title">Delete <?= $title ?></h4>
+                                <h4 class="modal-title">Hapus <?= $title ?></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -260,7 +260,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="submit" class="btn bg-primary btn-outline-light">Ya</button>
-                                    <button type="button" class="btn btn-secondary btn-outline-light" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-secondary btn-outline-light" data-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>

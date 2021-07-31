@@ -31,23 +31,23 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-header color-filter8 ml-5 mr-5">
-                            <h5 class="card-title text-center pb-4">Change Password</h5>
+                            <h5 class="card-title text-center pb-4">Ubah Kata Sandi</h5>
                         </div>
                         <div class="card-body">
                             <form action="<?= base_url('buyer/change_password'); ?>" method="POST">
                                 <div class="form-row">
                                     <div class="form-group col-lg-12">
-                                        <label for="current">Current Password</label>
+                                        <label for="current">Kata Sandi Saat Ini</label>
                                         <input type="password" class="form-control s-text7 bg6 w-full p-b-5" name="current_password" id="current_password">
                                         <?= form_error('current_password', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <label for="new_password1">New Password</label>
+                                        <label for="new_password1">Kata Sandi Baru</label>
                                         <input type="password" class="form-control s-text7 bg6 w-full p-b-5" name="new_password1" id="new_password1">
                                         <?= form_error('new_password1', '<small class="text-danger">', '</small>'); ?>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <label for="new_password2">Repeat Password</label>
+                                        <label for="new_password2">Ulang Kata Sandi Baru</label>
                                         <input type="password" class="form-control s-text7 bg6 w-full p-b-5" name="new_password2" id="new_password2">
                                         <?= form_error('new_password2', '<small class="text-danger">', '</small>'); ?>
                                     </div>

@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="login-box-msg">Masuk untuk akses akun kamu <b>!</b></p>
+                    <p class="login-box-msg">Login untuk akses akun kamu <b>!</b></p>
                 </div>
                 <div class="col-md-12">
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
@@ -24,7 +24,7 @@
                 </div>
                 <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                 <div class="input-group mt-3">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -34,16 +34,16 @@
                 <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-success btn-block">Masuk</button>
+                        <button type="submit" class="btn btn-success btn-block">Login</button>
                     </div>
                 </div>
             </form>
             <hr>
             <p class="mb-1 text-center">
-                <a href="<?= base_url('Auth/forgot_password') ?>">Aku lupa <b>Password</b></a>
+                <a href="<?= base_url('Auth/forgot_password') ?>">Aku Lupa <b>Kata Sandi</b></a>
             </p>
             <p class="mb-0 text-center">
-                <a href="<?= base_url('Auth/registration') ?>" class="text-center">Aku ingin <b>Mendaftar</b></a>
+                <a href="<?= base_url('Auth/registration') ?>" class="text-center">Aku Ingin <b>Mendaftar</b></a>
             </p>
         </div>
         <!-- /.card-body -->

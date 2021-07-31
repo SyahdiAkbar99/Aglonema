@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -37,7 +37,7 @@
                     <div class="col-md-7">
                         <div class="card">
                             <div class="card-header bg-pink ml-5 mr-5 d-flex justify-content-center">
-                                <h5 class="card-title text-center pb-4">My Profil</h5>
+                                <h5 class="card-title text-center pb-4">Profil Saya</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row d-flex justify-content-center">
@@ -54,7 +54,7 @@
                                                     <p class="labelku pb-1 pt-2"><?= $user['name']; ?></p>
                                                     <p class="labelku pb-1"><?= $user['email']; ?></p>
                                                     <p class="labelku" class="pb-1"><?= $user['no_telp']; ?></p>
-                                                    <label for="since">Member Since <?= date('d F Y', $user['date_created']); ?></label><br><br>
+                                                    <label for="since">Anggota Sejak <?= date('d F Y', $user['date_created']); ?></label><br><br>
                                                 </div>
                                             </div>
                                         </div>

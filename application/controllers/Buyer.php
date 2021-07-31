@@ -13,7 +13,7 @@ class Buyer extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Home';
+        $data['title'] = 'Beranda';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
         $data['data_product'] = $this->ibm->data_tanaman();
@@ -169,7 +169,7 @@ class Buyer extends CI_Controller
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-success" role="alert">
-                            Produk gagal tertambah !
+                            Produk gagal ditambahkan !
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -255,8 +255,8 @@ class Buyer extends CI_Controller
 
         // echo '<pre>';
         // print_r($data['data_checkout']);
-        // die;
         // echo '</pre>';
+        // die;
 
         $data['kode'] = $this->kodeDataTanaman();
 
@@ -401,6 +401,7 @@ class Buyer extends CI_Controller
                             'status' => 1,
                             'transaksi_tanggal' => date('Y-m-d H:i:s'),
                         ];
+
                         $this->db->where('id', $where);
                         $this->db->update('transaksi', $data);
 
@@ -413,7 +414,7 @@ class Buyer extends CI_Controller
                                 </button>
                         </div>'
                         );
-                        redirect('Buyer/checkout');
+                        redirect(base_url('Buyer/checkout'));
                     } else {
                         $this->session->set_flashdata(
                             'message',
@@ -424,7 +425,7 @@ class Buyer extends CI_Controller
                                 </button>
                         </div>'
                         );
-                        redirect('Buyer/checkout');
+                        redirect(base_url('Buyer/checkout'));
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -433,7 +434,7 @@ class Buyer extends CI_Controller
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>');
-                    redirect('Buyer/checkout');
+                    redirect(base_url('Buyer/checkout'));
                 }
             }
             // echo '<pre>';
@@ -563,10 +564,24 @@ class Buyer extends CI_Controller
 
     public function detail_transaksi($id)
     {
+        // New
+        // Cek status transaksi
+        $data_detail = $this->ibm->detail_trans($id);
+        $date_now = new DateTime();
+        foreach ($data_detail as $detail) {
+            $data_date_trx = $this->ibm->per_trans($detail['detail_id'])['transaksi_tanggal'];
+            $date_trx = new DateTime($data_date_trx);
+            $day = $date_trx->diff($date_now)->d;
+            if (!$detail['image'] && $day >= 1) {
+                $this->ibm->update_status($detail['detail_id'], ['status' => 3]);
+            }
+        }
+
         $data['title'] = 'Detail Transaksi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_banner'] = $this->ibm->data_banner();
-        $data['data_detail'] = $this->ibm->detail_trans($id);
+        $data['data_detail'] = $data_detail;
+        $data['seller'] = $data['data_detail'][0];
 
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
@@ -600,7 +615,7 @@ class Buyer extends CI_Controller
 
     public function my_profile()
     {
-        $data['title'] = 'My Profile';
+        $data['title'] = 'Profil Saya';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/buyer/header', $data);
         $this->load->view('templates/buyer/navbar', $data);
@@ -612,7 +627,7 @@ class Buyer extends CI_Controller
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Profile';
+            $data['title'] = 'Edit Profil';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/buyer/header', $data);
             $this->load->view('templates/buyer/navbar', $data);
@@ -651,7 +666,7 @@ class Buyer extends CI_Controller
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-success" role="alert">
-                        Profile berhasil diedit !
+                        Profil berhasil diedit !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -679,7 +694,7 @@ class Buyer extends CI_Controller
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success" role="alert">
-                Profile anda sudah terupdate !
+                Profil anda sudah diperbaharui !
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -690,7 +705,7 @@ class Buyer extends CI_Controller
     }
     public function change_password()
     {
-        $data['title'] = "Change Password";
+        $data['title'] = "Ubah Kata Sandi";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim|min_length[6]', [
@@ -720,7 +735,7 @@ class Buyer extends CI_Controller
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger" role="alert">
-                        Current Password Salah !
+                        Kata Sandi Saat Ini Salah !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

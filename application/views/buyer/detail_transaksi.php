@@ -37,8 +37,8 @@
             <div class="wrap-table-shopping-cart bgwhite">
                 <table class="table-shopping-cart">
                     <tr class="table-head">
-                        <th class="column-1">Product</th>
-                        <th class="column-2">Quantity</th>
+                        <th class="column-1">Produk</th>
+                        <th class="column-2">Jumlah</th>
                         <th class="column-3">Harga</th>
                         <th class="column-4">Aksi</th>
                         <th class="column-5">Hubungi Penjual</th>
@@ -56,9 +56,13 @@
                                     <div class="badge badge-primary m-r-30">
                                         <i class="fa fa-circle"></i> Menunggu Dikonfirmasi Penjual
                                     </div>
-                                <?php elseif ($row['status'] == 2) : ?>
+                                <?php elseif ($row['status'] == 2 && $row['image'] != NULL) : ?>
                                     <div class="badge badge-success m-r-30">
                                         <i class="fa fa-circle"></i> Telah Dikonfirmasi
+                                    </div>
+                                <?php elseif ($row['status'] == 3) : ?>
+                                    <div class="badge badge-danger m-r-30">
+                                        <i class="fa fa-circle"></i> Transaksi Kedaluarsa
                                     </div>
                                 <?php else : ?>
                                     <form action="<?= base_url('Buyer/bayar/') ?>" method="post">

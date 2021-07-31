@@ -6,7 +6,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="login-box-msg">Belum punya akun <b>?</b> Daftar disini <b>!</b></p>
+                    <p class="login-box-msg">Belum Punya Akun <b>?</b> Daftar Disini <b>!</b></p>
                 </div>
                 <div class="col-md-12">
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
@@ -83,13 +83,13 @@
                         <button type="submit" class="btn btn-success btn-block">Daftar</button>
                     </div>
                     <div class="col-8">
-                        <a href="<?= base_url('Auth/registration_seller'); ?>" class="btn btn-info btn-block">Daftar sebagai Seller</a>
+                        <a href="<?= base_url('Auth/registration_seller'); ?>" class="btn btn-info btn-block">Daftar Sebagai Penjual</a>
                     </div>
                 </div>
             </form>
             <hr>
             <div class="text-center">
-                <a href="<?= base_url('Auth') ?>" class="text-center">Aku sudah punya <b>Akun</b></a>
+                <a href="<?= base_url('Auth') ?>" class="text-center">Aku Sudah Punya <b>Akun</b></a>
             </div>
         </div>
         <!-- /.form-box -->

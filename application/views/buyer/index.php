@@ -59,14 +59,14 @@
                                         </div>
                                         <div class="block2-btn-addcart w-size1 trans-0-4">
                                             <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                                                Add to Cart
+                                                Masukkan Ke Keranjang
                                             </button>
                                         </div>
                                     </form>
                                 <?php else : ?>
                                     <div class="block2-btn-unavailable w-size1 trans-0-4">
                                         <a href="#" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                                            Unavailable
+                                            Tidak Tersedia
                                         </a>
                                     </div>
                                 <?php endif; ?>
@@ -132,14 +132,14 @@
                                             </div>
                                             <div class="block2-btn-addcart w-size1 trans-0-4">
                                                 <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                                                    Add to Cart
+                                                    Masukkan Ke Keranjang
                                                 </button>
                                             </div>
                                         </form>
                                     <?php else : ?>
                                         <div class="block2-btn-unavailable w-size1 trans-0-4">
                                             <a href="#" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                                                Unavailable
+                                                Tidak Tersedia
                                             </a>
                                         </div>
                                     <?php endif; ?>

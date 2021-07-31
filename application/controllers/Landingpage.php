@@ -20,7 +20,7 @@ class Landingpage extends CI_Controller
     }
     public function index()
     {
-        $data['title'] = 'Home';
+        $data['title'] = 'Beranda';
         $data['data_banner'] = $this->ibm->data_banner();
         $data['data_product'] = $this->ibm->data_tanaman();
         $this->load->view('templates/landingpage/header', $data);
