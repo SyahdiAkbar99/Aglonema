@@ -112,8 +112,8 @@
                     Yakin logout?
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn bg-pink">Yes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn bg-pink">Ya</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
             </form>
         </div>

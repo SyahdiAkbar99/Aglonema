@@ -280,14 +280,14 @@ class Seller extends CI_Controller
 
         $result = $this->db->delete('data_tanaman', ['id' => $where]);
         if ($result) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Deleted Sucessfully
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Dihapus
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>');
             redirect('Seller/data_tanaman');
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Deleted Failure
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Menghapus Data
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -364,7 +364,7 @@ class Seller extends CI_Controller
 
     public function my_profile()
     {
-        $data['title'] = 'My Profile';
+        $data['title'] = 'Profil Saya';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/seller/header', $data);
         $this->load->view('templates/seller/navbar', $data);
@@ -418,7 +418,7 @@ class Seller extends CI_Controller
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-success" role="alert">
-                        Profile berhasil diedit !
+                        Profil berhasil diedit !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -446,7 +446,7 @@ class Seller extends CI_Controller
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success" role="alert">
-                Profile anda sudah terupdate !
+                Profil anda sudah diperbaharui !
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -457,7 +457,7 @@ class Seller extends CI_Controller
     }
     public function change_password()
     {
-        $data['title'] = "Change Password";
+        $data['title'] = "Ubah Kata Sandi";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim|min_length[6]', [
@@ -488,7 +488,7 @@ class Seller extends CI_Controller
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger" role="alert">
-                        Current Password Salah !
+                        Kata Sandi Saat Ini Salah !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -497,7 +497,7 @@ class Seller extends CI_Controller
                 redirect('Seller/change_password');
             } else {
                 if ($current_password == $new_password) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> New Password tidak boleh sama dengan Current Password ! 
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Kata Sandi Baru tidak boleh sama dengan Kata Sandi Saat Ini ! 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -509,7 +509,7 @@ class Seller extends CI_Controller
                     $this->db->set('password', $password_hash);
                     $this->db->where('email', $this->session->userdata('email'));
                     $this->db->update('user');
-                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Ubah password berhasil ! 
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Ubah kata sandi berhasil ! 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

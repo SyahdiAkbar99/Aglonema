@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="login-box-msg">Aku <b>Lupa password</b></p>
+                    <p class="login-box-msg">Aku <b>Lupa Kata Sandi</b></p>
                 </div>
                 <div class="col-md-12">
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
@@ -36,7 +36,7 @@
 
                 <div class="row mt-3">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-success btn-block">Reset</button>
+                        <button type="submit" class="btn btn-success btn-block">Setel Ulang</button>
                     </div>
                 </div>
             </form>

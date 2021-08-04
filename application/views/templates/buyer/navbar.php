@@ -20,7 +20,7 @@
                 <nav class="menu">
                     <ul class="main_menu" style="margin-top: -1%;">
                         <li>
-                            <a href="<?= base_url('Buyer') ?>">Home</a>
+                            <a href="<?= base_url('Buyer') ?>">Beranda</a>
                         </li>
                         <li>
                             <a href="<?= base_url('Buyer/penanaman') ?>">Penanaman</a>
@@ -60,7 +60,7 @@
             <div class="header-icons">
                 <a href="<?= base_url('Buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
                     <?php if ($user['name'] == NULL) : ?>
-                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/profile/default.png') ?>" class="header-icon1 pl-1" alt="Profile User">
+                        <small>Pengguna Tidak Dikenal</small><img src="<?= base_url('assets/user/img/profile/default.png') ?>" class="header-icon1 pl-1" alt="Profile User">
                     <?php else : ?>
                         <?= $user['name']; ?><img src="<?= base_url('assets/user/img/profile/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
                     <?php endif; ?>
@@ -136,7 +136,7 @@
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
 
@@ -194,7 +194,7 @@
             <div class="header-icons-mobile">
                 <a href="<?= base_url('Buyer/my_profile') ?>" class="header-wrapicon1 dis-block">
                     <?php if ($user['name'] == NULL) : ?>
-                        <small>Unknown User</small><img src="<?= base_url('assets/user/img/profile/default.png') ?>" class="header-icon1 pl-1" alt="Profile User">
+                        <small>Pengguna Tidak Dikenal</small><img src="<?= base_url('assets/user/img/profile/default.png') ?>" class="header-icon1 pl-1" alt="Profile User">
                     <?php else : ?>
                         <?= $user['name']; ?><img src="<?= base_url('assets/user/img/profile/') . $user['image'] ?>" class="header-icon1 pl-1 rounded-circle" alt="Profile User">
                     <?php endif; ?>
@@ -259,7 +259,7 @@
                                 <?php endforeach; ?>
 
                                 <div class="header-cart-total">
-                                    Total Cart: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
+                                    Total Di Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
                                 </div>
 
 
@@ -268,7 +268,7 @@
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
 
@@ -296,7 +296,7 @@
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
                                 </div>
@@ -324,7 +324,7 @@
         <nav class="side-menu">
             <ul class="main-menu">
                 <li class="item-menu-mobile">
-                    <a href="<?= base_url('Buyer') ?>" class="text-center">Home</a>
+                    <a href="<?= base_url('Buyer') ?>" class="text-center">Beranda</a>
                 </li>
                 <li class="item-menu-mobile">
                     <a href="<?= base_url('Buyer/penanaman') ?>">Penanaman</a>
@@ -369,8 +369,8 @@
                         Yakin logout?
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn color-filter8">Yes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn color-filter8">Ya</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     </div>
                 </form>
             </div>

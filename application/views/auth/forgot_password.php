@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="login-box-msg">Aku <b>Lupa password</b></p>
+                    <p class="login-box-msg">Aku <b>Lupa Kata Sandi</b></p>
                 </div>
                 <div class="col-md-12">
                     <p class="login-box-msg"><?= $this->session->flashdata('message') ?></p>
@@ -25,7 +25,7 @@
                 <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        <button type="submit" class="btn btn-success btn-block">Kirim</button>
                     </div>
                 </div>
             </form>

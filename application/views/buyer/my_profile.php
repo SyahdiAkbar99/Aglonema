@@ -26,7 +26,7 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-header color-filter8 mt-2 ml-2 mr-2 d-flex justify-content-center">
-                            <h5 class="card-title text-center pb-3 pt-4">My Profil</h5>
+                            <h5 class="card-title text-center pb-3 pt-4">Profil Saya</h5>
                         </div>
                         <div class="card-body">
                             <div class="row d-flex justify-content-center">
@@ -43,7 +43,7 @@
                                                 <p class="labelku pb-1 pt-2"><?= $user['name']; ?></p>
                                                 <p class="labelku pb-1"><?= $user['email']; ?></p>
                                                 <p class="labelku" class="pb-1"><?= $user['no_telp']; ?></p>
-                                                <label for="since">Member Since <?= date('d F Y', $user['date_created']); ?></label><br><br>
+                                                <label for="since">Anggota Sejak <?= date('d F Y', $user['date_created']); ?></label><br><br>
                                             </div>
                                         </div>
                                     </div>
@@ -53,10 +53,10 @@
                         <div class="card-footer">
                             <div class="stats">
                                 <a href="<?= base_url('buyer/edit_profile') ?>" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i> Edit Profile
+                                    <i class="fa fa-edit"></i> Edit Profil
                                 </a>
                                 <a href="<?= base_url('buyer/change_password') ?>" class="btn btn-warning">
-                                    <i class="fa fa-key"></i> Change Password
+                                    <i class="fa fa-key"></i> Ubah Kata Sandi
                                 </a>
                             </div>
                         </div>

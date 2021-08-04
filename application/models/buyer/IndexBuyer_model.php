@@ -93,6 +93,13 @@ class IndexBuyer_model extends CI_Model
         return $this->db->query($query)->row_array();
     }
 
+    // New
+    public function update_status($where, $data)
+    {
+        $this->db->where('detail_id', $where);
+        $this->db->update('detail_transaksi', $data);
+    }
+
 
 
 

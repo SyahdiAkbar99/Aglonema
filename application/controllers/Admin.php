@@ -33,7 +33,7 @@ class Admin extends CI_Controller
     //Data Users
     public function data_user()
     {
-        $data['title'] = 'Data Users';
+        $data['title'] = 'Data User';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['data_users'] = $this->dam->getAllUser();
 
@@ -709,7 +709,7 @@ class Admin extends CI_Controller
 
     public function my_profile()
     {
-        $data['title'] = 'My Profile';
+        $data['title'] = 'Profil Saya';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/navbar', $data);
@@ -722,7 +722,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Profile';
+            $data['title'] = 'Edit Profil';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/navbar', $data);
@@ -762,7 +762,7 @@ class Admin extends CI_Controller
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-success" role="alert">
-                        Profile berhasil diedit !
+                        Profil berhasil diedit !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -790,7 +790,7 @@ class Admin extends CI_Controller
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success" role="alert">
-                    Profile anda sudah terupdate !
+                    Profil anda sudah diperbaharui !
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -801,7 +801,7 @@ class Admin extends CI_Controller
     }
     public function change_password()
     {
-        $data['title'] = "Change Password";
+        $data['title'] = "Ubah Kata Sandi";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim|min_length[6]', [
@@ -832,7 +832,7 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-danger" role="alert">
-                        Current Password Salah !
+                        Kata Sandi Saat Ini Salah !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

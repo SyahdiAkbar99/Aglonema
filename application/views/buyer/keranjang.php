@@ -38,9 +38,9 @@
                 <table class="table-shopping-cart">
                     <tr class="table-head">
                         <th class="column-1"></th>
-                        <th class="column-2">Product</th>
-                        <th class="column-3">Price</th>
-                        <th class="column-4 p-l-70">Quantity</th>
+                        <th class="column-2">Produk</th>
+                        <th class="column-3">Harga</th>
+                        <th class="column-4 p-l-70">Jumlah</th>
                         <th class="column-5">Total</th>
                     </tr>
                     <?php if ($this->cart->contents() == TRUE) : ?>
@@ -82,7 +82,7 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php else : ?>
-                        Tidak list pesanan anda
+                        Tidak ada list pesanan anda
                     <?php endif; ?>
                 </table>
             </div>
@@ -134,7 +134,7 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         <?php else : ?>
-                            Tidak list pesanan anda
+                            Tidak ada list pesanan anda
                         <?php endif; ?>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                 <div class="size15 trans-0-4">
                     <!-- Button -->
                     <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                        Proceed to Checkout
+                        Lanjutkan Ke Pembayaran
                     </button>
                 </div>
             </form>

@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('Seller') ?>">Beranda</a></li>
                         <li class="breadcrumb-item active"><?= $title ?></li>
                     </ol>
                 </div><!-- /.col -->
@@ -79,7 +79,7 @@
                                             <td>
                                                 <div class="row justify-content-center">
                                                     <div class="col-lg-9">
-                                                        <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . $rpn['name'] . '.jpg'; ?>" class="img-thumbnail" alt="plant-pict">
+                                                        <img src="<?= base_url('assets/admin/img/data/seller/tanaman/') . str_replace(' ', '_', $rpn['name']) . '.jpg'; ?>" class="img-thumbnail" alt="plant-pict">
                                                     </div>
                                                 </div>
                                             </td>
@@ -110,9 +110,15 @@
                                             </td>
                                             <td>
                                                 <div class="col-lg-6">
-                                                    <a href="#konfirm<?= $rpn['id'] ?>" class="badge badge-warning" data-toggle="modal">
-                                                        <i class="fa fa-edit"></i>Konfirmasi
-                                                    </a>
+                                                    <?php if ($rpn['status'] == 1) : ?>
+                                                        <a href="#konfirm<?= $rpn['id'] ?>" class="badge badge-primary" data-toggle="modal">
+                                                            <i class="fa fa-edit"></i>Konfirmasi
+                                                        </a>
+                                                    <?php elseif ($rpn['status'] == 2) : ?>
+                                                        <span class="badge badge-success">Produk Disetujui</span>
+                                                    <?php else : ?>
+                                                        <span class="badge badge-warning">Produk Pending</span>
+                                                    <?php endif; ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -216,7 +222,7 @@
                                 </div>
                                 <div class="modal-footer justify-content-end">
                                     <button type="submit" class="btn btn-info btn-outline-light">Ya</button>
-                                    <button type="button" class="btn btn-danger btn-outline-light" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger btn-outline-light" data-dismiss="modal">Batal</button>
                                 </div>
                             </form>
                         </div>
@@ -283,7 +289,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button type="submit" class="btn bg-pink btn-outline-light">Update</button>
+                                <button type="submit" class="btn bg-pink btn-outline-light">Perbaharui</button>
                                 <button type="button" class="btn bg-pink btn-outline-light" data-dismiss="modal">Tutup</button>
                             </div>
                         </form>

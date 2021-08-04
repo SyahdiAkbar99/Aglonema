@@ -23,7 +23,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Masuk';
+            $data['title'] = 'Login';
             $this->load->view('templates/auth/auth_header', $data);
             $this->load->view('auth/login', $data);
             $this->load->view('templates/auth/auth_footer', $data);
@@ -74,7 +74,7 @@ class Auth extends CI_Controller
                     $this->session->set_flashdata(
                         'message',
                         '<div class="alert alert-danger" role="alert">
-                        Password salah !
+                        Kata Sandi Salah !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -302,7 +302,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Daftar sebagai Seller';
+            $data['title'] = 'Daftar sebagai Penjual';
             $this->load->view('templates/auth/auth_header', $data);
             $this->load->view('auth/registrasi_seller', $data);
             $this->load->view('templates/auth/auth_footer', $data);
@@ -374,8 +374,8 @@ class Auth extends CI_Controller
             $this->email->subject('Verifikasi Akun');
             $this->email->message('Klik link berikut untuk verifikasi akun anda : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktifkan akun anda sekarang sebelum 24 jam</a>');
         } elseif ($type == 'forgot') {
-            $this->email->subject('Reset Password');
-            $this->email->message('Klik link berikut untuk reset password : <a href="' . base_url() . 'auth/reset_password?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset sekarang password anda sebelum 24 jam</a>');
+            $this->email->subject('Atur Ulang Kata Sandi');
+            $this->email->message('Klik link berikut untuk mengatur ulang kata sandi : <a href="' . base_url() . 'auth/reset_password?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Atur ulang kata sandi anda sebelum 24 jam</a>');
         }
 
         if ($this->email->send()) {
@@ -457,7 +457,7 @@ class Auth extends CI_Controller
         ]);
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Forgot Password';
+            $data['title'] = 'Lupa Kata Sandi';
             $this->load->view('templates/auth/auth_header', $data);
             $this->load->view('auth/forgot_password');
             $this->load->view('templates/auth/auth_footer', $data);
@@ -476,7 +476,7 @@ class Auth extends CI_Controller
                 $this->db->insert('user_token', $user_token);
                 $this->_sendEmail($token, 'forgot');
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tolong check email anda untuk me-reset password!
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Tolong check email anda untuk mengatur ulang kata sandi!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>        
@@ -511,7 +511,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('reset_email', $email);
                 $this->change_password();
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal, Token anda salah!
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Atur ulang kata sandi gagal, Token anda salah!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>        
@@ -519,7 +519,7 @@ class Auth extends CI_Controller
                 redirect('Auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password gagal, Email anda salah!
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Atur ulang kata sandi gagal, Email anda salah!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>        
@@ -549,7 +549,7 @@ class Auth extends CI_Controller
             'min_length' => '%s singkat minimal 6 karakter !',
         ]);
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Change Password';
+            $data['title'] = 'Ubah Kata Sandi';
             $this->load->view('templates/auth/auth_header', $data);
             $this->load->view('auth/change_password');
             $this->load->view('templates/auth/auth_footer', $data);
@@ -563,7 +563,7 @@ class Auth extends CI_Controller
 
             $this->session->unset_userdata('reset_email');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password telah berhasil diganti, Mohon login!
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kata sandi telah berhasil diganti, Mohon login!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>        

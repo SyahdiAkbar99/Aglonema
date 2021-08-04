@@ -16,7 +16,7 @@
                 <nav class="menu">
                     <ul class="main_menu" style="margin-top: -1%;">
                         <li>
-                            <a href="<?= base_url('landingpage') ?>">Home</a>
+                            <a href="<?= base_url('landingpage') ?>">Beranda</a>
                         </li>
                         <li>
                             <a href="<?= base_url('landingpage/penanaman') ?>">Penanaman</a>
@@ -98,14 +98,14 @@
                                     </div>
                                 <?php endforeach; ?>
                                 <div class="header-cart-total">
-                                    Total Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
+                                    Total Di Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
                                 </div>
 
                                 <div class="header-cart-buttons">
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
 
@@ -133,7 +133,7 @@
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                 <div class="header-cart-wrapbtn">
                                     <!-- Button -->
                                     <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                        View Cart
+                                        Lihat Keranjang
                                     </a>
                                 </div>
                             </div>
@@ -236,14 +236,14 @@
                                     </div>
                                 <?php endforeach; ?>
                                 <div class="header-cart-total">
-                                    Total Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
+                                    Total Di Keranjang: Rp. <?= number_format($this->cart->total(), 2, ',', '.') ?>
                                 </div>
 
                                 <div class="header-cart-buttons">
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
 
@@ -271,7 +271,7 @@
                                     <div class="header-cart-wrapbtn">
                                         <!-- Button -->
                                         <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                            View Cart
+                                            Lihat Keranjang
                                         </a>
                                     </div>
                                 </div>
@@ -293,7 +293,7 @@
                                 <div class="header-cart-wrapbtn">
                                     <!-- Button -->
                                     <a href="<?= base_url('Buyer/detail_cart/') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                        View Cart
+                                        Lihat Keranjang
                                     </a>
                                 </div>
                             </div>
@@ -315,7 +315,7 @@
         <nav class="side-menu">
             <ul class="main-menu">
                 <li class="item-menu-mobile">
-                    <a href="<?= base_url('landingpage') ?>">Home</a>
+                    <a href="<?= base_url('landingpage') ?>">Beranda</a>
                 </li>
                 <li class="item-menu-mobile">
                     <a href="<?= base_url('landingpage/penanaman') ?>">Penanaman</a>

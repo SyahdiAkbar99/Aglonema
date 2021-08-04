@@ -72,7 +72,7 @@
                                 <td class="column-6">
                                     <?php if ($row['status'] == 1) : ?>
                                         <span class="m-text19 w-size10 w-full-sm">
-                                            Pembayaran diproses
+                                            Pembayaran Diproses
                                         </span>
                                     <?php elseif ($row['status'] == 2) : ?>
                                         Produk anda berhasil dikonfirmasi, segera dikirim
@@ -87,7 +87,7 @@
                                 </td>
                                 <td class="column-1"></td>
                                 <td class="column-2">
-                                    <a href="<?= base_url('Buyer/detail_transaksi/') . $row['transaksi_id']; ?>" class="badge badge-success m-r-30">
+                                    <a href="<?= base_url('Buyer/detail_transaksi/' . $row['transaksi_id']); ?>" class="badge badge-success m-r-30">
                                         <i class="fa fa-info-circle"></i> Detail
                                     </a>
                                 </td>
@@ -99,7 +99,7 @@
                                     <?php elseif ($row['status'] == 2) : ?>
                                         Produk anda berhasil dikonfirmasi, segera dikirim
                                     <?php else : ?>
-                                        Pending Product
+                                        Menunggu Pembayaran
                                     <?php endif; ?>
                                 </td>
                             </tr>

@@ -107,7 +107,7 @@
                                 <?= form_error('buyer_telp', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <span class="m-text21 w-size19 w-full-sm">
-                                Upload Bukti:
+                                Unggah Bukti:
                             </span>
                             <div class="size13 bo4 m-b-30">
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="file" name="image" id="image">
@@ -133,11 +133,11 @@
                     <!-- Button -->
                     <?php if ($this->session->userdata('email')) : ?>
                         <button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                            Proceed to Checkout
+                            Lanjutkan Ke Pembayaran
                         </button>
                     <?php else : ?>
                         <div class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" role="button">
-                            Tidak ada list
+                            Tidak Ada List
                         </div>
                     <?php endif; ?>
                 </div>
