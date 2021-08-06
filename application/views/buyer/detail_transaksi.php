@@ -68,10 +68,10 @@
                                     <form action="<?= base_url('Buyer/bayar/') ?>" method="post">
                                         <input type="hidden" name="seller_id" id="seller_id" value="<?= $row['seller_id']; ?>">
                                         <input type="hidden" name="id" id="id" value="<?= $row['detail_id']; ?>">
-                                        <input type="hidden" name="buyer_name" id="buyer_name" value="<?= $user['name']; ?>">
-                                        <input type="hidden" name="buyer_email" id="buyer_email" value="<?= $user['email']; ?>">
-                                        <input type="hidden" name="buyer_bank" id="buyer_bank">
-                                        <input type="hidden" name="buyer_rekening" id="buyer_rekening">
+                                        <input type="hidden" name="buyer_name" id="buyer_name">
+                                        <input type="hidden" name="buyer_email" id="buyer_email">
+                                        <!-- <input type="hidden" name="buyer_bank" id="buyer_bank">
+                                        <input type="hidden" name="buyer_rekening" id="buyer_rekening"> -->
                                         <input type="hidden" name="buyer_telp" id="buyer_telp" value="<?= $user['no_telp']; ?>">
                                         <button type="submit" class="badge badge-primary m-r-30">
                                             <i class="fa fa-upload"></i> Bayar

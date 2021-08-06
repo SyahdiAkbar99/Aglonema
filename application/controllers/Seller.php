@@ -60,12 +60,24 @@ class Seller extends CI_Controller
         $this->form_validation->set_rules('kode', 'Kode', 'required|trim|is_unique[data_tanaman.kode]', [
             'is_unique' => '%s sudah ada'
         ]);
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim');
-        $this->form_validation->set_rules('berat', 'Berat', 'required|trim|numeric');
-        $this->form_validation->set_rules('warna', 'Warna', 'required|trim');
-        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|numeric');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('berat', 'Berat', 'required|trim|numeric', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('warna', 'Warna', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|trim|numeric', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
+            'required' => '%s tidak boleh kosong',
+        ]);
 
 
         if ($this->form_validation->run() == false) {

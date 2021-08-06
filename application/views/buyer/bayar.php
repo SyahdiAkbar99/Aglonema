@@ -87,21 +87,21 @@
                             </div>
 
                             <div class="size13 bo4 m-b-30">
-                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_name" id="buyer_name" value="<?= $user['name'] ?>" placeholder="Nama">
+                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_name" id="buyer_name" value="" placeholder="Nama">
                                 <?= form_error('buyer_name', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="size13 bo4 m-b-30">
-                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_email" id="buyer_email" value="<?= $user['email'] ?>" placeholder="Email">
+                                <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_email" id="buyer_email" value="" placeholder="Email">
                                 <?= form_error('buyer_email', '<small class="text-danger">', '</small>'); ?>
                             </div>
-                            <div class="size13 bo4 m-b-30">
+                            <!-- <div class="size13 bo4 m-b-30">
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_bank" id="buyer_bank" value="<?= $user['nama_bank'] ?>" placeholder="Bank">
                                 <?= form_error('buyer_bank', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="size13 bo4 m-b-30">
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_rekening" id="buyer_rekening" value="<?= $user['no_rekening'] ?>" placeholder="No Briva">
                                 <?= form_error('buyer_rekening', '<small class="text-danger">', '</small>'); ?>
-                            </div>
+                            </div> -->
                             <div class="size13 bo4 m-b-50">
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_telp" id="buyer_telp" value="<?= $user['no_telp'] ?>" placeholder="No Telpon">
                                 <?= form_error('buyer_telp', '<small class="text-danger">', '</small>'); ?>
@@ -110,7 +110,7 @@
                                 Unggah Bukti:
                             </span>
                             <div class="size13 bo4 m-b-30">
-                                <input class="sizefull s-text7 p-l-15 p-r-15" type="file" name="image" id="image">
+                                <input class="sizefull s-text7 p-l-15 p-r-15" type="file" name="image" id="image" required>
                             </div>
                         </div>
                     </div>
