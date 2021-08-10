@@ -374,6 +374,8 @@ class Seller extends CI_Controller
 
 
 
+
+
     public function my_profile()
     {
         $data['title'] = 'Profil Saya';

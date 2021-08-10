@@ -8,6 +8,7 @@ class Buyer extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('buyer/IndexBuyer_model', 'ibm');
+        $this->load->model('admin/DashAdmin_model', 'dam');
         date_default_timezone_set("Asia/Jakarta");
     }
 
@@ -334,6 +335,7 @@ class Buyer extends CI_Controller
         $data['data_banner'] = $this->ibm->data_banner();
         $data['seller'] = $this->ibm->seller_only($this->input->post('seller_id'));
         $data['detail'] = $this->ibm->per_trans($this->input->post('id'));
+        $data['data_antar'] = $this->dam->data_jasa_antar();
 
         $this->form_validation->set_rules('buyer_name', 'Nama', 'required|trim', [
             'required' => 'Konfirmasi %s anda',
@@ -371,9 +373,9 @@ class Buyer extends CI_Controller
             if ($upload_image) {
                 $config['upload_path'] = './assets/admin/img/data/seller/upload_bukti/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
-                $config['max_size'] = '2048';  //2MB max
-                $config['max_width'] = '700'; // pixel
-                $config['max_height'] = '700'; // pixel
+                $config['max_size'] = '12000';  //12MB max
+                $config['max_width'] = '15000'; // pixel
+                $config['max_height'] = '15000'; // pixel
 
                 $this->load->library('upload', $config);
 
@@ -388,6 +390,11 @@ class Buyer extends CI_Controller
                         'total' => preg_replace('/,.*|[^0-9]/', '', $total),
                         'status' => 1,
                         'tanggal' => date('Y-m-d H:i:s'),
+                        'antar_id' => $this->input->post('ids'),
+                        'nama_antar' => $this->input->post('nama'),
+                        'lokasi_antar' => $this->input->post('lokasi'),
+                        'biaya_antar' => $this->input->post('biaya'),
+                        'biaya_admin' => $this->input->post('biaya_admin'),
                         'image' => $this->upload->data('file_name'),
                     ];
                     $this->db->where('detail_id', $this->input->post('detail_id'));

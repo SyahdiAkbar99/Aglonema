@@ -94,6 +94,7 @@
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_email" id="buyer_email" value="" placeholder="Email">
                                 <?= form_error('buyer_email', '<small class="text-danger">', '</small>'); ?>
                             </div>
+
                             <!-- <div class="size13 bo4 m-b-30">
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_bank" id="buyer_bank" value="<?= $user['nama_bank'] ?>" placeholder="Bank">
                                 <?= form_error('buyer_bank', '<small class="text-danger">', '</small>'); ?>
@@ -102,10 +103,34 @@
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_rekening" id="buyer_rekening" value="<?= $user['no_rekening'] ?>" placeholder="No Briva">
                                 <?= form_error('buyer_rekening', '<small class="text-danger">', '</small>'); ?>
                             </div> -->
+
                             <div class="size13 bo4 m-b-50">
                                 <input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="buyer_telp" id="buyer_telp" value="<?= $user['no_telp'] ?>" placeholder="No Telpon">
                                 <?= form_error('buyer_telp', '<small class="text-danger">', '</small>'); ?>
                             </div>
+
+                            <button class="btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal">Pilih</button>
+                            <div class="size13 bo4 m-b-30 m-t-10">
+                                <input class="sizefull s-text7 p-l-15 p-r-15 d-inline" type="hidden" name="ids" id="ids" placeholder="Jasa Antar">
+                                <input class="sizefull s-text7 p-l-15 p-r-15 d-inline" type="text" name="nama" id="nama" placeholder="Jasa Antar">
+                                <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                            </div>
+
+                            <div class="size13 bo4 m-b-30">
+                                <input class="sizefull s-text7 p-l-15 p-r-15 d-inline" type="text" name="lokasi" id="lokasi" placeholder="Lokasi Diantar">
+                                <?= form_error('lokasi', '<small class="text-danger">', '</small>'); ?>
+                            </div>
+
+                            <div class="size13 bo4 m-b-30">
+                                <input class="sizefull s-text7 p-l-15 p-r-15 d-inline" type="text" name="biaya" id="biaya" placeholder="Biaya">
+                                <?= form_error('biaya', '<small class="text-danger">', '</small>'); ?>
+                            </div>
+
+                            <div class="size13 bo4 m-b-30">
+                                <input class="sizefull s-text7 p-l-15 p-r-15 d-inline" type="text" name="biaya_admin" id="biaya_admin" placeholder="Biaya Admin">
+                                <?= form_error('biaya_admin', '<small class="text-danger">', '</small>'); ?>
+                            </div>
+
                             <span class="m-text21 w-size19 w-full-sm">
                                 Unggah Bukti:
                             </span>
@@ -145,3 +170,57 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title" id="exampleModalLabel">Data Jasa Antar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="data-users" class="table table-responsive" style="width:100%" cellspacing="2">
+                    <thead>
+                        <tr class="text-center">
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Lokasi Antar</th>
+                            <th>Biaya Ekspedisi</th>
+                            <th>Biaya Admin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($data_antar as $jtr) : ?>
+                            <tr id="id_produk" data-ids="<?= $jtr['id'] ?>" data-nama="<?= $jtr['nama']; ?>" data-lokasi="<?= $jtr['lokasi']; ?>" data-biaya="<?= $jtr['biaya']; ?>" data-biaya_a="<?= $jtr['biaya_admin']; ?>">
+                                <td><?= $no; ?></td>
+                                <td>
+                                    <?= $jtr['nama']; ?>
+                                </td>
+                                <td>
+                                    <?= $jtr['lokasi']; ?>
+                                </td>
+                                <td>
+                                    <?= $jtr['biaya']; ?>
+                                </td>
+                                <td>
+                                    <?= $jtr['biaya_admin']; ?>
+                                </td>
+                            </tr>
+                        <?php
+                            $no++;
+                        endforeach; ?>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
+            </div>
+        </div>
+    </div>
+</div>

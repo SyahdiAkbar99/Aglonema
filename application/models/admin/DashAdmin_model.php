@@ -67,6 +67,14 @@ class DashAdmin_model extends CI_Model
         return $getCountPembeli;
     }
 
+    public function data_jasa_antar()
+    {
+        $query = "SELECT * FROM jasa_antar ORDER BY jasa_antar.id DESC";
+
+        $getJasa = $this->db->query($query)->result_array();
+        return $getJasa;
+    }
+
 
 
 

@@ -27,6 +27,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
+                            <h3>Data : </h3>
                             <?php foreach ($countTrans as $row) : ?>
                                 <h3><?= $row['sumTrans']; ?></h3>
                             <?php endforeach; ?>

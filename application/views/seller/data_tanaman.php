@@ -84,7 +84,7 @@
                                                 <?= $datnam['jenis']; ?>
                                             </td>
                                             <td>
-                                                <?= $datnam['berat']; ?>
+                                                <?= $datnam['berat'] . ' Kg'; ?>
                                             </td>
                                             <td>
                                                 <?= $datnam['warna']; ?>

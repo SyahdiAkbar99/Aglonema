@@ -687,7 +687,7 @@ class Admin extends CI_Controller
         $this->session->set_flashdata(
             'message',
             '<div class="alert alert-success" role="alert">
-            Data Perawatan berhasil diedit !
+            Data Perawatan berhasil dihapus !
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -696,6 +696,140 @@ class Admin extends CI_Controller
         redirect('Admin/data_perawatan');
     }
 
+    public function jasa_antar()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('lokasi', 'Lokasi', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('biaya', 'Biaya', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('biaya_admin', 'Biaya Admin', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Jasa Antar';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['jasa_antar'] = $this->dam->data_jasa_antar();
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/navbar', $data);
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('admin/jasa_antar', $data);
+            $this->load->view('templates/admin/footer', $data);
+        } else {
+            $data = [
+                'nama' => $this->input->post('nama'),
+                'lokasi' => $this->input->post('lokasi'),
+                'biaya' => $this->input->post('biaya'),
+                'biaya_admin' => $this->input->post('biaya_admin'),
+            ];
+            $query = $this->db->insert('jasa_antar', $data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert">
+                    Data Jasa Antar berhasil ditambah !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+                );
+                redirect('Admin/jasa_antar');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger" role="alert">
+                    Data Jasa Antar gagal ditambah !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+                );
+                redirect('Admin/jasa_antar');
+            }
+        }
+    }
+
+    public function update_jasa_antar()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('lokasi', 'Lokasi', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('biaya', 'Biaya', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('biaya_admin', 'Biaya Admin', 'required|trim', [
+            'required' => '%s tidak boleh kosong',
+        ]);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Jasa Antar';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['jasa_antar'] = $this->dam->data_jasa_antar();
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/navbar', $data);
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('admin/jasa_antar', $data);
+            $this->load->view('templates/admin/footer', $data);
+        } else {
+            $data = [
+                'nama' => $this->input->post('nama'),
+                'lokasi' => $this->input->post('lokasi'),
+                'biaya' => $this->input->post('biaya'),
+                'biaya_admin' => $this->input->post('biaya_admin'),
+            ];
+            $this->db->where('id', $this->input->post('id'));
+            $query = $this->db->update('jasa_antar', $data);
+            if ($query) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert">
+                    Data Jasa Antar berhasil diupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+                );
+                redirect('Admin/jasa_antar');
+            } else {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger" role="alert">
+                    Data Jasa Antar gagal diupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+                );
+                redirect('Admin/jasa_antar');
+            }
+        }
+    }
+
+    public function delete_jasa_antar()
+    {
+        $where = $this->input->post('id');
+
+        $this->db->where('id', $where);
+        $query = $this->db->delete('jasa_antar');
+        if ($query) {
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                Data Jasa Antar dihapus !
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>'
+            );
+            redirect('Admin/jasa_antar');
+        }
+    }
 
 
 

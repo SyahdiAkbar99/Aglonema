@@ -29,7 +29,7 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <?php foreach ($transaksi as $row) : ?>
-                                <h3>(<?= $row['sumTrans'] ?>)x</h3>
+                                <h3>(<?= $row['sumTrans'] ?>) transaksi / hari</h3>
                             <?php endforeach; ?>
                             <?php foreach ($transaksi as $row) : ?>
                                 <p>Transaksi / Penjualan (<?= $row['bulan']; ?>)</p>
@@ -47,7 +47,7 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <?php foreach ($tanaman as $data) : ?>
-                                <h3>(<?= $data['kode']; ?>)</h3>
+                                <h3>Tanaman : (<?= $data['kode']; ?>)</h3>
                             <?php endforeach; ?>
                             <?php foreach ($tanaman as $data) : ?>
                                 <p>Tanaman (<?= $data['bulan']; ?>)</p>

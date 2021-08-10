@@ -101,7 +101,7 @@
                                             <td>
                                                 <div class="row justify-content-center">
                                                     <div class="col-lg-9">
-                                                        <img src="<?= base_url('assets/admin/img/data/seller/upload_bukti/') . $rpn['image']; ?>" class="img-thumbnail" alt="plant-pict">
+                                                        <img src="<?= base_url('assets/admin/img/data/seller/upload_bukti/') . $rpn['image']; ?>" data-large="<?= base_url('assets/admin/img/data/seller/upload_bukti/') . $rpn['image']; ?>" class="img-thumbnail upl-tf" alt="Bukti Transfer belum diupload pembeli">
                                                     </div>
                                                 </div>
                                             </td>

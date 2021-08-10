@@ -39,6 +39,10 @@
 <!-- overlayScrollbars -->
 <script src="<?= base_url('assets/admin/js/jquery.overlayScrollbars.min.js') ?>"></script>
 
+<!-- zoomsl -->
+<script type="text/javascript" src="<?= base_url('assets/admin/js/zoomsl.min.js') ?>">
+
+</script>
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
@@ -131,6 +135,79 @@
     //         $("#Tersedia").val(tersedia);
     //     });
     // });
+
+    $(function() {
+        $(".upl-tf").imagezoomsl({
+            classmagnifier: "magnifier",
+
+            classcursorshade: "cursorshade",
+
+            classstatusdiv: "statusdiv",
+
+            classtextdn: "textdn",
+
+            classtracker: "tracker",
+
+            // shows the magnifying glass container
+            cursorshade: true,
+
+            // cursor type
+            magnifycursor: 'crosshair',
+
+            // background color of the magnifying glass container
+            cursorshadecolor: '#fff',
+
+            // opacity of the magnifying glass container
+            cursorshadeopacity: 0.3,
+
+            // border styles
+            cursorshadeborder: '1px solid black',
+
+            // z-index property
+            zindex: '',
+
+            // zoom step
+            stepzoom: 3,
+
+            // zoom range 
+            zoomrange: [3, 3],
+
+            // start zoom level
+            zoomstart: 2,
+
+            // disables the scrolling of the document with the mouse wheel when the cursor is over the image
+            disablewheel: true,
+
+            showstatus: true,
+
+            showstatustime: 2000,
+
+            statusdivborder: '1px solid black',
+
+            statusdivbackground: '#C0C0C0',
+
+            statusdivpadding: '4px',
+
+            statusdivfont: 'bold 13px Arial',
+
+            statusdivopacity: 0.8,
+
+            textdnbackground: '#fff',
+
+            textdnpadding: '10px',
+
+            textdnfont: '13px/20px cursive',
+
+            scrollspeedanimate: 5,
+
+            zoomspeedanimate: 7,
+
+            loopspeedanimate: 2.5,
+
+            magnifierspeedanimate: 350
+
+        });
+    });
 </script>
 </body>
 
