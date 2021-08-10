@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jul 2021 pada 13.04
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.3.2
+-- Waktu pembuatan: 10 Agu 2021 pada 05.15
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -79,7 +79,7 @@ CREATE TABLE `data_banner` (
   `nama` varchar(128) NOT NULL,
   `image` varchar(256) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
-  `tanggal_post` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal_post` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `urutan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -108,7 +108,7 @@ CREATE TABLE `data_penanaman` (
   `image` varchar(128) NOT NULL,
   `subjudul` varchar(128) NOT NULL,
   `urutan` int(11) NOT NULL,
-  `tanggal_post` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal_post` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deskripsi` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -133,7 +133,7 @@ CREATE TABLE `data_perawatan` (
   `image` varchar(128) NOT NULL,
   `subjudul` varchar(128) NOT NULL,
   `urutan` int(11) NOT NULL,
-  `tanggal_post` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal_post` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deskripsi` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -161,7 +161,7 @@ CREATE TABLE `data_tanaman` (
   `warna` varchar(128) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `tanggal_post` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal_post` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -170,8 +170,8 @@ CREATE TABLE `data_tanaman` (
 --
 
 INSERT INTO `data_tanaman` (`id`, `kode`, `nama`, `image`, `jenis`, `berat`, `warna`, `jumlah`, `harga`, `tanggal_post`, `user_id`) VALUES
-(1, '19/05/2021 -DT- 001', 'Aglonema Big Apple', 'Aglonema_Big_Apple.jpg', 'Aglonema A', 2, 'Merah Pink', 30, 345000, '2021-07-10 09:29:02', 3),
-(13, '23/05/2021 -DT- 001', 'Aglonema Big Roy White', 'Aglonema_Big_Roy_White.jpg', 'Aglonema A', 1, 'Putih Hijau', 30, 315000, '2021-07-10 09:28:54', 3),
+(1, '19/05/2021 -DT- 001', 'Aglonema Big Apple', 'Aglonema_Big_Apple.jpg', 'Aglonema A', 2, 'Merah Pink', 29, 345000, '2021-08-09 22:58:48', 3),
+(13, '23/05/2021 -DT- 001', 'Aglonema Big Roy White', 'Aglonema_Big_Roy_White.jpg', 'Aglonema A', 1, 'Putih Hijau', 29, 315000, '2021-08-09 22:58:52', 3),
 (14, '23/05/2021 -DT- 002', 'Aglonema Pink Sunset', 'Aglonema_Pink_Sunset.jpg', 'Aglonema A', 1, 'Hijau Pink', 31, 310000, '2021-07-11 11:51:17', 3),
 (15, '23/05/2021 -DT- 003', 'Aglonema Super White', 'Aglonema_Super_White.jpg', 'Aglonema  B', 2, 'Putih', 35, 265000, '2021-07-10 09:29:14', 3),
 (16, '23/05/2021 -DT- 004', 'Cinta', 'cinta1.jpg', 'Aglonema  B', 3, 'Pink Merah', 33, 287000, '2021-07-10 08:48:22', 3),
@@ -197,6 +197,11 @@ CREATE TABLE `detail_transaksi` (
   `image` varchar(256) DEFAULT NULL,
   `tanggal` datetime DEFAULT NULL,
   `seller_id` int(11) DEFAULT NULL,
+  `antar_id` int(11) NOT NULL,
+  `nama_antar` varchar(128) NOT NULL,
+  `lokasi_antar` varchar(128) NOT NULL,
+  `biaya_antar` int(11) NOT NULL,
+  `biaya_admin` int(11) NOT NULL,
   `transaksi_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -204,12 +209,32 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data untuk tabel `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`detail_id`, `product_id`, `name`, `jumlah`, `harga`, `total`, `status`, `image`, `tanggal`, `seller_id`, `transaksi_id`) VALUES
-(24, 13, 'Aglonema Big Roy White', 1, 315000, 315000, 2, 'IMG-20210629-WA00317.jpg', '2021-07-10 16:20:40', 3, 20),
-(25, 17, 'Diana', 2, 215000, NULL, NULL, NULL, NULL, 3, 21),
-(26, 13, 'Aglonema Big Roy White', 1, 315000, 315000, 2, 'IMG-20210629-WA00318.jpg', '2021-07-10 16:27:14', 3, 22),
-(28, 14, 'Aglonema Pink Sunset', 1, 310000, 310000, 2, 'IMG-20210629-WA00319.jpg', '2021-07-11 18:54:05', 3, 23),
-(29, 20, 'Red Kochin', 1, 450000, 450000, 2, 'IMG-20210629-WA003110.jpg', '2021-07-11 18:54:38', 3, 24);
+INSERT INTO `detail_transaksi` (`detail_id`, `product_id`, `name`, `jumlah`, `harga`, `total`, `status`, `image`, `tanggal`, `seller_id`, `antar_id`, `nama_antar`, `lokasi_antar`, `biaya_antar`, `biaya_admin`, `transaksi_id`) VALUES
+(1, 1, 'Aglonema Big Apple', 1, 345000, NULL, 1, NULL, NULL, 3, 0, '', '', 0, 0, 1),
+(2, 13, 'Aglonema Big Roy White', 1, 315000, 315000, 2, '1.PNG', '2021-08-10 07:03:55', 3, 2, 'JNT', 'Malang', 12000, 2500, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jasa_antar`
+--
+
+CREATE TABLE `jasa_antar` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `lokasi` varchar(128) NOT NULL,
+  `biaya` int(11) NOT NULL,
+  `biaya_admin` int(11) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jasa_antar`
+--
+
+INSERT INTO `jasa_antar` (`id`, `nama`, `lokasi`, `biaya`, `biaya_admin`, `tanggal`) VALUES
+(2, 'JNT', 'Malang', 12000, 2500, '2021-08-09 22:58:08'),
+(3, 'JNE', 'Lumajang', 4000, 2500, '2021-08-09 23:48:49');
 
 -- --------------------------------------------------------
 
@@ -240,11 +265,7 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `kode`, `buyer_id`, `buyer_email`, `buyer_name`, `buyer_bank`, `buyer_rekening`, `buyer_telp`, `seller_id`, `seller_name`, `seller_bank`, `seller_rekening`, `transaksi_total`, `transaksi_tanggal`, `status`) VALUES
-(20, '10/07/2021 -PSN- 001', 2, 'buyer@gmail.com', 'Buyer', 'BRI', '123456', '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 315000, '2021-07-10 16:20:40', 2),
-(21, '10/07/2021 -PSN- 002', 2, 'buyer@gmail.com', 'Buyer', NULL, NULL, '', 0, '', '', '', 430000, NULL, NULL),
-(22, '10/07/2021 -PSN- 003', 2, 'buyer@gmail.com', 'Buyer', 'BRI', '123456', '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 625000, '2021-07-10 16:27:15', 2),
-(23, '11/07/2021 -PSN- 001', 2, 'buyer@gmail.com', 'Buyer', 'BNI', '123456', '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 310000, '2021-07-11 18:54:06', 2),
-(24, '11/07/2021 -PSN- 002', 2, 'buyer@gmail.com', 'Buyer', 'BRI', '123456', '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 450000, '2021-07-11 18:54:38', 2);
+(1, '10/08/2021 -PSN- 001', 2, 'buyer@gmail.com', 'Buyer', NULL, NULL, '628900011122', 3, 'Seller', 'BRI', '0007000200050003', 660000, '2021-08-10 07:03:55', 2);
 
 -- --------------------------------------------------------
 
@@ -372,7 +393,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `urutan`, 
 (12, 1, 'Data User', 'Admin/data_user', 'nav-icon fa fa-fw fa-users', 2, 1),
 (13, 1, 'Data Banner', 'Admin/data_banner', 'nav-icon fa fa-fw fa-scroll', 3, 1),
 (14, 1, 'Data Penanaman', 'Admin/data_penanaman', 'nav-icon fa fa-fw fa-tree', 4, 1),
-(15, 1, 'Data Perawatan', 'Admin/data_perawatan', 'nav-icon fa fa-fw fa-book-open', 5, 1);
+(15, 1, 'Data Perawatan', 'Admin/data_perawatan', 'nav-icon fa fa-fw fa-book-open', 5, 1),
+(16, 1, 'Jasa Antar', 'Admin/jasa_antar', 'fa fa-fw fa-file-contract', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -442,6 +464,12 @@ ALTER TABLE `detail_transaksi`
   ADD KEY `transaksi_id` (`transaksi_id`);
 
 --
+-- Indeks untuk tabel `jasa_antar`
+--
+ALTER TABLE `jasa_antar`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -491,13 +519,13 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_banner`
@@ -527,13 +555,19 @@ ALTER TABLE `data_tanaman`
 -- AUTO_INCREMENT untuk tabel `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `jasa_antar`
+--
+ALTER TABLE `jasa_antar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
@@ -563,7 +597,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_token`
