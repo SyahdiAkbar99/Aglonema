@@ -43,6 +43,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/data_user', $data);
         $this->load->view('templates/admin/footer', $data);
     }
+
     public function inactive_data_user()
     {
         $where =  $this->input->get('id');
