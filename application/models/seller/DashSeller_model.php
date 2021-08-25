@@ -56,7 +56,8 @@ class DashSeller_model extends CI_Model
     //Data Riwayat Penjualan
     public function riwayat_penjualan($id)
     {
-        $query = "SELECT * FROM detail_transaksi
+        $query = "SELECT transaksi.id,transaksi.kode,transaksi.buyer_id,transaksi.buyer_email,transaksi.buyer_name,transaksi.buyer_bank,transaksi.buyer_rekening,transaksi.buyer_telp,transaksi.seller_id,transaksi.seller_name,transaksi.seller_bank,transaksi.seller_rekening,transaksi.transaksi_total,transaksi.transaksi_tanggal,
+        detail_transaksi.detail_id, detail_transaksi.product_id,detail_transaksi.name,detail_transaksi.jumlah,detail_transaksi.harga,detail_transaksi.total,detail_transaksi.status,detail_transaksi.image,detail_transaksi.tanggal,detail_transaksi.seller_id,detail_transaksi.seller_id,detail_transaksi.antar_id,detail_transaksi.nama_antar,detail_transaksi.lokasi_antar,detail_transaksi.biaya_antar,detail_transaksi.biaya_admin,detail_transaksi.transaksi_id FROM detail_transaksi
                     JOIN transaksi ON detail_transaksi.transaksi_id = transaksi.id WHERE detail_transaksi.seller_id = $id";
         return $this->db->query($query)->result_array();
     }

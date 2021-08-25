@@ -29,14 +29,11 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <?php foreach ($transaksi as $row) : ?>
-                                <h3>(<?= $row['sumTrans'] ?>) transaksi / hari</h3>
+                                <h4>(<?= $row['sumTrans'] ?>) Transaksi</h4>
                             <?php endforeach; ?>
                             <?php foreach ($transaksi as $row) : ?>
-                                <p>Transaksi / Penjualan (<?= $row['bulan']; ?>)</p>
+                                <p>Bulan: (<?= $row['bulan']; ?>)</p>
                             <?php endforeach; ?>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-cash"></i>
                         </div>
                         <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
                     </div>
@@ -47,14 +44,11 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <?php foreach ($tanaman as $data) : ?>
-                                <h3>Tanaman : (<?= $data['kode']; ?>)</h3>
+                                <h4>(<?= $data['kode']; ?>) Tanaman</h4>
                             <?php endforeach; ?>
                             <?php foreach ($tanaman as $data) : ?>
-                                <p>Tanaman (<?= $data['bulan']; ?>)</p>
+                                <p>Bulan: (<?= $data['bulan']; ?>)</p>
                             <?php endforeach; ?>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-ios-flower"></i>
                         </div>
                         <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
                     </div>

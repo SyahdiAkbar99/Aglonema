@@ -330,7 +330,7 @@ class Seller extends CI_Controller
             $data = [
                 'status' => 2,
             ];
-            $this->db->where('transaksi_id', $id);
+            $this->db->where('detail_id', $id);
             $query = $this->db->update('detail_transaksi', $data);
             if ($query) {
                 $this->db->where('id', $id);

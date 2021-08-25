@@ -57,6 +57,8 @@
                                         <th>Total</th>
                                         <th>Status</th>
                                         <th>Bukti TF</th>
+                                        <th>Lokasi Antar</th>
+                                        <th>Kirim Resi</th>
                                         <th>Tanggal</th>
                                         <th>Opsi</th>
                                     </tr>
@@ -106,12 +108,18 @@
                                                 </div>
                                             </td>
                                             <td>
+                                                <?= ($rpn['lokasi_antar'] == NULL) ? 'Tidak ada lokasi' : $rpn['lokasi_antar']; ?>
+                                            </td>
+                                            <td>
+                                                <a href="https://api.whatsapp.com/send?phone=<?= $rpn['buyer_telp']; ?>&text=Pelanggan%20terhormat%20kami%20dari%20Aglonema%20Company%20izin%20mengirimkan%20dengan%20data%20sebagai%20berikut%20:%0APenjual%20:%20<?= $user['name']; ?>%0APembeli%20:%20<?= $rpn['buyer_name']; ?>%0ANomer%20Resi%20:%20<?= $rpn['kode']; ?>" class="btn btn-success" role="buttton" target="_blank"><img src="<?= base_url('assets/admin/img/whatsapp.png'); ?>" alt="WA-img"></a>
+                                            </td>
+                                            <td>
                                                 <?= date('d M Y', strtotime($rpn['tanggal'])); ?>
                                             </td>
                                             <td>
                                                 <div class="col-lg-6">
                                                     <?php if ($rpn['status'] == 1) : ?>
-                                                        <a href="#konfirm<?= $rpn['id'] ?>" class="badge badge-primary" data-toggle="modal">
+                                                        <a href="#konfirm<?= $rpn['detail_id'] ?>" class="badge badge-primary" data-toggle="modal">
                                                             <i class="fa fa-edit"></i>Konfirmasi
                                                         </a>
                                                     <?php elseif ($rpn['status'] == 2) : ?>
@@ -206,7 +214,7 @@
 
             <!-- Modal Delete -->
             <?php foreach ($riwayat_penjualan as $rpn) : ?>
-                <div class="modal fade" id="konfirm<?= $rpn['id']; ?>">
+                <div class="modal fade" id="konfirm<?= $rpn['detail_id']; ?>">
                     <div class=" modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header bg-warning">
@@ -217,7 +225,7 @@
                             </div>
                             <form action="<?= base_url('Seller/riwayat_penjualan'); ?>" method="post">
                                 <div class="modal-body">
-                                    <input type="hidden" name="id" id="id" value="<?= $rpn['id']; ?>">
+                                    <input type="hidden" name="id" id="id" value="<?= $rpn['detail_id']; ?>">
                                     <p class="text-center">Apakah anda yakin mengonfirmasi pesanan ini?</p>
                                 </div>
                                 <div class="modal-footer justify-content-end">
